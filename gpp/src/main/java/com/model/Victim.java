@@ -8,24 +8,31 @@ public class Victim extends User {
     private ArrayList<String> member;
     private Pet pet;
     private boolean safe;
+    private ArrayList<ReliefRequest> requests; //not in uml but added to use for viewrequesthistory and deleterequest
+    private int rating; //not in uml but added to use for rateexperience
 
     public Victim(String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
         super(firstName, lastName, age, phoneNumber, email, password, language, currentLocation);
         this.guest = new ArrayList<>();
         this.member = new ArrayList<>();
+        this.requests = new ArrayList<>();
         this.pet = null;
         this.safe = false;
+        this.rating = 0;
     }
 
     public Victim(UUID userId, String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation, boolean admin, ArrayList<String> guest, ArrayList<String> member, Pet pet, boolean safe) {
         super(userId, firstName, lastName, age, phoneNumber, email, password, language, currentLocation, admin);
         this.guest = guest;
         this.member = member;
+        this.requests = new ArrayList<>();
         this.pet = pet;
         this.safe = safe;
+        this.requests = new ArrayList<>();
+        this.rating = 0;
     }
 
-    public createReliefRequest(String victmName, String location, String aidType, String urgencyLevel) {
+    public createReliefRequest(String victimName, String location, String aidType, String urgencyLevel) {
         return null;
     }
 
@@ -34,11 +41,11 @@ public class Victim extends User {
     }
 
     public deleteReliefRequest(ReliefRequest r) {
-        return null;
+        return requests.remove(r);
     }
 
     public viewReliefRequest(ReliefRequest r) {
-        return null;
+        return requests.contains(r) ? r : null; 
     }
 
     public viewReliefRequestStatus(ReliefRequest r) {
@@ -57,7 +64,10 @@ public class Victim extends User {
         return null;
     }
 
-    public boolean markSafe() {
-        this.safe = true;
+    public void markSafe() {
+        safe = true;
+    }
+    public boolean isSafe() {
+        return safe;
     }
 }
