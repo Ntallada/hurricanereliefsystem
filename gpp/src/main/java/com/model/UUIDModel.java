@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.UUID;
 
-public class UUID{
+public class UUIDModel{
     private String id;
 
     public static void main(String[] args) {
