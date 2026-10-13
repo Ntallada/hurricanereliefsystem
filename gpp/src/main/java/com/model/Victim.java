@@ -25,6 +25,9 @@ public class Victim extends User {
         this.safe = safe;
     }
 
+   /**
+    * 
+    
     public createReliefRequest(String victmName, String location, String aidType, String urgencyLevel) {
         return null;
     }
@@ -56,9 +59,28 @@ public class Victim extends User {
     public rateExperience() {
         return null;
     }
-
-    public boolean markSafe() {
+*/
+    public void markSafe() {
         this.safe = true;
-        
     }
+
+    public boolean isSafe() {
+        return safe;
+    }
+
+    public ArrayList<String> getGuest(){
+        return guest; 
+    }
+
+    public ArrayList<String> getMember() {
+        return member; 
+    }
+
+    public Pet getPet() {
+        return pet; 
+    }
+    public void setPet(Pet pet) {
+        this.pet = pet; 
+    }
+    
 }

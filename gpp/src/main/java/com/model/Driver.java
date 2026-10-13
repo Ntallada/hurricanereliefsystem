@@ -7,8 +7,8 @@ public class Driver {
         UserList userList = UserList.getInstance();
         System.out.println("Loaded " + userList.getUsers().size() + " users from JSON.");
 
-        System.out.println("/n Testing sign up and create user");
-        boolean created = userList.addUser("John", "Does", 21, "password123", "Emglish", "Columbia, SC");
+        System.out.println("\n Testing sign up and create user");
+        boolean created = userList.addUser("VICTIM", "John", "Does", 21, "8035551234", "john.does@example.com", "password123", Languages.ENGLISH, "Columbia, SC");
         if (created) {
             System.out.println("User added and written to users.json successfully!");
         }
