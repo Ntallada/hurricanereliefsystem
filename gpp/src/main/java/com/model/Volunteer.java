@@ -53,4 +53,7 @@ this.available = available;
         available = true;
     }
     
+    public boolean getBackgroundCheck() {
+        return backgroundCheck; 
+    }
 }

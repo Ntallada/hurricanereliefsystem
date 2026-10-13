@@ -12,8 +12,9 @@ public class ReliefRequest {
     private UrgencyLevel urgencyLevel;
     private String status;
     private boolean petNeeds;
+    private UUID volunteerId;
     private boolean emsCalled; //added to run callEMS method
-
+    
     public ReliefRequest(User user, String victimName, String location, String sepcialrequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
         this.user = user;
         this.victimName = victimName;
@@ -50,4 +51,15 @@ public class ReliefRequest {
     public viewETA() {
         return null;
     }
+
+    public UUID getRequestId() { return requestId; }
+public User getUser() { return user; }
+public String getVictimName() { return victimName; }
+public String getLocation() { return location; }
+public String getAidType() { return aidType; }
+public String getSpecialRequests() { return specialRequests; }
+public String getUrgencyLevel() { return urgencyLevel; }
+public String getStatus() { return status; }
+public boolean isPetNeeds() { return petNeeds; }
+public UUID getVolunteerId() { return volunteerId; }
 }

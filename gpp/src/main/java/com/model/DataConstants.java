@@ -3,22 +3,23 @@ package com.model;
  
 public abstract class DataConstants {
     //user stuff
-    protected static final String USERS_FILE_NAME = "json/user.json";
-    protected static final String USER_ID = "id";
+    protected static final String USERS_FILE_NAME = "json/users.json";
+    protected static final String USER_ID = "userid";
     protected static final String USER_FIRST_NAME = "firstName";
     protected static final String USER_LAST_NAME = "lastName";
     protected static final String USER_PHONE_NUMBER = "phoneNumber";
     protected static final String USER_EMAIL = "email";
     protected static final String USER_AGE = "age";
-    
-    /* this is also in uml
     protected static final String USER_PASSWORD = "password";
     protected static final String USER_LANGUAGE = "language";
     protected static final String USER_CURRENT_LOCATION = "currentLocation";
     protected static final String USER_ADMIN = "admin";
-    */
+    protected static final String USER_TYPE = "type";
+    protected static final String USER_BACKGROUND_CHECK = "backgroundCheck";
+    protected static final String USER_ASSIGNED_SKILLS = "assignedSkills";
+    
 
-    //shelter
+ 
     protected static final String SHELTERS_FILE_NAME = "json/shelters.json";
     protected static final String SHELTER_LOCATION = "location";
     protected static final String SHELTER_CAPACITY = "capacity";

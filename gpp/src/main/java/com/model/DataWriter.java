@@ -16,8 +16,8 @@ public class DataWriter extends DataConstants {
             JSONObject userJSON = new JSONObject();
 
             userJSON.put(USER_ID, user.getId().toString());  
-            userJSON.put(USER_FIRST_NAME, user.getfirstName().toString());
-            userJSON.put(USER_LAST_NAME, user.getlastName().toString());
+            userJSON.put(USER_FIRST_NAME, user.getFirstName().toString());
+            userJSON.put(USER_LAST_NAME, user.getLastName().toString());
             userJSON.put(USER_PASSWORD, user.getPassword());
             userJSON.put(USER_LANGUAGE, user.getLanguage());
             userJSON.put(USER_CURRENT_LOCATION, user.getCurrentLocation());
