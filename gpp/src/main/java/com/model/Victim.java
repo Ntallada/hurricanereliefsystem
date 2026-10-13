@@ -65,9 +65,9 @@ public class Victim extends User {
     }
 
     public void markSafe() {
-        safe = true;
+        this.safe = true;
     }
     public boolean isSafe() {
-        return safe;
+        return this.safe;
     }
 }
