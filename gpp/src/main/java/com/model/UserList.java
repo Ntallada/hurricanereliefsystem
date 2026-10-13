@@ -8,7 +8,7 @@ public class UserList {
     private ArrayList<User> users;
 
     private UserList() {
-        users = Dataloader.getUsers();
+        users = DataLoader.getUsers();
         if (users == null) {
             users = new ArrayList<>();
         }
@@ -30,15 +30,38 @@ public class UserList {
         saveUsers();
     }
 
-    public void addUser(String firstName, String lastName, int age, String password, Languages language, String currentLocation) {
-        User user = new User(firstName, lastName, age, password, language.toString(), currentLocation);
-        users.add(user);
-        saveUsers();
+    public void addUser(String firstName, String lastName, int age, String password, String languageStr, String currentLocation, String phoneNumber, String email) {
+        Object langEnum = null;
+        try {
+            Class<?> innerEnum = Class.forName("com.model.User$Language");
+            Object[] constants = innerEnum.getEnumConstants();
+            
+            for (Object constant : constants) {
+                if (constant.toString().equalsIgnoreCase(languageStr)) {
+                    langEnum = constant;
+                    break;
+                }
+            }
+
+            if (langEnum == null && constants.length > 0) {
+                langEnum = constants[0];
+            }
+
+            java.lang.reflect.Constructor<?> constructor = User.class.getConstructor(
+                String.class, String.class, int.class, String.class, innerEnum, String.class, String.class, String.class
+            );
+
+            User user = (User) constructor.newInstance(firstName, lastName, age, password, langEnum, currentLocation, phoneNumber, email);
+            users.add(user);
+            saveUsers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public boolean removeUser(UUID userld) {
+    public boolean removeUser(UUID userId) {
         for (User user : users) {
-            if (user.getId().equals(userld)) {
+            if (user.getId().equals(userId)) {
                 users.remove(user);
                 saveUsers();
                 return true;
@@ -46,7 +69,7 @@ public class UserList {
         }
         return false;
     }
-    
+
     public User getUserById(UUID userId) {
         for (User user : users) {
             if (user.getId().equals(userId)) {
@@ -56,9 +79,9 @@ public class UserList {
         return null;
     }
 
-    public User getUser(String firstName, String lastName) {
+    public User getUser(String firstName, String password) {
         for (User user : users) {
-            if (user.getFirstName().equals(firstName) && user.getLastName().equals(lastName)) {
+            if (user.getFirstName().equalsIgnoreCase(firstName) && user.login(password)) {
                 return user;
             }
         }
@@ -72,23 +95,20 @@ public class UserList {
                 volunteers.add((Volunteer) user);
             }
         }
-
         return volunteers;
     }
 
     public ArrayList<Victim> getVictims() {
         ArrayList<Victim> victims = new ArrayList<>();
-        for (User user:users) {
+        for (User user : users) {
             if (user instanceof Victim) {
                 victims.add((Victim) user);
             }
         }
         return victims;
-
     }
 
     public void saveUsers() {
         DataWriter.saveUsers(users);
     }
-
 }
