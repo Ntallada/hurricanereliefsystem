@@ -34,8 +34,8 @@ public class ReliefRequest {
         this.petNeeds = petNeeds;
     }
 
-    public updateStatus(enum urgencyLevel, String level, String status) {
-        this.urgencyLevel = urgencyLevel;
+    public updateStatus(UrgencyLevel level, String status) {
+        this.urgencyLevel = level;
         this.status = status;
     }
 
@@ -44,7 +44,7 @@ public class ReliefRequest {
     }
 
     public attachPhoto(String photoPath) {
-        return null;
+        this.photoPath = photoPath;
     }
 
     public viewETA() {
