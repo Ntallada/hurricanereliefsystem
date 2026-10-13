@@ -9,10 +9,19 @@ public class User {
     private int age;
     private UUID id;
     private String password;
-    private String language;
+    private Language language;
     private String currentLocation;
+    private boolean admin;
+    private String phoneNumber;
+    private String email;
 
-    public User(String firstName, String lastName, int age, String password, String language, String currentLocation) {
+    private enum Language {
+        ENGLISH,
+        SPANISH,
+        FRENCH
+    }
+
+    public User(String firstName, String lastName, int age, String password, Language language, String currentLocation, String phoneNumber, String email) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,15 +30,22 @@ public class User {
         this.password = password;
         this.language = language;
         this.currentLocation = currentLocation;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
     
-    //Loading user from json
-    public User(UUID id, String firstName, String lastName, String password, String language, String currentLocation) {
+    public User(UUID id, String firstName, String lastName, int age, String password, Language language, String currentLocation, boolean admin, String phoneNumber, String email) {
 
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
         this.password = password;
         this.language = language;
         this.currentLocation = currentLocation;
+        this.admin = admin;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public boolean authenticate(String password) {
@@ -47,7 +63,7 @@ public class User {
         return this.password.equals(password);
     }
 
-    public void selectLanguage(String language) {
+    public void selectLanguage(Language language) {
 
         this.language = language;
     }
@@ -79,6 +95,12 @@ public class User {
         return true;
     }
 
+    public boolean isAdmin() {
+
+        return admin;
+    }
+
+    //Getters
     public String getFirstName() {
 
         return firstName;
@@ -104,7 +126,7 @@ public class User {
         return password;
     }
 
-    public String getLanguage() {
+    public Language getLanguage() {
 
         return language;
     }
@@ -114,6 +136,22 @@ public class User {
         return currentLocation;
     }
 
+    public boolean getAdmin() {
+
+        return admin;
+    }
+
+    public String getPhoneNumber() {
+
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+
+        return email;
+    }
+
+    //Setters
     public void setFirstName(String firstName) {
         
         this.firstName = firstName;
@@ -134,7 +172,7 @@ public class User {
         this.password = password;
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(Language language) {
 
         this.language = language;
     }
@@ -142,5 +180,20 @@ public class User {
     public void setCurrentLocation(String currentLocation) {
 
         this.currentLocation = currentLocation;
+    }
+
+    public void setAdmin(boolean admin) {
+
+        this.admin = admin;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+
+        this.email = email;
     }
 }
