@@ -8,7 +8,7 @@ public class UserList {
     private ArrayList<User> users;
 
     private UserList() {
-        users = DataLoader.getUsers();
+        users = DataLoader.loadUsers();
         if (users == null) {
             users = new ArrayList<>();
         }
@@ -30,33 +30,32 @@ public class UserList {
         saveUsers();
     }
 
-    public void addUser(String firstName, String lastName, int age, String password, String languageStr, String currentLocation, String phoneNumber, String email) {
-        Object langEnum = null;
-        try {
-            Class<?> innerEnum = Class.forName("com.model.User$Language");
-            Object[] constants = innerEnum.getEnumConstants();
-            
-            for (Object constant : constants) {
-                if (constant.toString().equalsIgnoreCase(languageStr)) {
-                    langEnum = constant;
-                    break;
-                }
+    public User getUserByEmail(String email) {
+        for (User user : users) {
+            if (user.getEmail().equalsIgnoreCase(email)) {
+                return user;
             }
-
-            if (langEnum == null && constants.length > 0) {
-                langEnum = constants[0];
-            }
-
-            java.lang.reflect.Constructor<?> constructor = User.class.getConstructor(
-                String.class, String.class, int.class, String.class, innerEnum, String.class, String.class, String.class
-            );
-
-            User user = (User) constructor.newInstance(firstName, lastName, age, password, langEnum, currentLocation, phoneNumber, email);
-            users.add(user);
-            saveUsers();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        return null;
+    }
+
+    public boolean addUser(String type, String firstName, String lastName, int age,
+                           String phoneNumber, String email, String password,
+                           Languages language, String currentLocation) {
+        if (getUserByEmail(email) != null) {
+            return false;
+        }
+        if ("VICTIM".equalsIgnoreCase(type)) {
+            users.add(new Victim(firstName, lastName, age, phoneNumber, email,
+                    password, language, currentLocation));
+        } else if ("VOLUNTEER".equalsIgnoreCase(type)) {
+            users.add(new Volunteer(firstName, lastName, age, phoneNumber, email,
+                    password, language, currentLocation));
+        } else {
+            return false;
+        }
+        saveUsers();
+        return true;
     }
 
     public boolean removeUser(UUID userId) {
@@ -111,4 +110,6 @@ public class UserList {
     public void saveUsers() {
         DataWriter.saveUsers(users);
     }
+
+
 }

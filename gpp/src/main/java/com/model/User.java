@@ -9,44 +9,32 @@ public class User {
     private int age;
     private UUID id;
     private String password;
-    private Language language;
+    private Languages language;
     private String currentLocation;
     private boolean admin;
     private String phoneNumber;
     private String email;
 
-    private enum Language {
-        ENGLISH,
-        SPANISH,
-        FRENCH
-    }
 
-    public User(String firstName, String lastName, int age, String password, Language language, String currentLocation, String phoneNumber, String email) {
+    public User(String firstName, String lastName, int age, String phoneNumber, String email,
+        String password, Languages language, String currentLocation) {
+this(UUID.randomUUID(), firstName, lastName, age, phoneNumber, email,
+     password, language, currentLocation, false);
+}
 
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.id = UUID.randomUUID();
-        this.password = password;
-        this.language = language;
-        this.currentLocation = currentLocation;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
-    
-    public User(UUID id, String firstName, String lastName, int age, String password, Language language, String currentLocation, boolean admin, String phoneNumber, String email) {
-
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.password = password;
-        this.language = language;
-        this.currentLocation = currentLocation;
-        this.admin = admin;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
+public User(UUID id, String firstName, String lastName, int age, String phoneNumber, String email,
+        String password, Languages language, String currentLocation, boolean admin) {
+this.id = id;
+this.firstName = firstName;
+this.lastName = lastName;
+this.age = age;
+this.phoneNumber = phoneNumber;
+this.email = email;
+this.password = password;
+this.language = language;
+this.currentLocation = currentLocation;
+this.admin = admin;
+}
 
     public boolean authenticate(String password) {
 
@@ -63,7 +51,7 @@ public class User {
         return this.password.equals(password);
     }
 
-    public void selectLanguage(Language language) {
+    public void selectLanguage(Languages language) {
 
         this.language = language;
     }
@@ -126,7 +114,7 @@ public class User {
         return password;
     }
 
-    public Language getLanguage() {
+    public Languages getLanguage() {
 
         return language;
     }
@@ -172,7 +160,7 @@ public class User {
         this.password = password;
     }
 
-    public void setLanguage(Language language) {
+    public void setLanguage(Languages language) {
 
         this.language = language;
     }

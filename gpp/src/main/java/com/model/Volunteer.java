@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class Volunteer extends User {
     private boolean backgroundCheck;
-    private ArrayList<String> assignedSkills; //made it <String> not <skills> like on uml
+    private ArrayList<Skill> assignedSkills; 
     private ArrayList<String> certifications;
     private boolean available;
     
@@ -30,7 +30,7 @@ this.assignedSkills = assignedSkills;
 this.certifications = certifications;
 this.available = available;
 }
-    
+    /** 
     public boolean claimRequest(ReliefRequest r) {
         if (!available || !backgroundCheck || r.getVolunteerId() != null) {
             return false; 
@@ -39,7 +39,7 @@ this.available = available;
         r.updateStatus("CLAIMED");
         return true;
     }
-
+*/
 
     public String getVictimStatus(Victim v) {
         return v.isSafe() ? "Safe" : "Not marked safe";

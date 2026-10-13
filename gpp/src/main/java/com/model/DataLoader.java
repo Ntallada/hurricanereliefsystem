@@ -27,7 +27,7 @@ public class DataLoader extends DataConstants {
                 String firstName = (String) userJSON.get(USER_FIRST_NAME);
                 String lastName = (String) userJSON.get(USER_LAST_NAME);
                 String password = (String) userJSON.get(USER_PASSWORD);
-                Languages language = language.valueOf((String) userJSON.get(USER_LANGUAGE));
+                Languages language = Languages.valueOf((String) userJSON.get(USER_LANGUAGE));
                 String currentLocation = (String) userJSON.get(USER_CURRENT_LOCATION);
                 String type = (String) userJSON.get(USER_TYPE);
                 String email = (String) userJSON.get(USER_EMAIL);
@@ -46,13 +46,16 @@ public class DataLoader extends DataConstants {
                             password, language, currentLocation, admin,
                             backgroundCheck, new ArrayList<Skill>(), new ArrayList<String>(), true));
                     }
-         catch (Exception e) {
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return users;
     }
+}
 
+/** 
     public static ArrayList<Shelter> getShelters() {
         ArrayList<Shelter> shelters = new ArrayList<>();
 
@@ -76,8 +79,9 @@ public class DataLoader extends DataConstants {
         }
 
         return shelters;
+    }
 
-        } 
+}
 
         public static ArrayList<ReliefRequest> getRequests() {
         ArrayList<ReliefRequest> requests = new ArrayList<>();
@@ -107,3 +111,4 @@ public class DataLoader extends DataConstants {
         return requests;
         }
 }
+*/
