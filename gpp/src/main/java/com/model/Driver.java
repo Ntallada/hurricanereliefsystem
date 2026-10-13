@@ -22,5 +22,11 @@ public class Driver {
         } else {
             System.out.println("Login failed. Invalid username or password.");
         }
+
+        System.out.println("\n Testing failed login");
+        User failedUser = userList.getUser("john", "wrongPassword");
+        if (failedUser == null) {
+            System.out.println(" rejected bad password.");
+        }
     }
 }
