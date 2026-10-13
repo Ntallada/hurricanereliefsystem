@@ -1,30 +1,53 @@
+package com.model;
 
-public class reliefrequest {
-    public int requestID;
-    public String user;
-    public String victimName;
-    public String specialRequest;
-    public String status;
-    public boolean petNeeds;
-    public enum location{
-        //add zip codes later
+import java.util.UUID;
+
+public class ReliefRequest {
+    private UUID requestId;
+    private User user;
+    private String victimName;
+    private String location = [];
+    private String aidType = [];
+    private String specialRequests;
+    private int urgencyLevel = [1,2,3,4,5];
+    private String status;
+    private boolean petNeeds;
+
+    public ReliefRequest(User user, String victimName, String location, String aidType, String sepcialrequests, int urgencyLevel, bool petNeeds) {
+        this.user = user;
+        this.victimName = victimName;
+        this.location = location;
+        this.aidType = aidType;
+        this.specialRequests = sepcialrequests;
+        this.urgencyLevel = urgencyLevel;
+        this.petNeeds = petNeeds;
     }
-    public enum aidType{
-        medical,
-        trapped,
-        other,
-        //add more later
+
+    public ReliefRequest(UUID requestId, User user, String victimName, enum location, enum aidType, String sepcialrequests, enum urgencyLevel, bool petNeeds, String status) {
+        this.requestId = requestId;
+        this.user = user;
+        this.victimName = victimName;
+        this.location = location;
+        this.aidType = aidType;
+        this.specialRequests = sepcialrequests;
+        this.urgencyLevel = urgencyLevel;
+        this.petNeeds = petNeeds;
     }
-    public enum emergencyLv{
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
+
+    public updateStatus(UrgencyLevel level, String status) {
+        this.urgencyLevel = level;
+        this.status = status;
     }
-    
+
+    public callEMS() {
+        return null;
+    }
+
+    public attachPhoto(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+    public viewETA() {
+        return null;
+    }
 }

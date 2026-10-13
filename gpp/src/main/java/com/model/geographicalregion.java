@@ -1,3 +1,3 @@
-public class geographicalregion {
+public class GeographicalRegion {
     
 }

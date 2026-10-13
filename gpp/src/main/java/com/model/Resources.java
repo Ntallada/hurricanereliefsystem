@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 
-public class resources {
+public class Resources {
     public ArrayList<String> foodSupplies;
     public int waterSupplies;
     public ArrayList<String> medicalSupplies;

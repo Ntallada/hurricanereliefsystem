@@ -1,12 +1,12 @@
 package com.model;
 
-public class pet {
+public class Pet {
     private String type;
     private String specialNeeds;
     private boolean medicationRequired;
     private boolean mobilityIssues;
 
-    public pet(String type, String specialNeeds, boolean medicationRequired, boolean mobilityIssues) {
+    public Pet(String type, String specialNeeds, boolean medicationRequired, boolean mobilityIssues) {
         this.type = type;
         this.specialNeeds = specialNeeds;
         this.medicationRequired = medicationRequired;

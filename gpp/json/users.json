@@ -1,36 +1,66 @@
 [
     {
       "userId": "41ff79ac-2628-48c2-b336-e31bdda348ba",
+      "firstName": "John",
+      "lastName": "Doe",
+      "age": 30,
+      "phoneNumber": "123-456-7890",
+      "email": "john.doe@example.com",
       "password": "password123",
-      "language": "English",
-      "currentLocation": "Columbia, SC"
+      "language": "ENGLISH",
+      "currentLocation": "Columbia, SC",
+      "admin": true
     },
 
     {
       "userId": "125746ee-73c5-49c6-bf5c-79a0912f738d",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "age": 25,
+      "phoneNumber": "098-765-4321",
+      "email": "jane.smith@example.com",
       "password": "123password",
-      "language": "English",
-      "currentLocation": "Myrtle Beach, SC"
+      "language": "ENGLISH",
+      "currentLocation": "Myrtle Beach, SC",
+      "admin": false
     },
 
     {
       "userId": "e521f78a-41f8-4843-8840-5fb64d75dc99",
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "age": 35,
+      "phoneNumber": "555-1234",
+      "email": "bob.johnson@example.com",
       "password": "password456",
-      "language": "English",
-      "currentLocation": "West Columbia, SC"
+      "language": "ENGLISH",
+      "currentLocation": "West Columbia, SC",
+      "admin": false
     },
 
     {
       "userId": "c469e2a8-dba7-4a71-8de0-d60c08672601",
+      "firstName": "Alice",
+      "lastName": "Williams",
+      "age": 28,
+      "phoneNumber": "555-5678",
+      "email": "alice.williams@example.com",
       "password": "789password",
-      "language": "English",
-      "currentLocation": "Aiken, SC"
+      "language": "FRENCH",
+      "currentLocation": "Aiken, SC",
+      "admin": false
     },
 
     {
       "userId": "4b5b98f7-474b-471f-8536-8d8399aa47c6",
+      "firstName": "Luis",
+      "lastName": "Gutierrez",
+      "age": 32,
+      "phoneNumber": "555-9012",
+      "email": "luis.gutierrez@example.com",
       "password": "password098",
-      "language": "English",
-      "currentLocation": "Blythewood, SC"
+      "language": "SPANISH",
+      "currentLocation": "Blythewood, SC",
+      "admin": false
     }
 ]

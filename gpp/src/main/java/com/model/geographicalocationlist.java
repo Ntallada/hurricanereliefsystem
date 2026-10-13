@@ -1,3 +1,3 @@
-public class geographicalocationlist {
+public class GeographicaLocationList {
     
 }

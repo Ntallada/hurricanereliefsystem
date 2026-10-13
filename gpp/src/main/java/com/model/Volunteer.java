@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 
-public class volunteer {
+public class Volunteer {
     private boolean backgroundCheck;
     private ArrayList<String> assignedSkills; //made it <String> not <skills> like on uml
     private ArrayList<String> certifications;

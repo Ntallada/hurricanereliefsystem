@@ -4,16 +4,65 @@
     "location": "Columbia, SC",
     "capacity": 150,
     "occupancy": 95,
-    "status": "Open",
-    "petFriendly": true
+    "status": "OPEN",
+    "petFriendly": true,
+
+    "resources": {
+      "foodSupplies": [
+          "Canned Food",
+          "Rice",
+          "Beans",
+          "Fruits",
+          "Vegetables",
+          "Snacks"
+        ],
+      "waterSupplies": 500,
+      "medicalSupplies": [
+          "First Aid Kits",
+          "Prescription Medications",
+          "Bandages",
+          "Pain Relievers"
+        ],
+      "otherSupplies": [
+        "Blankets",
+        "Clothing",
+        "Hygiene Kits"
+      ]
+    }
   },
+
   {
     "shelterId": "b0ab1b11-6d23-4f2b-8105-ba6aa8849421",
     "location": "Myrtle Beach, SC",
     "capacity": 200,
     "occupancy": 180,
     "status": "Nearly Full",
-    "petFriendly": false
+    "petFriendly": false,
+
+    "resources": {
+      "foodSupplies": [
+        "Canned Food",
+        "Pasta",
+        "Beans",
+        "Cereals",
+        "Snacks",
+        "Fruits",
+        "Vegetables"
+      ],
+      "waterSupplies": 800,
+      "medicalSupplies": [
+        "First Aid Kits",
+        "Prescription Medications",
+        "Bandages",
+        "Pain Relievers"
+      ],
+      "otherSupplies": [
+        "Blankets",
+        "Clothing",
+        "Hygiene Kits",
+        "Flashlights"
+      ]
+    }
   },
 
   {
@@ -22,7 +71,30 @@
     "capacity": 100,
     "occupancy": 100,
     "status": "Full",
-    "petFriendly": true
+    "petFriendly": true,
+
+    "resources": {
+      "foodSupplies": [
+        "Canned Food",
+        "Rice",
+        "Beans",
+        "Pasta",
+        "Fruits",
+        "Snacks"
+      ],
+      "waterSupplies": 300,
+      "medicalSupplies": [
+        "First Aid Kits",
+        "Prescription Medications",
+        "Bandages",
+        "Pain Relievers"
+      ],
+      "otherSupplies": [
+        "Blankets",
+        "Clothing",
+        "Hygiene Kits"
+      ]
+    }
   },
 
   {
@@ -31,6 +103,28 @@
     "capacity": 120,
     "occupancy": 42,
     "status": "Open",
-    "petFriendly": true
+    "petFriendly": true,
+
+    "resources": {
+      "foodSupplies": [
+        "Canned Food",
+        "Rice",
+        "Beans",
+        "Snacks",
+        "Fruits"
+      ],
+      "waterSupplies": 200,
+      "medicalSupplies": [
+        "First Aid Kits",
+        "Prescription Medications",
+        "Bandages",
+        "Pain Relievers"
+      ],
+      "otherSupplies": [
+        "Blankets",
+        "Clothing",
+        "Hygiene Kits"
+      ]
+    }
   }
 ]
