@@ -2,7 +2,7 @@ package com.model;
 
 public class Shelter {
     private String location;
-    private string shelterId;
+    private String shelterId;
     private int capacity;
     private int occupancy;
     private String status; 
