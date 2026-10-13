@@ -13,7 +13,7 @@ public class Driver {
             System.out.println("User added and written to users.json successfully!");
         }
 
-        ystem.out.println("\n Testing login");
+        System.out.println("\n Testing login");
         User loggedInUser = userList.getUser("John", "password123");
 
         if (loggedInUser != null) {

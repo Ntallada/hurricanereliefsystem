@@ -1,41 +1,55 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class Volunteer {
+public class Volunteer extends User {
     private boolean backgroundCheck;
     private ArrayList<String> assignedSkills; //made it <String> not <skills> like on uml
     private ArrayList<String> certifications;
-    
-    /* i think we should add to make two available code can work
     private boolean available;
-     */
+    
+    // New volunteer (sign up)
+    public Volunteer(String firstName, String lastName, int age, String phoneNumber, String email,
+        String password, Languages language, String currentLocation) {
+super(firstName, lastName, age, phoneNumber, email, password, language, currentLocation);
+this.backgroundCheck = false;
+this.assignedSkills = new ArrayList<>();
+this.certifications = new ArrayList<>();
+this.available = true;
+}
 
-    public viewMap() {
-        //?? idk for viewmap
+// Loading from JSON
+public Volunteer(UUID id, String firstName, String lastName, int age, String phoneNumber, String email,
+        String password, Languages language, String currentLocation, boolean admin,
+        boolean backgroundCheck, ArrayList<Skill> assignedSkills,
+        ArrayList<String> certifications, boolean available) {
+super(id, firstName, lastName, age, phoneNumber, email, password, language, currentLocation, admin);
+this.backgroundCheck = backgroundCheck;
+this.assignedSkills = assignedSkills;
+this.certifications = certifications;
+this.available = available;
+}
+    
+    public boolean claimRequest(ReliefRequest r) {
+        if (!available || !backgroundCheck || r.getVolunteerId() != null) {
+            return false; 
+        }
+        r.assignVolunteer(getId());
+        r.updateStatus("CLAIMED");
+        return true;
     }
 
-    public claimRequest(ReliefRequest r) {
-        //?? idk for claimrequest
+
+    public String getVictimStatus(Victim v) {
+        return v.isSafe() ? "Safe" : "Not marked safe";
     }
 
-    public viewEtaToRequest(ReliefRequest r) {
-        //?? idk for viewetatorequest
-    }
-
-    public updateInventory(String item, int quantity) {
-        //?? idk for updateinventory
-    }
-
-    public getVictimStatus(Victim v) {
-        //?? idk for getvictimstatus
-    }
-
-    public markUnavailable() {
+    public void markUnavailable() {
         available = false;
     }
 
-    public markAvailable() {
+    public void markAvailable() {
         available = true;
     }
     

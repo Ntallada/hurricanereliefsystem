@@ -57,7 +57,7 @@ public class Victim extends User {
         return null;
     }
 
-    public markSafe() {
+    public boolean markSafe() {
         this.safe = true;
     }
 }
