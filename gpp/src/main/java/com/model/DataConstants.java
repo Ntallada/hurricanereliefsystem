@@ -3,8 +3,8 @@ package com.model;
  
 public abstract class DataConstants {
     //user stuff
-    protected static final String USERS_FILE_NAME = "json/users.json";
-    protected static final String USER_ID = "userid";
+    protected static final String USERS_FILE_NAME = "gpp/json/users.json";
+    protected static final String USER_ID = "userId";
     protected static final String USER_FIRST_NAME = "firstName";
     protected static final String USER_LAST_NAME = "lastName";
     protected static final String USER_PHONE_NUMBER = "phoneNumber";
