@@ -1,6 +1,6 @@
 package com.model;
 
-public class shelter {
+public class Shelter {
     private String location;
     private String shelterID;
     private int capacity;
@@ -8,6 +8,24 @@ public class shelter {
     private String status;
     private boolean petFriendly;
 
-    public shelterStatus(int updateOccupancy, String updateStatus,
-    
+    public Shelter(String location, String shelterID, int capacity, int occupancy, String status, boolean petFriendly) {
+        this.location = location;
+        this.shelterID = shelterID;
+        this.capacity = capacity;
+        this.occupancy = occupancy;
+        this.status = status;
+        this.petFriendly = petFriendly;
+    }
+
+    public Shelter(String location, int capacity, int occupancy, String status, boolean petFriendly) {
+        this.location = location;
+        this.capacity = capacity;
+        this.occupancy = occupancy;
+        this.status = status;
+        this.petFriendly = petFriendly;
+    }
+
+    public shelterStatus() {
+        
+    }
 }
