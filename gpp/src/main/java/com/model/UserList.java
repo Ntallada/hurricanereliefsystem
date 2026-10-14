@@ -39,18 +39,14 @@ public class UserList {
         return null;
     }
 
-    public boolean addUser(String type, String firstName, String lastName, int age,
-                           String phoneNumber, String email, String password,
-                           Languages language, String currentLocation) {
+    public boolean addUser(String type, String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
         if (getUserByEmail(email) != null) {
             return false;
         }
         if ("VICTIM".equalsIgnoreCase(type)) {
-            users.add(new Victim(firstName, lastName, age, phoneNumber, email,
-                    password, language, currentLocation));
+            users.add(new Victim(firstName, lastName, age, phoneNumber, email, password, language, currentLocation));
         } else if ("VOLUNTEER".equalsIgnoreCase(type)) {
-            users.add(new Volunteer(firstName, lastName, age, phoneNumber, email,
-                    password, language, currentLocation));
+            users.add(new Volunteer(firstName, lastName, age, phoneNumber, email, password, language, currentLocation));
         } else {
             return false;
         }
