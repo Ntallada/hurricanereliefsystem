@@ -8,6 +8,13 @@ public class Resources {
     public ArrayList<String> medicalSupplies;
     public ArrayList<String> otherSupplies;
     
+    public Resources() {
+        this.foodSupplies = new ArrayList<>();
+        this.waterSupplies = 0;
+        this.medicalSupplies = new ArrayList<>();
+        this.otherSupplies = new ArrayList<>();
+    }
+    
     public ArrayList<String> getFoodSupplies() {
         return foodSupplies;
     }
