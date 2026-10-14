@@ -16,12 +16,28 @@ public class Resources {
         return waterSupplies;
     }
 
-    public updateSupplies() {
-        return null;
+    public boolean updateSupplies() {
+        if (foodSupplies.isEmpty() || waterSupplies <= 0 || medicalSupplies.isEmpty() || otherSupplies.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
-    public resourcesAlert() {
-        return null;
+    public String resourcesAlert() {
+        String alert = " ";
+        if (foodSupplies.isEmpty()) {
+            alert += "Food supplies are empty. ";
+        }
+        if (waterSupplies <= 0) {
+            alert += "Water supplies are empty. ";
+        }
+        if (medicalSupplies.isEmpty()) {
+            alert += "Medical supplies are empty. ";
+        }
+        if (otherSupplies.isEmpty()) {
+            alert += "Other supplies are empty. ";
+        }
+        return alert;
     }
 
 }
