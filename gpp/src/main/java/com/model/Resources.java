@@ -16,6 +16,12 @@ public class Resources {
         return waterSupplies;
     }
 
-    //?? idk for updatesupplies and resourcesalert
+    public updateSupplies() {
+        return null;
+    }
+
+    public resourcesAlert() {
+        return null;
+    }
 
 }
