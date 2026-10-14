@@ -4,54 +4,51 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class ReliefRequestList {
+    
     private ArrayList<ReliefRequest> requests;
-    
-}
 
-public void addRequest(ReliefRequest request) {
-    requests.add(request);
-}
-
-public void addRequest(String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
-    ReliefRequest request = new ReliefRequest(victimName, location, specialRequests, urgencyLevel, petNeeds);
-    requests.add(request); //?
-}
-
-public void removeRequest(boolean String requestId) { // void?
-    for (ReliefRequest request : requests) {
-        if (request.getRequestId().toString().equals(requestId)) {
-            requests.remove(request);
-            break;
-        } // ?
+    public ReliefRequestList() {
+        requests = new ArrayList<>();
     }
-    
-}
 
-public getRequestById(String requestId) {
-    for (ReliefRequest request : requests) {
-        if (request.getRequestId().toString().equals(requestId)) {
-            return request;
+    public void addRequest(ReliefRequest request) {
+        requests.add(request);
+    }
+
+    public void addRequest(String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
+        requests.add(new ReliefRequest(victimName, location, specialRequests, urgencyLevel, petNeeds));
+    }
+
+    public boolean removeRequest(String requestId) {
+        ReliefRequest found = getRequestById(requestId);
+        if (found != null) {
+            requests.remove(found);
+            return true;
         }
+        return false;
     }
-    return null;
-}
 
-public getRequestsByUrgency(UrgencyLevel urgencyLevel) {
-    ArrayList<ReliefRequest> filteredRequests = new ArrayList<>();
-    for (ReliefRequest request : requests) {
-        if (request.getUrgencyLevel() == urgencyLevel) {
-            filteredRequests.add(request);
-        }
+    public ReliefRequest getRequestById(String requestId) {
+        // ?? idk
     }
-    return filteredRequests;
-}
 
-public getPendingRequests() {
-    ArrayList<ReliefRequest> pendingRequests = new ArrayList<>();
-    for (ReliefRequest request : requests) {
-        if (request.getStatus().equals("PENDING")) {
-            pendingRequests.add(request);
+    public ArrayList<ReliefRequest> getRequestsByUrgency(UrgencyLevel urgencyLevel) {
+        ArrayList<ReliefRequest> results = new ArrayList<>();
+        for (ReliefRequest request : requests) {
+            if (request.getUrgencyLevel() == urgencyLevel) {
+                results.add(request);
+            }
         }
+        return results;
     }
-    return pendingRequests;
+
+    public ArrayList<ReliefRequest> getPendingRequests() {
+        ArrayList<ReliefRequest> results = new ArrayList<>();
+        for (ReliefRequest request : requests) {
+            if (request.getStatus().equals("PENDING")) {
+                results.add(request);
+            }
+        }
+        return results;
+    }
 }
