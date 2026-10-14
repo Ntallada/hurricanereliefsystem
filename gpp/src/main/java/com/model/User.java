@@ -16,25 +16,22 @@ public class User {
     private String email;
 
 
-    public User(String firstName, String lastName, int age, String phoneNumber, String email,
-        String password, Languages language, String currentLocation) {
-this(UUID.randomUUID(), firstName, lastName, age, phoneNumber, email,
-     password, language, currentLocation, false);
-}
+    public User(String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
+        this(UUID.randomUUID(), firstName, lastName, age, phoneNumber, email, password, language, currentLocation, false);
+    }
 
-public User(UUID id, String firstName, String lastName, int age, String phoneNumber, String email,
-        String password, Languages language, String currentLocation, boolean admin) {
-this.id = id;
-this.firstName = firstName;
-this.lastName = lastName;
-this.age = age;
-this.phoneNumber = phoneNumber;
-this.email = email;
-this.password = password;
-this.language = language;
-this.currentLocation = currentLocation;
-this.admin = admin;
-}
+    public User(UUID id, String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation, boolean admin) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.language = language;
+        this.currentLocation = currentLocation;
+        this.admin = admin;
+    }
 
     public boolean authenticate(String password) {
 

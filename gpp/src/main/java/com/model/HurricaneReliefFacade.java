@@ -40,10 +40,7 @@ public class HurricaneReliefFacade {
         return currentUser;
     }
     // creates a new account 
-    public boolean signUp(String type, String firstName, String lastName, int age,
-                          String phoneNumber, String email, String password,
-                          Languages language, String currentLocation) {
-        return users.addUser(type, firstName, lastName, age, phoneNumber,
-                             email, password, language, currentLocation);
+    public boolean signUp(String type, String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
+        return users.addUser(type, firstName, lastName, age, phoneNumber, email, password, language, currentLocation);
     }
 }
