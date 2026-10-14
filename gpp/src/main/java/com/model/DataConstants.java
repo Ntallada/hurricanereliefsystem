@@ -19,15 +19,15 @@ public abstract class DataConstants {
     protected static final String USER_ASSIGNED_SKILLS = "assignedSkills";
     
 
- 
-    protected static final String SHELTERS_FILE_NAME = "json/shelters.json";
+ //shelter
+    protected static final String SHELTERS_FILE_NAME = "gpp/json/shelters.json";
     protected static final String SHELTER_LOCATION = "location";
     protected static final String SHELTER_CAPACITY = "capacity";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
     protected static final String SHELTER_STATUS = "status";
     protected static final String SHELTER_PET_FRIENDLY = "petFriendly";
     //request
-    protected static final String REQUESTS_FILE_NAME = "json/requests.json";
+    protected static final String REQUESTS_FILE_NAME = "gpp/json/requests.json";
     protected static final String REQUEST_ID = "requestID";
     protected static final String REQUEST_VICTIM_NAME = "victimName";
     protected static final String REQUEST_LOCATION = "location";

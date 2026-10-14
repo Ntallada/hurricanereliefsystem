@@ -7,7 +7,7 @@ public class ReliefRequest {
     private User user;
     private String victimName;
     private String location; //changed enum to string for location
-    private AidType aidType;
+    private String aidType;
     private String specialRequests;
     private UrgencyLevel urgencyLevel;
     private String status;
@@ -35,6 +35,7 @@ public class ReliefRequest {
         this.status = status;
     }
 
+   /**
     public updateStatus(UrgencyLevel level, String status) {
         this.urgencyLevel = level;
         this.status = status;
@@ -51,14 +52,14 @@ public class ReliefRequest {
     public viewETA() {
         return null;
     }
-
+*/
     public UUID getRequestId() { return requestId; }
 public User getUser() { return user; }
 public String getVictimName() { return victimName; }
 public String getLocation() { return location; }
 public String getAidType() { return aidType; }
 public String getSpecialRequests() { return specialRequests; }
-public String getUrgencyLevel() { return urgencyLevel; }
+public UrgencyLevel getUrgencyLevel() { return urgencyLevel; }
 public String getStatus() { return status; }
 public boolean isPetNeeds() { return petNeeds; }
 public UUID getVolunteerId() { return volunteerId; }
