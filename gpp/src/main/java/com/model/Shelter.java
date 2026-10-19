@@ -29,4 +29,20 @@ public class Shelter {
     public String shelterStatus() {
         return status;
     }
+
+    public UUID getShelterId() {
+        return shelterId;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getOccupancy() {
+        return occupancy;
+    }
+
+    public boolean isPetFriendly() {
+        return petFriendly;
+    }
 }
