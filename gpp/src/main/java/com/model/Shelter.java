@@ -2,7 +2,7 @@ package com.model;
 
 public class Shelter {
     private String location;
-    private String shelterID;
+    private UUID shelterId;
     private int capacity;
     private int occupancy;
     private String status;
@@ -19,13 +19,14 @@ public class Shelter {
 
     public Shelter(String location, int capacity, int occupancy, String status, boolean petFriendly) {
         this.location = location;
+        this.shelterID = null;
         this.capacity = capacity;
         this.occupancy = occupancy;
         this.status = status;
         this.petFriendly = petFriendly;
     }
 
-    public shelterStatus() {
-        
+    public String shelterStatus() {
+        return status;
     }
 }
