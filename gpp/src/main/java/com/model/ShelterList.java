@@ -16,8 +16,8 @@ public class ShelterList {
 
     public boolean removeShelter(UUID shelterId) {
         Shelter found = getShelterById(shelterId);
-        if (found != null) {;
-        return false;
+        if (found == null) {;
+            return false;
         }
         return shelters.remove(found);
     }
@@ -37,7 +37,12 @@ public class ShelterList {
     
     public ArrayList<Shelter> getAvailableShelters() {
         ArrayList<Shelter> availableShelters = new ArrayList<>();
-        return availableShelters; // TODO
+        for (Shelter shelter : shelters) {
+            if (shelter.getOccupancy() < shelter.getCapacity() && "OPEN".equalsIgnoreCase(shelter.shelterStatus())) {
+                availableShelters.add(shelter);
+            }
+        }
+        return availableShelters;
     }
 
     public ArrayList<Shelter> getPetFriendlyShelters() {

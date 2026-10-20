@@ -43,6 +43,19 @@ public class Driver {
         System.out.println("Logging out: " + facade.getCurrentUser());
     }
 
+        System.out.println("\n Testing Shelter List ");
+        ShelterList shelterList = ShelterList.getInstance();
+        System.out.println("Loaded " + shelterList.getShelters().size() + " shelters from JSON.");
+
+        for (Shelter shelter : shelterList.getShelters()) {
+            System.out.println(shelter);
+        }
+
+        // Tests adding new shelter
+        Shelter newShelter = new Shelter("Downtown Community Center", 150, 45, "OPEN", true);
+        shelterList.addShelter(newShelter);
+        System.out.println("Added new shelter. Total shelters now: " + shelterList.getShelters().size());
+
     /** 
     Random rand = new Random();
     User picked = userList.getUsers().get(rand.nextInt(userList.getUsers().size()));
