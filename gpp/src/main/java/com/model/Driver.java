@@ -52,7 +52,7 @@ public class Driver {
         }
 
         // Tests adding new shelter
-        Shelter newShelter = new Shelter("Downtown Community Center", 150, 45, "OPEN", true);
+        Shelter newShelter = new Shelter("Community Center", 150, 45, "OPEN", true);
         shelterList.addShelter(newShelter);
         System.out.println("Added new shelter. Total shelters now: " + shelterList.getShelters().size());
 

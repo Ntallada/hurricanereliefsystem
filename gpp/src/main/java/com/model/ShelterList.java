@@ -4,10 +4,23 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class ShelterList {
+    private static ShelterList instance;
     private ArrayList<Shelter> shelters;
 
     public ShelterList() {
         shelters = new ArrayList<>();
+    }
+
+    private ShelterList() { 
+        shelters = new ArrayList<>();
+
+    }
+
+    public static ShelterList getInstance() {
+        if (instance == null) {
+            instance = new ShelterList();
+        }
+        return instance;
     }
 
     public void addShelter(Shelter shelter) {
