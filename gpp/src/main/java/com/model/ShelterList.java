@@ -7,14 +7,10 @@ public class ShelterList {
     private static ShelterList instance;
     private ArrayList<Shelter> shelters;
 
-    public ShelterList() {
+    private ShelterList() {
         shelters = new ArrayList<>();
     }
 
-    private ShelterList() { 
-        shelters = new ArrayList<>();
-
-    }
 
     public static ShelterList getInstance() {
         if (instance == null) {
