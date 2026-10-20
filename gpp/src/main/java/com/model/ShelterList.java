@@ -8,7 +8,7 @@ public class ShelterList {
     private ArrayList<Shelter> shelters;
 
     private ShelterList() {
-        shelters = new ArrayList<>();
+        shelters = DataLoader.getShelters();
     }
 
 
@@ -19,13 +19,17 @@ public class ShelterList {
         return instance;
     }
 
+    public ArrayList<Shelter> getShelters() {
+        return shelters;
+    }
+
     public void addShelter(Shelter shelter) {
         shelters.add(shelter);
     }
 
     public boolean removeShelter(UUID shelterId) {
         Shelter found = getShelterById(shelterId);
-        if (found == null) {;
+        if (found == null) {
             return false;
         }
         return shelters.remove(found);
