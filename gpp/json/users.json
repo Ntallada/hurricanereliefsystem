@@ -1,6 +1,7 @@
 [
     {
       "userId": "41ff79ac-2628-48c2-b336-e31bdda348ba",
+      "type": "VOLUNTEER",
       "firstName": "John",
       "lastName": "Doe",
       "age": 30,
@@ -14,6 +15,7 @@
 
     {
       "userId": "125746ee-73c5-49c6-bf5c-79a0912f738d",
+      "type": "VICTIM",
       "firstName": "Jane",
       "lastName": "Smith",
       "age": 25,
@@ -27,6 +29,7 @@
 
     {
       "userId": "e521f78a-41f8-4843-8840-5fb64d75dc99",
+      "type": "VOLUNTEER",
       "firstName": "Bob",
       "lastName": "Johnson",
       "age": 35,
@@ -40,6 +43,7 @@
 
     {
       "userId": "c469e2a8-dba7-4a71-8de0-d60c08672601",
+      "type": "VICTIM",
       "firstName": "Alice",
       "lastName": "Williams",
       "age": 28,
@@ -53,6 +57,7 @@
 
     {
       "userId": "4b5b98f7-474b-471f-8536-8d8399aa47c6",
+      "type": "VOLUNTEER",
       "firstName": "Luis",
       "lastName": "Gutierrez",
       "age": 32,

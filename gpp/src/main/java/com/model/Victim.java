@@ -8,31 +8,51 @@ public class Victim extends User {
     private ArrayList<String> member;
     private Pet pet;
     private boolean safe;
-    private ArrayList<ReliefRequest> requests; //not in uml but added to use for viewrequesthistory and deleterequest
-    private int rating; //not in uml but added to use for rateexperience
 
     public Victim(String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
         super(firstName, lastName, age, phoneNumber, email, password, language, currentLocation);
         this.guest = new ArrayList<>();
         this.member = new ArrayList<>();
-        this.requests = new ArrayList<>();
         this.pet = null;
         this.safe = false;
-        this.rating = 0;
     }
 
     public Victim(UUID userId, String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation, boolean admin, ArrayList<String> guest, ArrayList<String> member, Pet pet, boolean safe) {
         super(userId, firstName, lastName, age, phoneNumber, email, password, language, currentLocation, admin);
         this.guest = guest;
         this.member = member;
-        this.requests = new ArrayList<>();
         this.pet = pet;
         this.safe = safe;
-        this.requests = new ArrayList<>();
-        this.rating = 0;
     }
 
-    public createReliefRequest(String victimName, String location, String aidType, String urgencyLevel) {
+    public createReliefRequest(String victimName, String location, String urgencyLevel) {
+        return null;// TODO
+    }
+
+    public editReliefRequest(ReliefRequest r) {
+        int index = reliefRequests.indexOf(r);
+        if (index != -1) {
+            return false;
+        }
+        requests.set(index, r);
+        return true;
+    }
+
+    public boolean deleteReliefRequest(ReliefRequest r) {
+        return requests.remove(r);
+    }
+
+    public void viewReliefRequest(ReliefRequest r) {
+        if (r == null || !requests.contains(r)) {
+            System.out.println("Relief request not found.");
+            return;
+        }
+    }
+
+   /**
+    * 
+    
+    public createReliefRequest(String victmName, String location, String aidType, String urgencyLevel) {
         return null;
     }
 
@@ -41,11 +61,11 @@ public class Victim extends User {
     }
 
     public deleteReliefRequest(ReliefRequest r) {
-        return requests.remove(r);
+        return null;
     }
 
     public viewReliefRequest(ReliefRequest r) {
-        return requests.contains(r) ? r : null; 
+        return null;
     }
 
     public viewReliefRequestStatus(ReliefRequest r) {
@@ -63,11 +83,28 @@ public class Victim extends User {
     public rateExperience() {
         return null;
     }
-
+*/
     public void markSafe() {
         this.safe = true;
     }
+
     public boolean isSafe() {
-        return this.safe;
+        return safe;
     }
+
+    public ArrayList<String> getGuest(){
+        return guest; 
+    }
+
+    public ArrayList<String> getMember() {
+        return member; 
+    }
+
+    public Pet getPet() {
+        return pet; 
+    }
+    public void setPet(Pet pet) {
+        this.pet = pet; 
+    }
+    
 }

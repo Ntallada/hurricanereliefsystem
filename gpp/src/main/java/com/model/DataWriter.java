@@ -16,22 +16,22 @@ public class DataWriter extends DataConstants {
             JSONObject userJSON = new JSONObject();
 
             userJSON.put(USER_ID, user.getId().toString());  
-            userJSON.put(USER_FIRST_NAME, user.getfirstName().toString());
-            userJSON.put(USER_LAST_NAME, user.getlastName().toString());
+            userJSON.put(USER_FIRST_NAME, user.getFirstName());
+            userJSON.put(USER_LAST_NAME, user.getLastName());
+            userJSON.put(USER_AGE, user.getAge());
+            userJSON.put(USER_PHONE_NUMBER, user.getPhoneNumber());
             userJSON.put(USER_PASSWORD, user.getPassword());
-            userJSON.put(USER_LANGUAGE, user.getLanguage());
+            userJSON.put(USER_LANGUAGE, user.getLanguage().toString());
             userJSON.put(USER_CURRENT_LOCATION, user.getCurrentLocation());
             userJSON.put(USER_EMAIL, user.getEmail());
+            userJSON.put(USER_ADMIN, user.isAdmin());
 
-            if (user instanceof Victim) {
-                userJSON.put(USER_TYPE, "Victim");
-            } else if (user instanceof Volunteer) {
-                userJSON.put(USER_TYPE, "Volunteer");
+            if (user instanceof Volunteer) {
+                userJSON.put(USER_TYPE, "VOLUNTEER");
                 userJSON.put(USER_BACKGROUND_CHECK, ((Volunteer) user).getBackgroundCheck());
-            } else if (user instanceof Admin) {
-                userJSON.put(USER_TYPE, "Admin");
-                userJSON.put(USER_SHELTER_ACCESS, ((Admin) user).getShelterAccess());
-            }
+            } else  {
+                userJSON.put(USER_TYPE, "VICTIM");
+            } 
 
             usersJSON.add(userJSON);
         }
@@ -65,14 +65,14 @@ public class DataWriter extends DataConstants {
         for (ReliefRequest request : requests) {
             JSONObject requestJSON = new JSONObject();
 
-            requestJSON.put(REQUEST_ID, request.getRequestID());
+            requestJSON.put(REQUEST_ID, request.getRequestId().toString());
             requestJSON.put(REQUEST_VICTIM_NAME, request.getVictimName());
             requestJSON.put(REQUEST_LOCATION, request.getLocation());
             requestJSON.put(REQUEST_AID_TYPE, request.getAidType());
             requestJSON.put(REQUEST_SPECIAL_REQUESTS, request.getSpecialRequests());
             requestJSON.put(REQUEST_URGENCY_LEVEL, request.getUrgencyLevel());
             requestJSON.put(REQUEST_STATUS, request.getStatus());
-            requestJSON.put(REQUEST_PET_NEEDS, request.hasPetNeeds());
+            requestJSON.put(REQUEST_PET_NEEDS, request.isPetNeeds());
 
             requestsJSON.add(requestJSON);
         }

@@ -13,7 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
 
-   public static ArrayList<User> getUsers() {
+   public static ArrayList<User> loadUsers() {
         ArrayList<User> users = new ArrayList<>();
 
         try (FileReader reader = new FileReader(USERS_FILE_NAME)) {
@@ -24,23 +24,28 @@ public class DataLoader extends DataConstants {
                 JSONObject userJSON = (JSONObject) usersJSON.get(i);
                 String idStr = (String) userJSON.get(USER_ID);
                 UUID id = UUID.fromString(idStr);
-                String FirstName = (String) firstName.get(firstName);
-                String LastName = (String) lastName.get(lastName);
+                String firstName = (String) userJSON.get(USER_FIRST_NAME);
+                String lastName = (String) userJSON.get(USER_LAST_NAME);
                 String password = (String) userJSON.get(USER_PASSWORD);
-                String language = (String) userJSON.get(USER_LANGUAGE);
+                Languages language = Languages.valueOf((String) userJSON.get(USER_LANGUAGE));
                 String currentLocation = (String) userJSON.get(USER_CURRENT_LOCATION);
                 String type = (String) userJSON.get(USER_TYPE);
                 String email = (String) userJSON.get(USER_EMAIL);
+                int age = ((Long) userJSON.get(USER_AGE)).intValue();
+                String phoneNumber = (String) userJSON.get(USER_PHONE_NUMBER);
+                boolean admin = (Boolean) userJSON.get(USER_ADMIN);
 
-                if ("Victim".equalsIgnoreCase(type)) {
-                    users.add(new Victim(id, password, language, currentLocation));
-                } else if ("Volunteer".equalsIgnoreCase(type)) {
-                    boolean backgroundCheck = (Boolean) userJSON.get(USER_BACKGROUND_CHECK);
-                    users.add(new Volunteer(id, password, language, currentLocation, backgroundCheck));
-                } else if ("Admin".equalsIgnoreCase(type)) {
-                    boolean shelterAccess = (Boolean) userJSON.get(USER_SHELTER_ACCESS);
-                    users.add(new Admin(id, password, language, currentLocation, shelterAccess));
-                }
+                if ("VICTIM".equalsIgnoreCase(type)) {
+                    users.add(new Victim(id, firstName, lastName, age, phoneNumber, email,
+                            password, language, currentLocation, admin,
+                            new ArrayList<String>(), new ArrayList<String>(), null, false));
+                } else if ("VOLUNTEER".equalsIgnoreCase(type)) {
+                    Boolean bc = (Boolean) userJSON.get(USER_BACKGROUND_CHECK);
+                    boolean backgroundCheck = bc != null && bc;
+                    users.add(new Volunteer(id, firstName, lastName, age, phoneNumber, email,
+                            password, language, currentLocation, admin,
+                            backgroundCheck, new ArrayList<Skill>(), new ArrayList<String>(), true));
+                    }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +53,9 @@ public class DataLoader extends DataConstants {
 
         return users;
     }
+}
 
+/** 
     public static ArrayList<Shelter> getShelters() {
         ArrayList<Shelter> shelters = new ArrayList<>();
 
@@ -72,8 +79,9 @@ public class DataLoader extends DataConstants {
         }
 
         return shelters;
+    }
 
-        } 
+}
 
         public static ArrayList<ReliefRequest> getRequests() {
         ArrayList<ReliefRequest> requests = new ArrayList<>();
@@ -103,3 +111,4 @@ public class DataLoader extends DataConstants {
         return requests;
         }
 }
+*/

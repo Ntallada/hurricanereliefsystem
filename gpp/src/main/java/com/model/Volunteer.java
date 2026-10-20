@@ -5,32 +5,30 @@ import java.util.UUID;
 
 public class Volunteer extends User {
     private boolean backgroundCheck;
-    private ArrayList<String> assignedSkills; //made it <String> not <skills> like on uml
+    private ArrayList<Skill> assignedSkills; 
     private ArrayList<String> certifications;
     private boolean available;
     
     // New volunteer (sign up)
-    public Volunteer(String firstName, String lastName, int age, String phoneNumber, String email,
-        String password, Languages language, String currentLocation) {
-super(firstName, lastName, age, phoneNumber, email, password, language, currentLocation);
-this.backgroundCheck = false;
-this.assignedSkills = new ArrayList<>();
-this.certifications = new ArrayList<>();
-this.available = true;
-}
+    public Volunteer(String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
+        super(firstName, lastName, age, phoneNumber, email, password, language, currentLocation);
+        this.backgroundCheck = false;
+        this.assignedSkills = new ArrayList<>();
+        this.certifications = new ArrayList<>();
+        this.available = true;
+    }
 
-// Loading from JSON
-public Volunteer(UUID id, String firstName, String lastName, int age, String phoneNumber, String email,
-        String password, Languages language, String currentLocation, boolean admin,
-        boolean backgroundCheck, ArrayList<Skill> assignedSkills,
-        ArrayList<String> certifications, boolean available) {
-super(id, firstName, lastName, age, phoneNumber, email, password, language, currentLocation, admin);
-this.backgroundCheck = backgroundCheck;
-this.assignedSkills = assignedSkills;
-this.certifications = certifications;
-this.available = available;
-}
+    // Loading from JSON
+    public Volunteer(UUID id, String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation, boolean admin,
+        boolean backgroundCheck, ArrayList<Skill> assignedSkills, ArrayList<String> certifications, boolean available) {
+        super(id, firstName, lastName, age, phoneNumber, email, password, language, currentLocation, admin);
+        this.backgroundCheck = backgroundCheck;
+        this.assignedSkills = assignedSkills;
+        this.certifications = certifications;
+        this.available = available;
+    }
     
+    /** 
     public boolean claimRequest(ReliefRequest r) {
         if (!available || !backgroundCheck || r.getVolunteerId() != null) {
             return false; 
@@ -39,7 +37,7 @@ this.available = available;
         r.updateStatus("CLAIMED");
         return true;
     }
-
+    */
 
     public String getVictimStatus(Victim v) {
         return v.isSafe() ? "Safe" : "Not marked safe";
@@ -53,4 +51,7 @@ this.available = available;
         available = true;
     }
     
+    public boolean getBackgroundCheck() {
+        return backgroundCheck; 
+    }
 }

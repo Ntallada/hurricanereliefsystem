@@ -15,18 +15,38 @@ public class ShelterList {
     }
 
     public boolean removeShelter(UUID shelterId) {
-        return false; // TODO
+        Shelter found = getShelterById(shelterId);
+        if (found != null) {;
+        return false;
+        }
+        return shelters.remove(found);
     }
 
     public Shelter getShelterById(UUID shelterId) {
-        return null; // TODO
+        if (shelterId == null) {
+            return null;
+        }
+        String id = shelterId.toString();
+        for (Shelter shelter : shelters) {
+            if (shelter.getShelterId().toString().equals(id)) {
+                return shelter; //??
+            }
+        }
+        return null;
     }
     
     public ArrayList<Shelter> getAvailableShelters() {
-        return new ArrayList<>(); // TODO
+        ArrayList<Shelter> availableShelters = new ArrayList<>();
+        return availableShelters; // TODO
     }
 
     public ArrayList<Shelter> getPetFriendlyShelters() {
-        return new ArrayList<>(); // TODO
+        ArrayList<Shelter> petFriendlyShelters = new ArrayList<>();
+        for (Shelter shelter : shelters) {
+            if (shelter.isPetFriendly()) {
+                petFriendlyShelters.add(shelter);
+            }
+        }
+        return petFriendlyShelters;
     }
 }
