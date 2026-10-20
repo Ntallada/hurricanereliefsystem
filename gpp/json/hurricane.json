@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Hurricane Aurora",
+    "category": 3,
+    "windSpeed": 120.0,
+    "affectedZipCodes": [
+        "29201",
+        "29205",
+        "29209"
+    ],
+    "location": "Columbia, SC",
+    "affectedAreas": [
+        "Richland County",
+        "Lexington County"
+    ],
+    "condition": "Heavy flooding and strong winds",
+    "terrain": "Inland"
+  },
+
+  {
+    "name": "Hurricane Aurora",
+    "category": 3,
+    "windSpeed": 115.0,
+    "affectedZipCodes": [
+        "29572",
+        "29575",
+        "29577"
+    ],
+    "location": "Myrtle Beach, SC",
+    "affectedAreas": [
+
+        "Myrtle Beach",
+        "Surfside Beach",
+        "North Myrtle Beach"
+    ],
+    "condition": "Storm surge and strong winds",
+    "terrain": "Coastal"
+  },
+
+  {
+    "name": "Hurricane Aurora",
+    "category": 3,
+    "windSpeed": 100.0,
+    "affectedZipCodes": [
+        "29169",
+        "29170",
+        "29171"
+    ],
+    "location": "West Columbia, SC",
+    "affectedAreas": [
+        "West Columbia",
+        "Cayce",
+        "Springdale"
+    ],
+    "condition": "Heavy rain and wind damage",
+    "terrain": "Inland"
+  },
+
+  {
+    "name": "Hurricane Aurora",
+    "category": 3,
+    "windSpeed": 90.0,
+    "affectedZipCodes": [
+        "29801",
+        "29803",
+        "29829"
+    ],
+    "location": "Aiken, SC",
+    "affectedAreas": [
+        "Aiken",
+        "Graniteville",
+        "New Ellenton"
+    ],
+    "condition": "Heavy rain and wind damage",
+    "terrain": "Inland"
+  },
+
+  {
+    "name": "Hurricane Aurora",
+    "category": 3,
+    "windSpeed": 85.0,
+    "affectedZipCodes": [
+        "29020",
+        "29021",
+        "29022"
+    ],
+    "location": "Blythewood, SC",
+    "affectedAreas": [
+        "Blythewood",
+        "Elgin",
+        "Camden"
+    ],
+    "condition": "Heavy rain and wind damage",
+    "terrain": "Inland"
+  }
+]

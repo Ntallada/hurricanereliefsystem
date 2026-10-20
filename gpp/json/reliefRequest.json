@@ -1,0 +1,61 @@
+[
+  {
+    "requestId": "9f177004-dc6a-44a5-ada4-541dde5fb619",
+    "request": "Need drinking water and food",
+    "victimName": "Maria Torres",
+    "location": "Columbia, SC",
+    "aidType": "Food and Water",
+    "specialRequests": "Needs pet-friendly shelter",
+    "urgencyLevel": "High",
+    "status": "Pending",
+    "petNeeds": true
+  },
+
+  {
+    "requestId": "6be6d1f9-63d5-4ebb-b1cb-7c0a65deeb02",
+    "request": "Need transportation to shelter",
+    "victimName": "Jordan Lee",
+    "location": "Myrtle Beach, SC",
+    "aidType": "Transportation",
+    "specialRequests": "Wheelchair accessible vehicle",
+    "urgencyLevel": "Critical",
+    "status": "Assigned",
+    "petNeeds": false
+  },
+
+  {
+    "requestId": "af325afd-7cab-40dc-b0be-92dd4e741447",
+    "request": "Need medicine and first aid supplies",
+    "victimName": "Avery Brooks",
+    "location": "West Columbia, SC",
+    "aidType": "Medical",
+    "specialRequests": "Refrigerated medication",
+    "urgencyLevel": "High",
+    "status": "In Progress",
+    "petNeeds": true
+  },
+
+  {
+    "requestId": "5492a6e5-d2f0-4e57-8102-777c4ff3fb3",
+    "request": "Need temporary shelter",
+    "victimName": "Taylor Reed",
+    "location": "Aiken, SC",
+    "aidType": "Shelter",
+    "specialRequests": "",
+    "urgencyLevel": "Medium",
+    "status": "Completed",
+    "petNeeds": false
+  },
+
+  {
+    "requestId": "bddeab94-310b-455b-840a-05fa99c98bff",
+    "request": "Need temporary shelter",
+    "victimName": "Jonathan Brown",
+    "location": "Blythewood, SC",
+    "aidType": "Shelter",
+    "specialRequests": "",
+    "urgencyLevel": "Medium",
+    "status": "Completed",
+    "petNeeds": false
+  }
+]
