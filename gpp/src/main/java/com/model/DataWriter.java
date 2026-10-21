@@ -46,10 +46,11 @@ public class DataWriter extends DataConstants {
         for (Shelter shelter : shelters) {
             JSONObject shelterJSON = new JSONObject();
 
+            shelterJSON.put(SHELTER_ID, shelter.getShelterId() != null ? shelter.getShelterId().toString() : UUID.randomUUID().toString());
             shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
-            shelterJSON.put(SHELTER_STATUS, shelter.getStatus());
+            shelterJSON.put(SHELTER_STATUS, shelter.shelterStatus()); 
             shelterJSON.put(SHELTER_PET_FRIENDLY, shelter.isPetFriendly());
 
             sheltersJSON.add(shelterJSON);
@@ -57,6 +58,7 @@ public class DataWriter extends DataConstants {
 
         return writeFile(SHELTERS_FILE_NAME, sheltersJSON);
     }
+
 
     @SuppressWarnings("unchecked")
     public static boolean saveRequests(ArrayList<ReliefRequest> requests) {
