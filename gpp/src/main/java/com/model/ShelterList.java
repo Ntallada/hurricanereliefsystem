@@ -9,8 +9,10 @@ public class ShelterList {
 
     private ShelterList() {
         shelters = DataLoader.getShelters();
+        if (shelters == null) {
+            shelters = new ArrayList<>();
+        }
     }
-
 
     public static ShelterList getInstance() {
         if (instance == null) {
@@ -25,6 +27,7 @@ public class ShelterList {
 
     public void addShelter(Shelter shelter) {
         shelters.add(shelter);
+        DataWriter.saveShelters(shelters); // Saves to JSON
     }
 
     public boolean removeShelter(UUID shelterId) {
@@ -32,7 +35,11 @@ public class ShelterList {
         if (found == null) {
             return false;
         }
-        return shelters.remove(found);
+        boolean removed = shelters.remove(found);
+        if (removed) {
+            DataWriter.saveShelters(shelters); // updates JSON on remove
+        }
+        return removed;
     }
 
     public Shelter getShelterById(UUID shelterId) {
@@ -41,8 +48,8 @@ public class ShelterList {
         }
         String id = shelterId.toString();
         for (Shelter shelter : shelters) {
-            if (shelter.getShelterId().toString().equals(id)) {
-                return shelter; //??
+            if (shelter.getShelterId() != null && shelter.getShelterId().toString().equals(id)) {
+                return shelter;
             }
         }
         return null;
