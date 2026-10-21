@@ -55,8 +55,7 @@ public class DataLoader extends DataConstants {
     }
 }
 
-/** 
-    public static ArrayList<Shelter> getShelters() {
+public static ArrayList<Shelter> getShelters() {
         ArrayList<Shelter> shelters = new ArrayList<>();
 
         try (FileReader reader = new FileReader(SHELTERS_FILE_NAME)) {
@@ -66,13 +65,21 @@ public class DataLoader extends DataConstants {
             for (int i = 0; i < sheltersJSON.size(); i++) {
                 JSONObject shelterJSON = (JSONObject) sheltersJSON.get(i);
 
+                UUID id = null;
+                if (shelterJSON.get(SHELTER_ID) != null) {
+                    id = UUID.fromString((String) shelterJSON.get(SHELTER_ID));
+                }
                 String location = (String) shelterJSON.get(SHELTER_LOCATION);
                 long capacity = (Long) shelterJSON.get(SHELTER_CAPACITY);
                 long occupancy = (Long) shelterJSON.get(SHELTER_OCCUPANCY);
                 String status = (String) shelterJSON.get(SHELTER_STATUS);
                 boolean petFriendly = (Boolean) shelterJSON.get(SHELTER_PET_FRIENDLY);
 
-                shelters.add(new Shelter(location, (int) capacity, (int) occupancy, status, petFriendly));
+                if (id != null) {
+                    shelters.add(new Shelter(location, id, (int) capacity, (int) occupancy, status, petFriendly));
+                } else {
+                    shelters.add(new Shelter(location, (int) capacity, (int) occupancy, status, petFriendly));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,8 +87,6 @@ public class DataLoader extends DataConstants {
 
         return shelters;
     }
-
-}
 
         public static ArrayList<ReliefRequest> getRequests() {
         ArrayList<ReliefRequest> requests = new ArrayList<>();
@@ -111,4 +116,3 @@ public class DataLoader extends DataConstants {
         return requests;
         }
 }
-*/
