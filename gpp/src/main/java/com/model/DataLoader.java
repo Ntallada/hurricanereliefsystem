@@ -53,7 +53,7 @@ public class DataLoader extends DataConstants {
 
         return users;
     }
-}
+
 
 public static ArrayList<Shelter> getShelters() {
         ArrayList<Shelter> shelters = new ArrayList<>();
