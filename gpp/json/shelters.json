@@ -1,6 +1,6 @@
 [
   {
-    "shelterId": "1b22364e-f6ce-489c-b500-69db66de8c09",
+    "SHELTER_ID": "1b22364e-f6ce-489c-b500-69db66de8c09",
     "location": "Columbia, SC",
     "capacity": 150,
     "occupancy": 95,
@@ -32,7 +32,7 @@
   },
 
   {
-    "shelterId": "b0ab1b11-6d23-4f2b-8105-ba6aa8849421",
+    "SHELTER_ID": "b0ab1b11-6d23-4f2b-8105-ba6aa8849421",
     "location": "Myrtle Beach, SC",
     "capacity": 200,
     "occupancy": 180,
@@ -66,7 +66,7 @@
   },
 
   {
-    "shelterId": "8a95efea-7d9d-409c-bd09-c605550799fd",
+    "SHELTER_ID": "8a95efea-7d9d-409c-bd09-c605550799fd",
     "location": "West Columbia, SC",
     "capacity": 100,
     "occupancy": 100,
@@ -98,7 +98,7 @@
   },
 
   {
-    "shelterId": "18c2e6f5-72b5-4ab2-96c0-2030a851c99e",
+    "SHELTER_ID": "18c2e6f5-72b5-4ab2-96c0-2030a851c99e",
     "location": "Aiken, SC",
     "capacity": 120,
     "occupancy": 42,

@@ -21,15 +21,11 @@ public class Shelter {
 
     public Shelter(String location, int capacity, int occupancy, String status, boolean petFriendly) {
         this.location = location;
-        this.shelterId = UUID.randomUUID();
+        this.shelterId = null;
         this.capacity = capacity;
         this.occupancy = occupancy;
         this.status = status;
         this.petFriendly = petFriendly;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public String shelterStatus() {
@@ -50,12 +46,5 @@ public class Shelter {
 
     public boolean isPetFriendly() {
         return petFriendly;
-    }
-
-    @Override
-    public String toString() {
-        return "Shelter [Location: " + location + ", Status: " + status + 
-               ", Occupancy: " + occupancy + "/" + capacity + 
-               ", Pet Friendly: " + petFriendly + "]";
     }
 }
