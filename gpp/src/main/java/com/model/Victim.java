@@ -48,42 +48,7 @@ public class Victim extends User {
             return;
         }
     }
-
-   /**
-    * 
     
-    public createReliefRequest(String victmName, String location, String aidType, String urgencyLevel) {
-        return null;
-    }
-
-    public editReliefRequest(ReliefRequest r) {
-        return null;
-    }
-
-    public deleteReliefRequest(ReliefRequest r) {
-        return null;
-    }
-
-    public viewReliefRequest(ReliefRequest r) {
-        return null;
-    }
-
-    public viewReliefRequestStatus(ReliefRequest r) {
-        return null;
-    }
-
-    public requestVolunteer() {
-        return null;
-    }
-
-    public viewRequestHistory() {
-        return null;
-    }
-
-    public rateExperience() {
-        return null;
-    }
-*/
     public void markSafe() {
         this.safe = true;
     }
