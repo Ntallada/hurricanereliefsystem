@@ -102,3 +102,4 @@ public class ReliefRequest {
     public void assignVolunteer(UUID volunteerId) {
         this.volunteerId = volunteerId;
     }
+}
