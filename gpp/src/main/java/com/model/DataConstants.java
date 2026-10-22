@@ -21,6 +21,7 @@ public abstract class DataConstants {
 
  //shelter
     protected static final String SHELTERS_FILE_NAME = "gpp/json/shelters.json";
+    protected static final String SHELTER_ID = "id";
     protected static final String SHELTER_LOCATION = "location";
     protected static final String SHELTER_CAPACITY = "capacity";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
