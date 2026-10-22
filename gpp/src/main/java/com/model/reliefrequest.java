@@ -14,13 +14,17 @@ public class ReliefRequest {
     private UUID volunteerId;
     private boolean emsCalled; //added to run callEMS method
     
-    public ReliefRequest(User user, String victimName, String location, String sepcialrequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
+    public ReliefRequest(User user, String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
         this.user = user;
         this.victimName = victimName;
         this.location = location;
         this.specialRequests = specialRequests;
         this.urgencyLevel = urgencyLevel;
         this.petNeeds = petNeeds;
+        this.requestId = UUID.randomUUID();
+        this.status = "PENDING";
+        this.volunteerId = null;
+        this.emsCalled = false;
     }
 
     public ReliefRequest(UUID requestId, User user, String victimName, String location, String sepcialrequests, UrgencyLevel urgencyLevel, boolean petNeeds, String status) {
@@ -101,48 +105,6 @@ public class ReliefRequest {
 
     public void assignVolunteer(UUID volunteerId) {
         this.volunteerId = volunteerId;
+        this.status = "ASSIGNED";
     }
-<<<<<<< HEAD
-=======
-*/
-    public UUID getRequestId() {
-        return requestId; 
-    }
-    
-    public User getUser() { 
-        return user; 
-    }
-
-    public String getVictimName() { 
-        return victimName; 
-    }
-
-    public String getLocation() { 
-        return location; 
-    }
-
-    public String getAidType() { 
-        return aidType; 
-    }
-
-    public String getSpecialRequests() { 
-        return specialRequests; 
-    }
-
-    public UrgencyLevel getUrgencyLevel() { 
-        return urgencyLevel; 
-    }
-
-    public String getStatus() { 
-        return status; 
-    }
-
-    public boolean isPetNeeds() { 
-        return petNeeds; 
-    }
-
-    public UUID getVolunteerId() { 
-        return volunteerId; 
-    }
->>>>>>> 46922a1d3122a1d826496214d97f29c49ef1f61c
 }

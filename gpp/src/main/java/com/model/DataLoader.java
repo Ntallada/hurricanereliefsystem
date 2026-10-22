@@ -95,7 +95,7 @@ public static ArrayList<Shelter> getShelters() {
             JSONParser parser = new JSONParser();
             JSONArray requestsJSON = (JSONArray) parser.parse(reader);
 
-        for (int i = 0; i < requestJSON.size(); i++) {
+        for (int i = 0; i < requestsJSON.size(); i++) {
             JSONObject requestJSON = (JSONObject) requestsJSON.get(i);
 
             String requestID = (String) requestJSON.get(REQUEST_ID);
@@ -107,7 +107,7 @@ public static ArrayList<Shelter> getShelters() {
                 String status = (String) requestJSON.get(REQUEST_STATUS);
                 boolean petNeeds = (Boolean) requestJSON.get(REQUEST_PET_NEEDS);
 
-                requests.add(new ReliefRequest(requestID, victimName, location, aidType, specialRequests, urgencyLevel, status, petNeeds));
+         //       requests.add(new ReliefRequest(requestID, victimName, location, aidType, specialRequests, urgencyLevel, status, petNeeds));
             }
         } catch (Exception e) {
             e.printStackTrace();

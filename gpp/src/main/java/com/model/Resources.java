@@ -14,7 +14,7 @@ public class Resources {
         this.medicalSupplies = new ArrayList<>();
         this.otherSupplies = new ArrayList<>();
     }
-    
+
     public ArrayList<String> getFoodSupplies() {
         return foodSupplies;
     }
@@ -46,5 +46,4 @@ public class Resources {
         }
         return alert;
     }
-
 }

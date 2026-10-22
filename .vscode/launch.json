@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Driver",
+            "request": "launch",
+            "mainClass": "com.gpprelief/com.model.Driver",
+            "projectName": "gpp"
+        }
+    ]
+}

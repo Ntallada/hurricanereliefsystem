@@ -9,7 +9,9 @@ public class Gps {
     private boolean satelliteCon;
     private boolean disabilityCheck;
     
-    public disableRoute(){
-        
+    public void disableRoute(){
+
     }
+
+
 }

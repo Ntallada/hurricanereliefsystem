@@ -25,65 +25,12 @@ public class Victim extends User {
         this.safe = safe;
     }
 
-    public createReliefRequest(String victimName, String location, String urgencyLevel) {
-        return null;// TODO
-    }
-
-    public editReliefRequest(ReliefRequest r) {
-        int index = reliefRequests.indexOf(r);
-        if (index != -1) {
-            return false;
-        }
-        requests.set(index, r);
-        return true;
-    }
-
-    public boolean deleteReliefRequest(ReliefRequest r) {
-        return requests.remove(r);
-    }
-
-    public void viewReliefRequest(ReliefRequest r) {
-        if (r == null || !requests.contains(r)) {
-            System.out.println("Relief request not found.");
-            return;
-        }
-    }
-
-   /**
-    * 
+    public ReliefRequest createReliefRequest(String victimName, String location,
+        String specialRequests, UrgencyLevel urgencyLevel,
+        boolean petNeeds) {
+return new ReliefRequest(this, victimName, location, specialRequests, urgencyLevel, petNeeds);
+}
     
-    public createReliefRequest(String victmName, String location, String aidType, String urgencyLevel) {
-        return null;
-    }
-
-    public editReliefRequest(ReliefRequest r) {
-        return null;
-    }
-
-    public deleteReliefRequest(ReliefRequest r) {
-        return null;
-    }
-
-    public viewReliefRequest(ReliefRequest r) {
-        return null;
-    }
-
-    public viewReliefRequestStatus(ReliefRequest r) {
-        return null;
-    }
-
-    public requestVolunteer() {
-        return null;
-    }
-
-    public viewRequestHistory() {
-        return null;
-    }
-
-    public rateExperience() {
-        return null;
-    }
-*/
     public void markSafe() {
         this.safe = true;
     }
