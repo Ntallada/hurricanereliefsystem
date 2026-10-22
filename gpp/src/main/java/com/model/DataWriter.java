@@ -71,9 +71,9 @@ public class DataWriter extends DataConstants {
             requestJSON.put(REQUEST_ID, request.getRequestId().toString());
             requestJSON.put(REQUEST_VICTIM_NAME, request.getVictimName());
             requestJSON.put(REQUEST_LOCATION, request.getLocation());
-            requestJSON.put(REQUEST_AID_TYPE, request.getAidType());
+            //requestJSON.put(REQUEST_AID_TYPE, request.getAidType().toString());
             requestJSON.put(REQUEST_SPECIAL_REQUESTS, request.getSpecialRequests());
-            requestJSON.put(REQUEST_URGENCY_LEVEL, request.getUrgencyLevel());
+            requestJSON.put(REQUEST_URGENCY_LEVEL, request.getUrgencyLevel().toString());
             requestJSON.put(REQUEST_STATUS, request.getStatus());
             requestJSON.put(REQUEST_PET_NEEDS, request.isPetNeeds());
 

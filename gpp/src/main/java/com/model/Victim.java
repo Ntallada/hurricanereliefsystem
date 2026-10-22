@@ -25,29 +25,11 @@ public class Victim extends User {
         this.safe = safe;
     }
 
-    public ReliefRequest createReliefRequest(String victimName, String location, String urgencyLevel) {
-        return null;// TODO
-    }
-
-    public editReliefRequest(ReliefRequest r) {
-        int index = reliefRequests.indexOf(r);
-        if (index != -1) {
-            return false;
-        }
-        requests.set(index, r);
-        return true;
-    }
-
-    public boolean deleteReliefRequest(ReliefRequest r) {
-        return requests.remove(r);
-    }
-
-    public void viewReliefRequest(ReliefRequest r) {
-        if (r == null || !requests.contains(r)) {
-            System.out.println("Relief request not found.");
-            return;
-        }
-    }
+    public ReliefRequest createReliefRequest(String victimName, String location,
+        String specialRequests, UrgencyLevel urgencyLevel,
+        boolean petNeeds) {
+return new ReliefRequest(this, victimName, location, specialRequests, urgencyLevel, petNeeds);
+}
     
     public void markSafe() {
         this.safe = true;

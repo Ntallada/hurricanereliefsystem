@@ -15,11 +15,11 @@ public class ReliefRequestList {
         requests.add(request);
     }
 
-    public void addRequest(String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
-        requests.add(new ReliefRequest(victimName, location, specialRequests, urgencyLevel, petNeeds));
-    }
+    // public void addRequest(String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
+    //     requests.add(new ReliefRequest(victimName, location, specialRequests, urgencyLevel, petNeeds));
+    // }
 
-    public boolean removeRequest(String requestId) {
+    public boolean removeRequest(UUID requestId) {
         ReliefRequest found = getRequestById(requestId);
         if (found != null) {
             requests.remove(found);
@@ -28,8 +28,13 @@ public class ReliefRequestList {
         return false;
     }
 
-    public ReliefRequest getRequestById(String requestId) {
-        // ?? idk
+    public ReliefRequest getRequestById(UUID requestId) {
+        for (ReliefRequest request : requests) {
+            if (request.getRequestId().equals(requestId)) {
+                return request;
+            }
+        }
+        return null;
     }
 
     public ArrayList<ReliefRequest> getRequestsByUrgency(UrgencyLevel urgencyLevel) {

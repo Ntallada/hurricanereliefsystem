@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.UUID;
+
 public class Shelter {
     private String location;
     private UUID shelterId;
@@ -46,4 +47,9 @@ public class Shelter {
     public boolean isPetFriendly() {
         return petFriendly;
     }
+
+    public String getLocation() {
+        return location;
+    }
 }
+

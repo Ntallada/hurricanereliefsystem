@@ -14,13 +14,17 @@ public class ReliefRequest {
     private UUID volunteerId;
     private boolean emsCalled; //added to run callEMS method
     
-    public ReliefRequest(User user, String victimName, String location, String sepcialrequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
+    public ReliefRequest(User user, String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
         this.user = user;
         this.victimName = victimName;
         this.location = location;
         this.specialRequests = specialRequests;
         this.urgencyLevel = urgencyLevel;
         this.petNeeds = petNeeds;
+        this.requestId = UUID.randomUUID();
+        this.status = "PENDING";
+        this.volunteerId = null;
+        this.emsCalled = false;
     }
 
     public ReliefRequest(UUID requestId, User user, String victimName, String location, String sepcialrequests, UrgencyLevel urgencyLevel, boolean petNeeds, String status) {
@@ -101,5 +105,6 @@ public class ReliefRequest {
 
     public void assignVolunteer(UUID volunteerId) {
         this.volunteerId = volunteerId;
+        this.status = "ASSIGNED";
     }
 }
