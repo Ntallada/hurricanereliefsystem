@@ -102,4 +102,47 @@ public class ReliefRequest {
     public void assignVolunteer(UUID volunteerId) {
         this.volunteerId = volunteerId;
     }
+<<<<<<< HEAD
+=======
+*/
+    public UUID getRequestId() {
+        return requestId; 
+    }
+    
+    public User getUser() { 
+        return user; 
+    }
+
+    public String getVictimName() { 
+        return victimName; 
+    }
+
+    public String getLocation() { 
+        return location; 
+    }
+
+    public String getAidType() { 
+        return aidType; 
+    }
+
+    public String getSpecialRequests() { 
+        return specialRequests; 
+    }
+
+    public UrgencyLevel getUrgencyLevel() { 
+        return urgencyLevel; 
+    }
+
+    public String getStatus() { 
+        return status; 
+    }
+
+    public boolean isPetNeeds() { 
+        return petNeeds; 
+    }
+
+    public UUID getVolunteerId() { 
+        return volunteerId; 
+    }
+>>>>>>> 46922a1d3122a1d826496214d97f29c49ef1f61c
 }
