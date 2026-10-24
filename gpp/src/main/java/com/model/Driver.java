@@ -1,7 +1,5 @@
 package com.model;
 
-import java.util.Random;
-
 public class Driver {
     
     public static void main(String[] args) {
@@ -57,7 +55,16 @@ public class Driver {
         Shelter newShelter = new Shelter("Community Center", 150, 45, "OPEN", true);
         shelterList.addShelter(newShelter);
         System.out.println("Added new shelter. Total shelters now: " + shelterList.getShelters().size());
-        
+        testMap();
     } 
+    public static void testMap() {
+        System.out.println("\n--- Test: map---");
+        String from ="12 Church St, Charleston,SC";
+        String to = "5001 Coliseum Dr, North Charleston, SC";
+        System.out.printf("Driving distance: %.1f miles%n", Gps.getDrivingDistance(from, to));
+        for (String step: Gps.getDirections(from, to)) {
+            System.out.println(" - " + step);
+        }
+    }
 
 }
