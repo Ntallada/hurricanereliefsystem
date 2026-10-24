@@ -50,4 +50,9 @@ public class Shelter {
     public String getLocation() {
         return location;
     }
+
+    @Override 
+    public String toString() {
+        return location + " (" + occupancy + "/" + capacity + ")";
+    }
 }
