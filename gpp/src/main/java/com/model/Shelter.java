@@ -45,4 +45,7 @@ public class Shelter {
     public boolean isPetFriendly() {
         return petFriendly;
     }
+    public String getLocation() {
+        return location;
+    }
 }
