@@ -9,10 +9,20 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * extends dataconstants to read users, shelters, and relief requests from json files
+ * DataLoader
+ */
 
 public class DataLoader extends DataConstants {
 
-   public static ArrayList<User> loadUsers() {
+    /**
+     * reads users from json file and returns an arraylist of users
+     * a users type determines what class is made, either victim or volunteer
+     * if file could not be read, whatever was loaded is returned and error is printed
+     * @return list of users in the file and left empty if file could not be read
+     */
+    public static ArrayList<User> loadUsers() {
         ArrayList<User> users = new ArrayList<>();
 
         try (FileReader reader = new FileReader(USERS_FILE_NAME)) {
@@ -59,17 +69,43 @@ public class DataLoader extends DataConstants {
         return users;
     }
 
+    /**
+     * reads shelters from json file and returns an arraylist of shelters
+     * if shelter has an id it is loaded with that id, otherwise a new id is generated
+     * if file could not be read, whatever was loaded is returned and error is printed
+     * @return list of shelters in the file and left empty if file could not be read
+     */
 
-public static ArrayList<Shelter> getShelters() {
-        ArrayList<Shelter> shelters = new ArrayList<>();
+    public static ArrayList<Shelter> getShelters() {
+            ArrayList<Shelter> shelters = new ArrayList<>();
 
-        try (FileReader reader = new FileReader(SHELTERS_FILE_NAME)) {
-            JSONParser parser = new JSONParser();
-            JSONArray sheltersJSON = (JSONArray) parser.parse(reader);
+            try (FileReader reader = new FileReader(SHELTERS_FILE_NAME)) {
+                JSONParser parser = new JSONParser();
+                JSONArray sheltersJSON = (JSONArray) parser.parse(reader);
 
-            for (int i = 0; i < sheltersJSON.size(); i++) {
-                JSONObject shelterJSON = (JSONObject) sheltersJSON.get(i);
+                for (int i = 0; i < sheltersJSON.size(); i++) {
+                    JSONObject shelterJSON = (JSONObject) sheltersJSON.get(i);
 
+<<<<<<< HEAD
+                    UUID id = null;
+                    if (shelterJSON.get(SHELTER_ID) != null) {
+                        id = UUID.fromString((String) shelterJSON.get(SHELTER_ID));
+                    }
+                    String location = (String) shelterJSON.get(SHELTER_LOCATION);
+                    long capacity = (Long) shelterJSON.get(SHELTER_CAPACITY);
+                    long occupancy = (Long) shelterJSON.get(SHELTER_OCCUPANCY);
+                    String status = (String) shelterJSON.get(SHELTER_STATUS);
+                    boolean petFriendly = (Boolean) shelterJSON.get(SHELTER_PET_FRIENDLY);
+
+                    if (id != null) {
+                        shelters.add(new Shelter(location, id, (int) capacity, (int) occupancy, status, petFriendly));
+                    } else {
+                        shelters.add(new Shelter(location, (int) capacity, (int) occupancy, status, petFriendly));
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+=======
                 UUID id = null;
                 if (shelterJSON.get(SHELTER_ID) != null) {
                     id = UUID.fromString((String) shelterJSON.get(SHELTER_ID));
@@ -88,14 +124,22 @@ public static ArrayList<Shelter> getShelters() {
                         status, petFriendly, hasMedicalStaff,
                         loadStringList((JSONArray) shelterJSON.get(SHELTER_OCCUPANTS)),
                         loadStringList((JSONArray) shelterJSON.get(SHELTER_PETS))));
+>>>>>>> abcb549dba07ea06fbbb2ff9d9f040038c0fb094
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return shelters;
     }
 
+<<<<<<< HEAD
+    /**
+     * reads relief requests from json file and returns an arraylist of requests
+     * requests are linked to the userid if no id for user then request is null
+     * if requests have no volunteerid then there is no volunteer for it
+     * if file could not be read, whatever was loaded is returned and error is printed
+     * @return list of every relief requests and left empty if file could not be read
+     */
+    public static ArrayList<ReliefRequest> getRequests() {
+=======
     private static ArrayList<Skill> loadSkills(JSONArray skillsJSON) {
         ArrayList<Skill> skills = new ArrayList<>();
         if (skillsJSON != null) {
@@ -117,6 +161,7 @@ public static ArrayList<Shelter> getShelters() {
     }
 
         public static ArrayList<ReliefRequest> getRequests() {
+>>>>>>> abcb549dba07ea06fbbb2ff9d9f040038c0fb094
         ArrayList<ReliefRequest> requests = new ArrayList<>();
 
         try (FileReader reader = new FileReader(REQUESTS_FILE_NAME)) {
