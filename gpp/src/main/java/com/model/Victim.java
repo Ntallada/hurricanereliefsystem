@@ -25,12 +25,13 @@ public class Victim extends User {
         this.safe = safe;
     }
 
-    public ReliefRequest createReliefRequest(String victimName, String location,
-        String specialRequests, UrgencyLevel urgencyLevel,
-        boolean petNeeds) {
-return new ReliefRequest(this, victimName, location, specialRequests, urgencyLevel, petNeeds);
-}
-    
+    public ReliefRequest createReliefRequest(String victimName, String location, String aidType, String specialRequests, UrgencyLevel urgencyLevel,
+            int numberOfPeople, boolean medicalNeeded,
+            String petName, String petType) {
+        return new ReliefRequest(this, victimName, location, aidType, specialRequests,
+                urgencyLevel, numberOfPeople, medicalNeeded, petName, petType);
+    }
+
     public void markSafe() {
         this.safe = true;
     }
@@ -39,19 +40,19 @@ return new ReliefRequest(this, victimName, location, specialRequests, urgencyLev
         return safe;
     }
 
-    public ArrayList<String> getGuest(){
-        return guest; 
+    public ArrayList<String> getGuest() {
+        return guest;
     }
 
     public ArrayList<String> getMember() {
-        return member; 
+        return member;
     }
 
     public Pet getPet() {
-        return pet; 
+        return pet;
     }
+
     public void setPet(Pet pet) {
-        this.pet = pet; 
+        this.pet = pet;
     }
-    
 }

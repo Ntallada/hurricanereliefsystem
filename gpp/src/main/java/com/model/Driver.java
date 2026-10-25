@@ -1,7 +1,5 @@
 package com.model;
 
-import java.util.Random;
-
 public class Driver {
     
     public static void main(String[] args) {
@@ -57,7 +55,49 @@ public class Driver {
         Shelter newShelter = new Shelter("Community Center", 150, 45, "OPEN", true);
         shelterList.addShelter(newShelter);
         System.out.println("Added new shelter. Total shelters now: " + shelterList.getShelters().size());
-        
+        testMap();
+        scenarioCreateRequest();
     } 
+    public static void scenarioCreateRequest() {
+        System.out.println("\n--- Scenario: Create the relief request ---");
+        HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
+
+        if (!facade.signUp("VICTIM", "Mark", "Carter", 41, "843-555-0142",
+                "mark.carter@example.com", "password123", Languages.ENGLISH,
+                "12 Church St, Charleston, SC")) {
+            System.out.println("Account already exists, logging in instead.");
+        }
+        if (!facade.login("mark.carter@example.com", "password123")) {
+            System.out.println("Login failed.");
+            return;
+        }
+
+        ReliefRequest request = facade.submitRequest(
+                "12 Church St, Charleston, SC",
+                "Transportation",
+                "Daughter Sophie has asthma and needs medical assistance. Dog: Buddy.",
+                UrgencyLevel.HIGH, 3, true, "Buddy", "Dog");
+
+        if (request == null) {
+            System.out.println("Request was not created.");
+            return;
+        }
+        System.out.println("Request submitted: " + request.getRequestId());
+        System.out.println("Type: " + request.getAidType() + ", status: " + request.getStatus());
+        System.out.println("People: " + request.getNumberOfPeople() + ", medical: " + request.isMedicalNeeded());
+        System.out.println("Pet: " + request.getPetName() + " (" + request.getPetType() + ")");
+        System.out.println("Total requests saved: " + facade.getAllRequests().size());
+        facade.logout();
+    }
+
+    public static void testMap() {
+        System.out.println("\n--- Test: map---");
+        String from ="12 Church St, Charleston,SC";
+        String to = "5001 Coliseum Dr, North Charleston, SC";
+        System.out.printf("Driving distance: %.1f miles%n", Gps.getDrivingDistance(from, to));
+        for (String step: Gps.getDirections(from, to)) {
+            System.out.println(" - " + step);
+        }
+    }
 
 }

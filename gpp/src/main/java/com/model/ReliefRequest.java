@@ -6,37 +6,72 @@ public class ReliefRequest {
     private UUID requestId;
     private User user;
     private String victimName;
-    private String location; //changed enum to string for location
+    private String location; 
+    private String aidType;
     private String specialRequests;
     private UrgencyLevel urgencyLevel;
     private String status;
     private boolean petNeeds;
+    private int numberOfPeople;
+    private boolean medicalNeeded;
+    private String petName; 
+    private String petType;
     private UUID volunteerId;
-    private boolean emsCalled; //added to run callEMS method
+    private boolean emsCalled; 
     
-    public ReliefRequest(User user, String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
+    public ReliefRequest(User user, String victimName, String location, String aidType, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType) {
         this.user = user;
         this.victimName = victimName;
         this.location = location;
+        this.aidType = aidType;
         this.specialRequests = specialRequests;
         this.urgencyLevel = urgencyLevel;
-        this.petNeeds = petNeeds;
+        this.numberOfPeople = numberOfPeople;
+        this.medicalNeeded = medicalNeeded;
+        this.petName = petName; 
+        this.petType = petType;
+        this.petNeeds = petName != null; 
         this.requestId = UUID.randomUUID();
         this.status = "PENDING";
         this.volunteerId = null;
         this.emsCalled = false;
     }
 
-    public ReliefRequest(UUID requestId, User user, String victimName, String location, String sepcialrequests, UrgencyLevel urgencyLevel, boolean petNeeds, String status) {
+    public ReliefRequest(String requestId, String victimName, String location,
+            String aidType, String specialRequests, String urgencyLevel,
+            String status, boolean petNeeds) {
+        this.requestId = UUID.fromString(requestId);
+        this.user = null;
+        this.victimName = victimName;
+        this.location = location;
+        this.aidType = aidType;
+        this.specialRequests = specialRequests;
+        this.urgencyLevel = UrgencyLevel.valueOf(urgencyLevel.trim().toUpperCase());
+        this.status = status;
+        this.petNeeds = petNeeds;
+        this.numberOfPeople = 0;
+        this.medicalNeeded = false;
+        this.petName = null;
+        this.petType = null;
+        this.volunteerId = null;
+        this.emsCalled = false;
+    }
+
+    public ReliefRequest(UUID requestId, User user, String victimName, String location, String aidType, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType, String status, UUID volunteerId) {
         this.requestId = requestId;
         this.user = user;
         this.victimName = victimName;
         this.location = location;
-        this.specialRequests = sepcialrequests;
+        this.aidType = aidType;
+        this.specialRequests = specialRequests;
+        this.numberOfPeople = numberOfPeople;
+        this.medicalNeeded = medicalNeeded;
+        this.petName = petName;
+        this.petType = petType;
+        this.petNeeds = petName != null;
         this.urgencyLevel = urgencyLevel;
-        this.petNeeds = petNeeds;
         this.status = status;
-        this.volunteerId = null;
+        this.volunteerId = volunteerId;
         this.emsCalled = false;
     }
 
@@ -78,6 +113,10 @@ public class ReliefRequest {
     public String getLocation() { 
         return location; 
     }
+
+    public String getAidType() {
+        return aidType;
+    }
     
     public String getSpecialRequests() { 
         return specialRequests; 
@@ -107,4 +146,9 @@ public class ReliefRequest {
         this.volunteerId = volunteerId;
         this.status = "ASSIGNED";
     }
+    public int getNumberOfPeople() { return numberOfPeople; }
+    public boolean isMedicalNeeded() { return medicalNeeded; }
+    public String getPetName() { return petName; }
+    public String getPetType() { return petType; }
+
 }

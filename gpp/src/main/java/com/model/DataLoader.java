@@ -98,16 +98,26 @@ public static ArrayList<Shelter> getShelters() {
         for (int i = 0; i < requestsJSON.size(); i++) {
             JSONObject requestJSON = (JSONObject) requestsJSON.get(i);
 
-            String requestID = (String) requestJSON.get(REQUEST_ID);
+            UUID requestId = UUID.fromString((String) requestJSON.get(REQUEST_ID));
+            UUID userId = UUID.fromString((String) requestJSON.get(REQUEST_USER_ID));
+            User user = UserList.getInstance().getUserById(userId);
                 String victimName = (String) requestJSON.get(REQUEST_VICTIM_NAME);
                 String location = (String) requestJSON.get(REQUEST_LOCATION);
                 String aidType = (String) requestJSON.get(REQUEST_AID_TYPE);
                 String specialRequests = (String) requestJSON.get(REQUEST_SPECIAL_REQUESTS);
-                String urgencyLevel = (String) requestJSON.get(REQUEST_URGENCY_LEVEL);
+                UrgencyLevel urgencyLevel = UrgencyLevel.valueOf((String) requestJSON.get(REQUEST_URGENCY_LEVEL));
                 String status = (String) requestJSON.get(REQUEST_STATUS);
-                boolean petNeeds = (Boolean) requestJSON.get(REQUEST_PET_NEEDS);
+                int numberOfPeople = ((Long) requestJSON.get(REQUEST_NUMBER_OF_PEOPLE)).intValue();
+                boolean medicalNeeded = (Boolean) requestJSON.get(REQUEST_MEDICAL_NEEDED);
+                String petName = (String) requestJSON.get(REQUEST_PET_NAME);
+                String petType = (String) requestJSON.get(REQUEST_PET_TYPE);
+                UUID volunteerId = null;
+                if (requestJSON.get(REQUEST_VOLUNTEER_ID) != null) {
+                    volunteerId = UUID.fromString((String) requestJSON.get(REQUEST_VOLUNTEER_ID));
+                }
 
-         //       requests.add(new ReliefRequest(requestID, victimName, location, aidType, specialRequests, urgencyLevel, status, petNeeds));
+                requests.add(new ReliefRequest(requestId, user, victimName, location, aidType, specialRequests,
+                    urgencyLevel, numberOfPeople, medicalNeeded, petName, petType, status, volunteerId));
             }
         } catch (Exception e) {
             e.printStackTrace();
