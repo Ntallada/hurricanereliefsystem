@@ -86,6 +86,9 @@ public abstract class DataConstants {
     /** key for request location */
     protected static final String REQUEST_LOCATION = "location";
 
+    /** key for request aid type */
+    protected static final String REQUEST_AID_TYPE = "aidType";
+
     /** key for request special requests */
     protected static final String REQUEST_SPECIAL_REQUESTS = "specialRequests";
     
