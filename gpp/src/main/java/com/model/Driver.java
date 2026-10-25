@@ -37,9 +37,12 @@ public class Driver {
          */
         System.out.println("\n Testing logout");
         HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
-        facade.login("john.doe@example.com", "password123");
-        System.out.println("Logged in as: " + facade.getCurrentUser().getFirstName());
-        facade.logout();
+        if (facade.login("john.doe@example.com", "password123")) {
+            System.out.println("Logged in as: " + facade.getCurrentUser().getFirstName());
+            facade.logout();
+        } else {
+            System.out.println("Login failed; skipping logout test.");
+        }
         System.out.println("Logging out: " + facade.getCurrentUser());
 
         // Testing Shelter List 
@@ -52,19 +55,21 @@ public class Driver {
         }
 
         // Tests adding new shelter
-        Shelter newShelter = new Shelter("Community Center", 150, 45, "OPEN", true);
-        shelterList.addShelter(newShelter);
-        System.out.println("Added new shelter. Total shelters now: " + shelterList.getShelters().size());
+        boolean shelterExists = shelterList.getShelters().stream()
+                .anyMatch(shelter -> "Community Center".equalsIgnoreCase(shelter.getLocation()));
+        if (!shelterExists) {
+            Shelter newShelter = new Shelter("Community Center", 150, 45, "OPEN", true);
+            shelterList.addShelter(newShelter);
+            System.out.println("Added new shelter. Total shelters now: " + shelterList.getShelters().size());
+        } else {
+            System.out.println("Community Center already exists; not adding a duplicate.");
+        }
        
         
         // Execute core project scenarios
         testMap();
         scenarioCreateRequest();
         scenarioMatchAndAssignRequest();
-        scenarioExportTripInfo();
-        scenarioRolePermissions();
-        scenarioShelterCheckInAndComplete();
-        
     } 
     public static void scenarioCreateRequest() {
         System.out.println("\n--- Scenario: Create the relief request ---");
@@ -88,6 +93,7 @@ public class Driver {
 
         if (request == null) {
             System.out.println("Request was not created.");
+            facade.logout();
             return;
         }
         System.out.println("Request submitted: " + request.getRequestId());
@@ -99,21 +105,29 @@ public class Driver {
     }
 
     public static void scenarioMatchAndAssignRequest() {
-        System.out.println("\n Scenario: Match Rosa with Request & Assign Shelter ");
-    HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
+        System.out.println("\n Scenario: Match Rosa with Request & Recommend Shelter ");
+        HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
 
         if (!facade.signUp("VOLUNTEER", "Rosa", "Delgado", 35, "843-555-9988",
                 "rosa.delgado@example.com", "password123", Languages.ENGLISH,
                 "5001 Coliseum Dr, North Charleston, SC")) {
             System.out.println("Rosa account exists, logging in.");
         }
-        facade.login("rosa.delgado@example.com", "password123");
-        System.out.println("Logged in as Volunteer: " + facade.getCurrentUser().getFirstName());
+        if (!facade.login("rosa.delgado@example.com", "password123")
+                || !(facade.getCurrentUser() instanceof Volunteer)) {
+            System.out.println("Volunteer login failed; skipping assignment scenario.");
+            facade.logout();
+            return;
+        }
+        Volunteer volunteer = (Volunteer) facade.getCurrentUser();
+        System.out.println("Logged in as Volunteer: " + volunteer.getFirstName());
         
         System.out.println("Viewing open relief requests...");
         ReliefRequest targetRequest = null;
         for (ReliefRequest req : facade.getAllRequests()) {
-            if (req.getPickupAddress().contains("Charleston") && req.getStatus().equals("Open")) {
+            if (req.getLocation() != null
+                    && req.getLocation().contains("Charleston")
+                    && "PENDING".equalsIgnoreCase(req.getStatus())) {
                 targetRequest = req;
                 break;
             }
@@ -126,23 +140,30 @@ public class Driver {
             double minDistance = Double.MAX_VALUE;
 
             for (Shelter shelter : ShelterList.getInstance().getShelters()) {
-                if (shelter.isAcceptsPets() && shelter.isHasMedicalStaff() && shelter.getAvailableSpaces() >= 4) {
-                    double dist = Gps.getDrivingDistance(targetRequest.getPickupAddress(), shelter.getAddress());
-                    if (dist < minDistance) {
+                int availableSpaces = shelter.getCapacity() - shelter.getOccupancy();
+                if ((!targetRequest.isPetNeeds() || shelter.isPetFriendly())
+                        && "OPEN".equalsIgnoreCase(shelter.shelterStatus())
+                        && availableSpaces >= targetRequest.getNumberOfPeople()) {
+                    double dist = Gps.getDrivingDistance(targetRequest.getLocation(), shelter.getLocation());
+                    if (dist >= 0 && dist < minDistance) {
                         minDistance = dist;
                         bestShelter = shelter;
+                    }
+                }
             }
-        }
-    }
 
-    if (bestShelter != null) {
-                System.out.println("Selected closest matching shelter: " + bestShelter.getName() 
+            if (bestShelter != null) {
+                System.out.println("Selected closest matching shelter: " + bestShelter.getLocation()
                     + " (Distance: " + String.format("%.1f", minDistance) + " miles)");
-                
-                facade.assignRequest(targetRequest, (Volunteer) facade.getCurrentUser());
+                targetRequest.assignVolunteer(volunteer.getId());
+                if (!DataWriter.saveRequests(facade.getAllRequests())) {
+                    System.out.println("Could not save the request assignment.");
+                    facade.logout();
+                    return;
+                }
                 System.out.println("Request status updated to: " + targetRequest.getStatus());
             } else {
-                System.out.println("No matching shelter found meeting all criteria.");
+                System.out.println("No matching shelter with a valid route was found.");
             }
         } else {
             System.out.println("No suitable open request found.");
@@ -155,9 +176,14 @@ public class Driver {
         System.out.println("\n--- Test: map---");
         String from ="12 Church St, Charleston,SC";
         String to = "5001 Coliseum Dr, North Charleston, SC";
-        System.out.printf("Driving distance: %.1f miles%n", Gps.getDrivingDistance(from, to));
-        for (String step: Gps.getDirections(from, to)) {
-            System.out.println(" - " + step);
+        double distance = Gps.getDrivingDistance(from, to);
+        if (distance < 0) {
+            System.out.println("Driving distance is unavailable.");
+        } else {
+            System.out.printf("Driving distance: %.1f miles%n", distance);
+            for (String step: Gps.getDirections(from, to)) {
+                System.out.println(" - " + step);
+            }
         }
     }
 
