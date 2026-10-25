@@ -23,7 +23,7 @@ public class HurricaneReliefFacade {
         }
         return instance;
     }
-// logs someone in, returns true if it worked, false if it did not. 
+    // logs someone in, returns true if it worked, false if it did not. 
     public boolean login(String email, String password) {
         User user = users.getUserByEmail(email);
         if(user != null && user.login(password)) {
@@ -47,22 +47,24 @@ public class HurricaneReliefFacade {
         return users.addUser(type, firstName, lastName, age, phoneNumber, email, password, language, currentLocation);
     }
 
-        // a victim submits a relief request; returns null if nobody or a non-victim is logged in
-        public ReliefRequest submitRequest(String location, String aidType, String specialRequests,
-            UrgencyLevel urgencyLevel, int numberOfPeople,
-            boolean medicalNeeded, String petName, String petType) {
-if (!(currentUser instanceof Victim)) {
-return null;
-}
-Victim victim = (Victim) currentUser;
-String victimName = victim.getFirstName() + " " + victim.getLastName();
-ReliefRequest request = victim.createReliefRequest(victimName, location, aidType, specialRequests,
-urgencyLevel, numberOfPeople, medicalNeeded, petName, petType);
-requests.addRequest(request);
-return request;
-}
+    // a victim submits a relief request; returns null if nobody or a non-victim is logged in
+    public ReliefRequest submitRequest(String location, String aidType, String specialRequests,
+        UrgencyLevel urgencyLevel, int numberOfPeople,
+        boolean medicalNeeded, String petName, String petType) {
 
-public java.util.ArrayList<ReliefRequest> getAllRequests() {
-return requests.getRequests();
-}
+        if (!(currentUser instanceof Victim)) {
+            return null;
+        }
+
+        Victim victim = (Victim) currentUser;
+        String victimName = victim.getFirstName() + " " + victim.getLastName();
+        ReliefRequest request = victim.createReliefRequest(victimName, location, aidType, specialRequests,
+        urgencyLevel, numberOfPeople, medicalNeeded, petName, petType);
+        requests.addRequest(request);
+        return request;
+    }
+
+    public java.util.ArrayList<ReliefRequest> getAllRequests() {
+        return requests.getRequests();
+    }
 }
