@@ -86,51 +86,32 @@ public class DataLoader extends DataConstants {
                 for (int i = 0; i < sheltersJSON.size(); i++) {
                     JSONObject shelterJSON = (JSONObject) sheltersJSON.get(i);
 
-<<<<<<< HEAD
                     UUID id = null;
                     if (shelterJSON.get(SHELTER_ID) != null) {
                         id = UUID.fromString((String) shelterJSON.get(SHELTER_ID));
                     }
                     String location = (String) shelterJSON.get(SHELTER_LOCATION);
+                    String name = (String) shelterJSON.get(SHELTER_NAME);
+                    if (name == null) {
+                        name = location;
+                    }
                     long capacity = (Long) shelterJSON.get(SHELTER_CAPACITY);
                     long occupancy = (Long) shelterJSON.get(SHELTER_OCCUPANCY);
                     String status = (String) shelterJSON.get(SHELTER_STATUS);
                     boolean petFriendly = (Boolean) shelterJSON.get(SHELTER_PET_FRIENDLY);
-
-                    if (id != null) {
-                        shelters.add(new Shelter(location, id, (int) capacity, (int) occupancy, status, petFriendly));
-                    } else {
-                        shelters.add(new Shelter(location, (int) capacity, (int) occupancy, status, petFriendly));
-                    }
+                    boolean hasMedicalStaff = Boolean.TRUE.equals(shelterJSON.get(SHELTER_MEDICAL_STAFF));
+                    shelters.add(new Shelter(name, location, id, (int) capacity, (int) occupancy,
+                            status, petFriendly, hasMedicalStaff,
+                            loadStringList((JSONArray) shelterJSON.get(SHELTER_OCCUPANTS)),
+                            loadStringList((JSONArray) shelterJSON.get(SHELTER_PETS))));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-=======
-                UUID id = null;
-                if (shelterJSON.get(SHELTER_ID) != null) {
-                    id = UUID.fromString((String) shelterJSON.get(SHELTER_ID));
-                }
-                String location = (String) shelterJSON.get(SHELTER_LOCATION);
-                String name = (String) shelterJSON.get(SHELTER_NAME);
-                if (name == null) {
-                    name = location;
-                }
-                long capacity = (Long) shelterJSON.get(SHELTER_CAPACITY);
-                long occupancy = (Long) shelterJSON.get(SHELTER_OCCUPANCY);
-                String status = (String) shelterJSON.get(SHELTER_STATUS);
-                boolean petFriendly = (Boolean) shelterJSON.get(SHELTER_PET_FRIENDLY);
-                boolean hasMedicalStaff = Boolean.TRUE.equals(shelterJSON.get(SHELTER_MEDICAL_STAFF));
-                shelters.add(new Shelter(name, location, id, (int) capacity, (int) occupancy,
-                        status, petFriendly, hasMedicalStaff,
-                        loadStringList((JSONArray) shelterJSON.get(SHELTER_OCCUPANTS)),
-                        loadStringList((JSONArray) shelterJSON.get(SHELTER_PETS))));
->>>>>>> abcb549dba07ea06fbbb2ff9d9f040038c0fb094
             }
 
         return shelters;
     }
 
-<<<<<<< HEAD
     /**
      * reads relief requests from json file and returns an arraylist of requests
      * requests are linked to the userid if no id for user then request is null
@@ -138,8 +119,7 @@ public class DataLoader extends DataConstants {
      * if file could not be read, whatever was loaded is returned and error is printed
      * @return list of every relief requests and left empty if file could not be read
      */
-    public static ArrayList<ReliefRequest> getRequests() {
-=======
+   
     private static ArrayList<Skill> loadSkills(JSONArray skillsJSON) {
         ArrayList<Skill> skills = new ArrayList<>();
         if (skillsJSON != null) {
@@ -161,7 +141,6 @@ public class DataLoader extends DataConstants {
     }
 
         public static ArrayList<ReliefRequest> getRequests() {
->>>>>>> abcb549dba07ea06fbbb2ff9d9f040038c0fb094
         ArrayList<ReliefRequest> requests = new ArrayList<>();
 
         try (FileReader reader = new FileReader(REQUESTS_FILE_NAME)) {
