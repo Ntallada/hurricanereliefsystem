@@ -56,7 +56,6 @@ public class Driver {
         shelterList.addShelter(newShelter);
         System.out.println("Added new shelter. Total shelters now: " + shelterList.getShelters().size());
        
-        
         // Execute core project scenarios
         testMap();
         scenarioCreateRequest();
@@ -64,8 +63,8 @@ public class Driver {
         scenarioExportTripInfo();
         scenarioRolePermissions();
         scenarioShelterCheckInAndComplete();
-        
     } 
+
     public static void scenarioCreateRequest() {
         System.out.println("\n--- Scenario: Create the relief request ---");
         HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
@@ -99,8 +98,8 @@ public class Driver {
     }
 
     public static void scenarioMatchAndAssignRequest() {
-        System.out.println("\n Scenario: Match Rosa with Request & Assign Shelter ");
-    HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
+        System.out.println("\n--- Scenario: Match Rosa with Request & Assign Shelter ---");
+        HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
 
         if (!facade.signUp("VOLUNTEER", "Rosa", "Delgado", 35, "843-555-9988",
                 "rosa.delgado@example.com", "password123", Languages.ENGLISH,
@@ -118,7 +117,7 @@ public class Driver {
                 break;
             }
         }
-        if (targetRequest !=null) {
+        if (targetRequest != null) {
             System.out.println("Found recommended request ID: " + targetRequest.getRequestId() 
                 + " for " + targetRequest.getAidType());
             
@@ -131,11 +130,11 @@ public class Driver {
                     if (dist < minDistance) {
                         minDistance = dist;
                         bestShelter = shelter;
+                    }
+                }
             }
-        }
-    }
 
-    if (bestShelter != null) {
+            if (bestShelter != null) {
                 System.out.println("Selected closest matching shelter: " + bestShelter.getName() 
                     + " (Distance: " + String.format("%.1f", minDistance) + " miles)");
                 
@@ -150,15 +149,106 @@ public class Driver {
         facade.logout();
     }
 
+    public static void scenarioExportTripInfo() {
+        System.out.println("\n--- Scenario: Export Trip Information ---");
+        HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
+        facade.login("rosa.delgado@example.com", "password123");
+
+        ReliefRequest assignedReq = null;
+        for (ReliefRequest req : facade.getAllRequests()) {
+            if (req.getAssignedVolunteer() != null && 
+                req.getAssignedVolunteer().getEmail().equals("rosa.delgado@example.com")) {
+                assignedReq = req;
+                break;
+            }
+        }
+
+        if (assignedReq != null) {
+            String exportFileName = "trip_info_" + assignedReq.getRequestId() + ".txt";
+            boolean exported = facade.exportTripInformation(assignedReq, exportFileName);
+            if (exported) {
+                System.out.println("Trip information successfully exported to: " + exportFileName);
+            } else {
+                System.out.println("Failed to export trip information.");
+            }
+        } else {
+            System.out.println("No assigned request found for export.");
+        }
+        facade.logout();
+    }
+
+    public static void scenarioRolePermissions() {
+        System.out.println("\n--- Scenario: Demonstrate Role Permissions (Volunteer Restriction) ---");
+        HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
+        facade.login("rosa.delgado@example.com", "password123");
+
+        ReliefRequest assignedReq = null;
+        for (ReliefRequest req : facade.getAllRequests()) {
+            if (req.getAssignedVolunteer() != null && 
+                req.getAssignedVolunteer().getEmail().equals("rosa.delgado@example.com")) {
+                assignedReq = req;
+                break;
+            }
+        }
+
+        if (assignedReq != null) {
+            System.out.println("Volunteer attempting to mark request as complete...");
+            boolean success = facade.completeRequest(assignedReq);
+            if (!success) {
+                System.out.println("SUCCESS: System correctly prevented volunteer from completing the request. Role permissions enforced.");
+            } else {
+                System.out.println("ERROR: Volunteer should not have permission to complete requests.");
+            }
+        }
+        facade.logout();
+    }
+
+    public static void scenarioShelterCheckInAndComplete() {
+        System.out.println("\n--- Scenario: Check Family into Shelter & Complete Request ---");
+        HurricaneReliefFacade facade = HurricaneReliefFacade.getInstance();
+
+        if (!facade.signUp("MANAGER", "Felix", "Shelton", 45, "843-555-7733",
+                "felix.manager@example.com", "password123", Languages.ENGLISH,
+                "Shelter Location")) {
+            System.out.println("Felix account exists, logging in.");
+        }
+        facade.login("felix.manager@example.com", "password123");
+        System.out.println("Logged in as Shelter Manager: " + facade.getCurrentUser().getFirstName());
+
+        ReliefRequest targetReq = null;
+        for (ReliefRequest req : facade.getAllRequests()) {
+            if (req.getPetName() != null && req.getPetName().equals("Buddy")) {
+                targetReq = req;
+                break;
+            }
+        }
+
+        if (targetReq != null) {
+            Shelter shelter = ShelterList.getInstance().getShelters().get(0);
+            boolean checkedIn = facade.checkInFamilyToShelter(shelter, targetReq);
+            
+            if (checkedIn) {
+                System.out.println("Family (3 members) and pet Buddy successfully checked into " + shelter.getName());
+                System.out.println("New Shelter Occupancy: " + shelter.getCurrentOccupancy());
+            }
+
+            boolean completed = facade.completeRequest(targetReq);
+            if (completed) {
+                System.out.println("Shelter Manager successfully marked request " + targetReq.getRequestId() + " as 'Complete'.");
+            }
+        } else {
+            System.out.println("Target request not found for check-in.");
+        }
+        facade.logout();
+    }
 
     public static void testMap() {
         System.out.println("\n--- Test: map---");
-        String from ="12 Church St, Charleston,SC";
+        String from = "12 Church St, Charleston, SC";
         String to = "5001 Coliseum Dr, North Charleston, SC";
         System.out.printf("Driving distance: %.1f miles%n", Gps.getDrivingDistance(from, to));
-        for (String step: Gps.getDirections(from, to)) {
+        for (String step : Gps.getDirections(from, to)) {
             System.out.println(" - " + step);
         }
     }
-
 }
