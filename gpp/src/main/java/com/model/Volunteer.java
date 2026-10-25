@@ -8,6 +8,7 @@ public class Volunteer extends User {
     private ArrayList<Skill> assignedSkills; 
     private ArrayList<String> certifications;
     private boolean available;
+    private String vehicle;
     
     // New volunteer (sign up)
     public Volunteer(String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
@@ -16,6 +17,7 @@ public class Volunteer extends User {
         this.assignedSkills = new ArrayList<>();
         this.certifications = new ArrayList<>();
         this.available = true;
+        this.vehicle = "";
     }
 
     // Loading from JSON
@@ -26,6 +28,7 @@ public class Volunteer extends User {
         this.assignedSkills = assignedSkills;
         this.certifications = certifications;
         this.available = available;
+        this.vehicle = "";
     }
     
     /** 
@@ -53,5 +56,23 @@ public class Volunteer extends User {
     
     public boolean getBackgroundCheck() {
         return backgroundCheck; 
+    }
+
+    public ArrayList<Skill> getAssignedSkills() {
+        return new ArrayList<>(assignedSkills);
+    }
+
+    public void addSkill(Skill skill) {
+        if (skill != null && !assignedSkills.contains(skill)) {
+            assignedSkills.add(skill);
+        }
+    }
+
+    public String getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(String vehicle) {
+        this.vehicle = vehicle;
     }
 }

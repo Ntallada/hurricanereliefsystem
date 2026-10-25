@@ -6,5 +6,6 @@ package com.model;
 public enum Skill {
     VET,
     FIRST_AID,
-    EVACUATION
+    EVACUATION,
+    TRANSPORTATION
 }
