@@ -67,4 +67,17 @@ public class HurricaneReliefFacade {
     public java.util.ArrayList<ReliefRequest> getAllRequests() {
         return requests.getRequests();
     }
+
+    public boolean completeRequest(ReliefRequest request) {
+        if (!(currentUser instanceof ShelterManager) || request == null) {
+            return false;
+        }
+        String previousStatus = request.getStatus();
+        request.updateStatus(request.getUrgencyLevel(), "COMPLETED");
+        if (!DataWriter.saveRequests(requests.getRequests())) {
+            request.updateStatus(request.getUrgencyLevel(), previousStatus);
+            return false;
+        }
+        return true;
+    }
 }

@@ -30,7 +30,16 @@ public class DataWriter extends DataConstants {
             if (user instanceof Volunteer) {
                 userJSON.put(USER_TYPE, "VOLUNTEER");
                 userJSON.put(USER_BACKGROUND_CHECK, ((Volunteer) user).getBackgroundCheck());
-            } else  {
+                Volunteer volunteer = (Volunteer) user;
+                userJSON.put(USER_VEHICLE, volunteer.getVehicle());
+                JSONArray skills = new JSONArray();
+                for (Skill skill : volunteer.getAssignedSkills()) {
+                    skills.add(skill.name());
+                }
+                userJSON.put(USER_SKILLS, skills);
+            } else if (user instanceof ShelterManager) {
+                userJSON.put(USER_TYPE, "MANAGER");
+            } else {
                 userJSON.put(USER_TYPE, "VICTIM");
             } 
 
@@ -48,11 +57,19 @@ public class DataWriter extends DataConstants {
             JSONObject shelterJSON = new JSONObject();
 
             shelterJSON.put(SHELTER_ID, shelter.getShelterId() != null ? shelter.getShelterId().toString() : UUID.randomUUID().toString());
+            shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_STATUS, shelter.shelterStatus()); 
             shelterJSON.put(SHELTER_PET_FRIENDLY, shelter.isPetFriendly());
+            shelterJSON.put(SHELTER_MEDICAL_STAFF, shelter.hasMedicalStaff());
+            JSONArray occupants = new JSONArray();
+            occupants.addAll(shelter.getOccupants());
+            shelterJSON.put(SHELTER_OCCUPANTS, occupants);
+            JSONArray pets = new JSONArray();
+            pets.addAll(shelter.getPets());
+            shelterJSON.put(SHELTER_PETS, pets);
 
             sheltersJSON.add(shelterJSON);
         }
@@ -85,6 +102,9 @@ public class DataWriter extends DataConstants {
             }
             if (request.getVolunteerId() != null) {
                 requestJSON.put(REQUEST_VOLUNTEER_ID, request.getVolunteerId().toString());
+            }
+            if (request.getShelterId() != null) {
+                requestJSON.put(REQUEST_SHELTER_ID, request.getShelterId().toString());
             }
             requestsJSON.add(requestJSON);
         }

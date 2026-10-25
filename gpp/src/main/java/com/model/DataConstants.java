@@ -71,6 +71,14 @@ public abstract class DataConstants {
     
     /** key for shelter pet-friendly status */
     protected static final String SHELTER_PET_FRIENDLY = "petFriendly";
+
+    protected static final String SHELTER_NAME = "name";
+
+    protected static final String SHELTER_MEDICAL_STAFF = "hasMedicalStaff";
+
+    protected static final String SHELTER_OCCUPANTS = "occupants";
+
+    protected static final String SHELTER_PETS = "pets";
     
     // request
 
@@ -106,6 +114,8 @@ public abstract class DataConstants {
     
     /** key for request volunteer id */
     protected static final String REQUEST_VOLUNTEER_ID = "volunteerId";
+
+    protected static final String REQUEST_SHELTER_ID = "shelterId";
     
     /** key for request number of people */
     protected static final String REQUEST_NUMBER_OF_PEOPLE = "numberOfPeople";
@@ -118,5 +128,9 @@ public abstract class DataConstants {
     
     /** key for request pet type */
     protected static final String REQUEST_PET_TYPE = "petType";
+
+    protected static final String USER_VEHICLE = "vehicle";
+
+    protected static final String USER_SKILLS = "skills";
 }
  

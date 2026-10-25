@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.UUID;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -42,10 +41,16 @@ public class DataLoader extends DataConstants {
                 } else if ("VOLUNTEER".equalsIgnoreCase(type)) {
                     Boolean bc = (Boolean) userJSON.get(USER_BACKGROUND_CHECK);
                     boolean backgroundCheck = bc != null && bc;
-                    users.add(new Volunteer(id, firstName, lastName, age, phoneNumber, email,
+                    Volunteer volunteer = new Volunteer(id, firstName, lastName, age, phoneNumber, email,
                             password, language, currentLocation, admin,
-                            backgroundCheck, new ArrayList<Skill>(), new ArrayList<String>(), true));
-                    }
+                            backgroundCheck, loadSkills((JSONArray) userJSON.get(USER_SKILLS)),
+                            new ArrayList<String>(), true);
+                    volunteer.setVehicle((String) userJSON.get(USER_VEHICLE));
+                    users.add(volunteer);
+                } else if ("MANAGER".equalsIgnoreCase(type)) {
+                    users.add(new ShelterManager(id, firstName, lastName, age, phoneNumber,
+                            email, password, language, currentLocation, admin));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,22 +75,45 @@ public static ArrayList<Shelter> getShelters() {
                     id = UUID.fromString((String) shelterJSON.get(SHELTER_ID));
                 }
                 String location = (String) shelterJSON.get(SHELTER_LOCATION);
+                String name = (String) shelterJSON.get(SHELTER_NAME);
+                if (name == null) {
+                    name = location;
+                }
                 long capacity = (Long) shelterJSON.get(SHELTER_CAPACITY);
                 long occupancy = (Long) shelterJSON.get(SHELTER_OCCUPANCY);
                 String status = (String) shelterJSON.get(SHELTER_STATUS);
                 boolean petFriendly = (Boolean) shelterJSON.get(SHELTER_PET_FRIENDLY);
-
-                if (id != null) {
-                    shelters.add(new Shelter(location, id, (int) capacity, (int) occupancy, status, petFriendly));
-                } else {
-                    shelters.add(new Shelter(location, (int) capacity, (int) occupancy, status, petFriendly));
-                }
+                boolean hasMedicalStaff = Boolean.TRUE.equals(shelterJSON.get(SHELTER_MEDICAL_STAFF));
+                shelters.add(new Shelter(name, location, id, (int) capacity, (int) occupancy,
+                        status, petFriendly, hasMedicalStaff,
+                        loadStringList((JSONArray) shelterJSON.get(SHELTER_OCCUPANTS)),
+                        loadStringList((JSONArray) shelterJSON.get(SHELTER_PETS))));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return shelters;
+    }
+
+    private static ArrayList<Skill> loadSkills(JSONArray skillsJSON) {
+        ArrayList<Skill> skills = new ArrayList<>();
+        if (skillsJSON != null) {
+            for (Object skill : skillsJSON) {
+                skills.add(Skill.valueOf(skill.toString()));
+            }
+        }
+        return skills;
+    }
+
+    private static ArrayList<String> loadStringList(JSONArray values) {
+        ArrayList<String> result = new ArrayList<>();
+        if (values != null) {
+            for (Object value : values) {
+                result.add(value.toString());
+            }
+        }
+        return result;
     }
 
         public static ArrayList<ReliefRequest> getRequests() {
@@ -116,8 +144,13 @@ public static ArrayList<Shelter> getShelters() {
                     volunteerId = UUID.fromString((String) requestJSON.get(REQUEST_VOLUNTEER_ID));
                 }
 
-                requests.add(new ReliefRequest(requestId, user, victimName, location, aidType, specialRequests,
-                    urgencyLevel, numberOfPeople, medicalNeeded, petName, petType, status, volunteerId));
+                ReliefRequest request = new ReliefRequest(requestId, user, victimName, location, aidType,
+                        specialRequests, urgencyLevel, numberOfPeople, medicalNeeded, petName, petType,
+                        status, volunteerId);
+                if (requestJSON.get(REQUEST_SHELTER_ID) != null) {
+                    request.assignShelter(UUID.fromString((String) requestJSON.get(REQUEST_SHELTER_ID)));
+                }
+                requests.add(request);
             }
         } catch (Exception e) {
             e.printStackTrace();

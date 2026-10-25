@@ -17,6 +17,7 @@ public class ReliefRequest {
     private String petName; 
     private String petType;
     private UUID volunteerId;
+    private UUID shelterId;
     private boolean emsCalled; 
     
     public ReliefRequest(User user, String victimName, String location, String aidType, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType) {
@@ -34,6 +35,7 @@ public class ReliefRequest {
         this.requestId = UUID.randomUUID();
         this.status = "PENDING";
         this.volunteerId = null;
+        this.shelterId = null;
         this.emsCalled = false;
     }
 
@@ -54,6 +56,7 @@ public class ReliefRequest {
         this.petName = null;
         this.petType = null;
         this.volunteerId = null;
+        this.shelterId = null;
         this.emsCalled = false;
     }
 
@@ -72,6 +75,7 @@ public class ReliefRequest {
         this.urgencyLevel = urgencyLevel;
         this.status = status;
         this.volunteerId = volunteerId;
+        this.shelterId = null;
         this.emsCalled = false;
     }
 
@@ -137,6 +141,10 @@ public class ReliefRequest {
     public UUID getVolunteerId() { 
         return volunteerId; 
     }
+
+    public UUID getShelterId() {
+        return shelterId;
+    }
     
     public boolean isEmsCalled() { 
         return emsCalled; 
@@ -146,6 +154,11 @@ public class ReliefRequest {
         this.volunteerId = volunteerId;
         this.status = "ASSIGNED";
     }
+
+    public void assignShelter(UUID shelterId) {
+        this.shelterId = shelterId;
+    }
+
     public int getNumberOfPeople() { return numberOfPeople; }
     public boolean isMedicalNeeded() { return medicalNeeded; }
     public String getPetName() { return petName; }

@@ -47,6 +47,8 @@ public class UserList {
             users.add(new Victim(firstName, lastName, age, phoneNumber, email, password, language, currentLocation));
         } else if ("VOLUNTEER".equalsIgnoreCase(type)) {
             users.add(new Volunteer(firstName, lastName, age, phoneNumber, email, password, language, currentLocation));
+        } else if ("MANAGER".equalsIgnoreCase(type)) {
+            users.add(new ShelterManager(firstName, lastName, age, phoneNumber, email, password, language, currentLocation));
         } else {
             return false;
         }

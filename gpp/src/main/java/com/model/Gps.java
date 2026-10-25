@@ -29,12 +29,16 @@ public class Gps {
 
     }
 
-    // reads the API key from the local file (never committed to git)
+    // Reads the routing key from the environment first, then the local untracked file.
     private static String readKey() {
+        String environmentKey = System.getenv("ORS_API_KEY");
+        if (environmentKey != null && !environmentKey.isBlank()) {
+            return environmentKey.trim();
+        }
         try {
-            return Files.readString(Path.of(KEY_FILE)).trim();
+            String fileKey = Files.readString(Path.of(KEY_FILE)).trim();
+            return fileKey.isEmpty() ? null : fileKey;
         } catch (Exception e) {
-            System.out.println("Could not read " + KEY_FILE);
             return null;
         }
     }
