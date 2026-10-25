@@ -37,5 +37,11 @@ public abstract class DataConstants {
     protected static final String REQUEST_URGENCY_LEVEL = "urgencyLevel";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_PET_NEEDS = "petNeeds";
+    protected static final String REQUEST_USER_ID = "userId";
+    protected static final String REQUEST_VOLUNTEER_ID = "volunteerId";
+    protected static final String REQUEST_NUMBER_OF_PEOPLE = "numberOfPeople";
+    protected static final String REQUEST_MEDICAL_NEEDED = "medicalNeeded";
+    protected static final String REQUEST_PET_NAME = "petName";
+    protected static final String REQUEST_PET_TYPE = "petType";
 }
  

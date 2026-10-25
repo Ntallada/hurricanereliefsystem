@@ -57,12 +57,13 @@ public class ReliefRequest {
         this.emsCalled = false;
     }
 
-    public ReliefRequest(UUID requestId, User user, String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType, String status, UUID volunteerId) {
+    public ReliefRequest(UUID requestId, User user, String victimName, String location, String aidType, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType, String status, UUID volunteerId) {
         this.requestId = requestId;
         this.user = user;
         this.victimName = victimName;
         this.location = location;
-        this.aidType = "";
+        this.aidType = aidType;
+        this.specialRequests = specialRequests;
         this.numberOfPeople = numberOfPeople;
         this.medicalNeeded = medicalNeeded;
         this.petName = petName;

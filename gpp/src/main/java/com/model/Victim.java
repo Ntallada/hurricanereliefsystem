@@ -25,8 +25,7 @@ public class Victim extends User {
         this.safe = safe;
     }
 
-    public ReliefRequest createReliefRequest(String victimName, String location,
-            String aidType, String specialRequests, UrgencyLevel urgencyLevel,
+    public ReliefRequest createReliefRequest(String victimName, String location, String aidType, String specialRequests, UrgencyLevel urgencyLevel,
             int numberOfPeople, boolean medicalNeeded,
             String petName, String petType) {
         return new ReliefRequest(this, victimName, location, aidType, specialRequests,

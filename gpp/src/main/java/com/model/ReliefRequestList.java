@@ -6,23 +6,33 @@ import java.util.UUID;
 public class ReliefRequestList {
     
     private ArrayList<ReliefRequest> requests;
+    private static ReliefRequestList instance;
 
-    public ReliefRequestList() {
-        requests = new ArrayList<>();
+    private ReliefRequestList() {
+        requests = DataLoader.getRequests();
+    }
+
+    public static ReliefRequestList getInstance() {
+        if (instance == null) {
+            instance = new ReliefRequestList();
+        }
+        return instance;
+    }
+
+    public ArrayList<ReliefRequest> getRequests() {
+        return requests;
     }
 
     public void addRequest(ReliefRequest request) {
         requests.add(request);
+        DataWriter.saveRequests(requests);
     }
-
-    // public void addRequest(String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, boolean petNeeds) {
-    //     requests.add(new ReliefRequest(victimName, location, specialRequests, urgencyLevel, petNeeds));
-    // }
 
     public boolean removeRequest(UUID requestId) {
         ReliefRequest found = getRequestById(requestId);
         if (found != null) {
             requests.remove(found);
+            DataWriter.saveRequests(requests);
             return true;
         }
         return false;

@@ -76,7 +76,16 @@ public class DataWriter extends DataConstants {
             requestJSON.put(REQUEST_URGENCY_LEVEL, request.getUrgencyLevel().toString());
             requestJSON.put(REQUEST_STATUS, request.getStatus());
             requestJSON.put(REQUEST_PET_NEEDS, request.isPetNeeds());
-
+            requestJSON.put(REQUEST_USER_ID, request.getUser().getId().toString());
+            requestJSON.put(REQUEST_NUMBER_OF_PEOPLE, request.getNumberOfPeople());
+            requestJSON.put(REQUEST_MEDICAL_NEEDED, request.isMedicalNeeded());
+            if (request.getPetName() != null) {
+                requestJSON.put(REQUEST_PET_NAME, request.getPetName());
+                requestJSON.put(REQUEST_PET_TYPE, request.getPetType());
+            }
+            if (request.getVolunteerId() != null) {
+                requestJSON.put(REQUEST_VOLUNTEER_ID, request.getVolunteerId().toString());
+            }
             requestsJSON.add(requestJSON);
         }
 
