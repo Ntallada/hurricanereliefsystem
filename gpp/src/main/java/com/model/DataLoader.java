@@ -107,7 +107,8 @@ public static ArrayList<Shelter> getShelters() {
                 String status = (String) requestJSON.get(REQUEST_STATUS);
                 boolean petNeeds = (Boolean) requestJSON.get(REQUEST_PET_NEEDS);
 
-         //       requests.add(new ReliefRequest(requestID, victimName, location, aidType, specialRequests, urgencyLevel, status, petNeeds));
+                requests.add(new ReliefRequest(requestID, victimName, location, aidType,
+                        specialRequests, urgencyLevel, status, petNeeds));
             }
         } catch (Exception e) {
             e.printStackTrace();

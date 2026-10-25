@@ -7,6 +7,7 @@ public class ReliefRequest {
     private User user;
     private String victimName;
     private String location; 
+    private String aidType;
     private String specialRequests;
     private UrgencyLevel urgencyLevel;
     private String status;
@@ -18,10 +19,11 @@ public class ReliefRequest {
     private UUID volunteerId;
     private boolean emsCalled; 
     
-    public ReliefRequest(User user, String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType) {
+    public ReliefRequest(User user, String victimName, String location, String aidType, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType) {
         this.user = user;
         this.victimName = victimName;
         this.location = location;
+        this.aidType = aidType;
         this.specialRequests = specialRequests;
         this.urgencyLevel = urgencyLevel;
         this.numberOfPeople = numberOfPeople;
@@ -35,11 +37,32 @@ public class ReliefRequest {
         this.emsCalled = false;
     }
 
+    public ReliefRequest(String requestId, String victimName, String location,
+            String aidType, String specialRequests, String urgencyLevel,
+            String status, boolean petNeeds) {
+        this.requestId = UUID.fromString(requestId);
+        this.user = null;
+        this.victimName = victimName;
+        this.location = location;
+        this.aidType = aidType;
+        this.specialRequests = specialRequests;
+        this.urgencyLevel = UrgencyLevel.valueOf(urgencyLevel.trim().toUpperCase());
+        this.status = status;
+        this.petNeeds = petNeeds;
+        this.numberOfPeople = 0;
+        this.medicalNeeded = false;
+        this.petName = null;
+        this.petType = null;
+        this.volunteerId = null;
+        this.emsCalled = false;
+    }
+
     public ReliefRequest(UUID requestId, User user, String victimName, String location, String specialRequests, UrgencyLevel urgencyLevel, int numberOfPeople, boolean medicalNeeded, String petName, String petType, String status, UUID volunteerId) {
         this.requestId = requestId;
         this.user = user;
         this.victimName = victimName;
         this.location = location;
+        this.aidType = "";
         this.numberOfPeople = numberOfPeople;
         this.medicalNeeded = medicalNeeded;
         this.petName = petName;
@@ -88,6 +111,10 @@ public class ReliefRequest {
 
     public String getLocation() { 
         return location; 
+    }
+
+    public String getAidType() {
+        return aidType;
     }
     
     public String getSpecialRequests() { 

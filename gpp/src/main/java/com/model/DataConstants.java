@@ -28,8 +28,8 @@ public abstract class DataConstants {
     protected static final String SHELTER_STATUS = "status";
     protected static final String SHELTER_PET_FRIENDLY = "petFriendly";
     //request
-    protected static final String REQUESTS_FILE_NAME = "gpp/json/requests.json";
-    protected static final String REQUEST_ID = "requestID";
+    protected static final String REQUESTS_FILE_NAME = "gpp/json/reliefRequest.json";
+    protected static final String REQUEST_ID = "requestId";
     protected static final String REQUEST_VICTIM_NAME = "victimName";
     protected static final String REQUEST_LOCATION = "location";
     protected static final String REQUEST_AID_TYPE = "aidType";
