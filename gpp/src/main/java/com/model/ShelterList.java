@@ -74,4 +74,6 @@ public class ShelterList {
         }
         return petFriendlyShelters;
     }
+
+    public
 }

@@ -7,8 +7,19 @@ import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * saves users, shelters, and relief requests and reads the files that datawriter can use to go back into json files
+ * DataWriter
+ */
 public class DataWriter extends DataConstants {
 
+    /**
+     * saves and replaces users to users.json
+     * volunteers are saved with volunteer and their background check 
+     * others are saved with victim
+     * @param users the users to save
+     * @return true if file was written, false if did not go through
+     */
     @SuppressWarnings("unchecked")
     public static boolean saveUsers(ArrayList<User> users) {
         JSONArray usersJSON = new JSONArray();
@@ -49,6 +60,12 @@ public class DataWriter extends DataConstants {
         return writeFile(USERS_FILE_NAME, usersJSON);
     }
 
+    /**
+     * saves and replaces every shleter to shelters.json
+     * random id is saved for shelter if it has no id
+     * @param shelters the shelters to save
+     * @return true if file was written, false if did not go through
+     */
     @SuppressWarnings("unchecked")
     public static boolean saveShelters(ArrayList<Shelter> shelters) {
         JSONArray sheltersJSON = new JSONArray();
@@ -77,7 +94,14 @@ public class DataWriter extends DataConstants {
         return writeFile(SHELTERS_FILE_NAME, sheltersJSON);
     }
 
-
+    /**
+     * saves and replaces every relief request to reliefrequest.json
+     * users who make requests is saved by their id
+     * pet names and types are saved if request has pet
+     * volunteerid is saved if volunteer is assigned
+     * @param requests the relief requests to save
+     * @return true if file was written, false if did not go through
+     */
     @SuppressWarnings("unchecked")
     public static boolean saveRequests(ArrayList<ReliefRequest> requests) {
         JSONArray requestsJSON = new JSONArray();
@@ -112,6 +136,13 @@ public class DataWriter extends DataConstants {
         return writeFile(REQUESTS_FILE_NAME, requestsJSON);
     }
 
+    /**
+     * writes and replaces json array to file
+     * error is printed and false return if file cant be written
+     * @param fileName the path of file to write
+     * @param array json data to write
+     * @return true if file was written, false if did not go through
+     */
     private static boolean writeFile(String fileName, JSONArray array) {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(array.toJSONString());
