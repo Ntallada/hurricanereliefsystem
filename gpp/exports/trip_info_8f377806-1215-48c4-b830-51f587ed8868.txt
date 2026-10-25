@@ -1,0 +1,27 @@
+HURRICANE SCARLETT - RELIEF TRIP
+Family members: [Mark Carter (41), Emily Carter (39), Sophie Carter (9)]
+Pet: Buddy (Dog)
+Contact: Mark Carter | 843-555-0142 | mark.carter@example.com
+Pickup address: 12 Church St, Charleston, SC
+Medical note: Sophie needs medical assistance for asthma.
+
+Rosa's location to pickup:
+  - Head southeast (0.5 mi)
+  - Turn left onto International Boulevard (1.3 mi)
+  - Turn left (0.7 mi)
+  - Keep right (0.2 mi)
+  - Keep right (7.8 mi)
+  - Keep left (0.4 mi)
+  - Turn right onto Meeting Street, US 52 (1.9 mi)
+  - Turn left onto Atlantic Street, L-4385 (0.1 mi)
+  - Turn right onto Church Street, L-4387 (0.1 mi)
+  - Arrive at Church Street, L-4387, on the left (0.0 mi)
+Pickup to shelter:
+  - Head south on Church Street, L-4387 (0.1 mi)
+  - Turn right onto South Battery, S-105 (0.0 mi)
+  - Turn right onto Meeting Street, S-107 (0.4 mi)
+  - Turn left onto Broad Street, S-1015 (0.1 mi)
+  - Turn left onto King Street, S-104 (0.0 mi)
+  - Arrive at King Street, S-104, on the left (0.0 mi)
+Shelter: Charleston Medical Pet Shelter
+Shelter address: 100 King St, Charleston, SC
