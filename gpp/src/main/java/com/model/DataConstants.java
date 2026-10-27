@@ -132,5 +132,15 @@ public abstract class DataConstants {
     protected static final String USER_VEHICLE = "vehicle";
 
     protected static final String USER_SKILLS = "skills";
+
+
+    public static boolean isJunitTest() {
+        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+            if (element.getClassName().startsWith("org.junit.")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
  
