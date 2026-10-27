@@ -3,6 +3,7 @@ module com.gpprelief {
     requires javafx.fxml;
     requires json.simple;
     requires java.net.http;
+    requires junit;
     //requires com.fasterxml.jackson.databind;
     //requires javafx.web;
 
