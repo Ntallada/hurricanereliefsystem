@@ -7,6 +7,9 @@ public class ShelterList {
     private static ShelterList instance;
     private ArrayList<Shelter> shelters;
 
+    /**
+     * Loads shelters from JSON into the shelter list.
+    */
     private ShelterList() {
         shelters = DataLoader.getShelters();
         if (shelters == null) {
@@ -14,6 +17,10 @@ public class ShelterList {
         }
     }
 
+    /**
+     * Gets the shared ShelterList instance.
+     * @return the ShelterList instance
+    */
     public static ShelterList getInstance() {
         if (instance == null) {
             instance = new ShelterList();
@@ -21,15 +28,28 @@ public class ShelterList {
         return instance;
     }
 
+    /**
+     * Gets all shelters.
+     * @return the list of shelters
+    */
     public ArrayList<Shelter> getShelters() {
         return shelters;
     }
 
+    /**
+     * Adds a shelter and saves the updated list.
+     * @param shelter the shelter to add
+    */
     public void addShelter(Shelter shelter) {
         shelters.add(shelter);
         DataWriter.saveShelters(shelters); // Saves to JSON
     }
 
+    /**
+     * Removes a shelter by its ID.
+     * @param shelterId the ID of the shelter
+     * @return true if the shelter was removed
+    */
     public boolean removeShelter(UUID shelterId) {
         Shelter found = getShelterById(shelterId);
         if (found == null) {
@@ -42,6 +62,11 @@ public class ShelterList {
         return removed;
     }
 
+    /**
+     * Finds a shelter by its ID.
+     * @param shelterId the ID to search for
+     * @return the shelter or null if not found
+    */
     public Shelter getShelterById(UUID shelterId) {
         if (shelterId == null) {
             return null;
@@ -55,6 +80,10 @@ public class ShelterList {
         return null;
     }
     
+    /**
+     * Gets all open shelters with available space.
+     * @return a list of available shelters
+    */
     public ArrayList<Shelter> getAvailableShelters() {
         ArrayList<Shelter> availableShelters = new ArrayList<>();
         for (Shelter shelter : shelters) {
@@ -65,6 +94,10 @@ public class ShelterList {
         return availableShelters;
     }
 
+    /**
+     * Gets all pet-friendly shelters.
+     * @return a list of pet-friendly shelters
+    */
     public ArrayList<Shelter> getPetFriendlyShelters() {
         ArrayList<Shelter> petFriendlyShelters = new ArrayList<>();
         for (Shelter shelter : shelters) {
