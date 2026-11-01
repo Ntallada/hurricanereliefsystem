@@ -7,15 +7,28 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
 
 public class HurricaneReliefFacadeTest {
     private HurricaneReliefFacade facade;
+
+    @BeforeClass
+    public static void printTestCases() {
+        TestCaseTable.print(new String[][] {
+                {"successful login", "valid email and password identify the known user"},
+                {"incorrect password", "invalid credentials must not authenticate a user"},
+                {"logout", "logging out clears the active user"},
+                {"victim submits request", "only a victim can create a relief request"},
+                {"non-victim submits request", "volunteers cannot submit victim requests"},
+                {"request status and ETA", "assigned requests reflect status and volunteer ETA"},
+                {"EMS escalation", "calling EMS marks the request and raises urgency"}
+        });
+    }
 
     @Before
     public void setUp() {

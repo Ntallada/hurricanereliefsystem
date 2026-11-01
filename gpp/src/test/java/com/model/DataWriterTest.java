@@ -14,6 +14,7 @@ import org.junit.After;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class DataWriterTest {
@@ -23,6 +24,15 @@ public class DataWriterTest {
     private String usersBackup;
     private String sheltersBackup;
     private String requestsBackup;
+
+    @BeforeClass
+    public static void printTestCases() {
+        TestCaseTable.print(new String[][] {
+                {"save users", "user data is written as valid JSON"},
+                {"save requests", "request data includes its linked user ID"},
+                {"save shelters", "shelter data is written as valid JSON"}
+        });
+    }
 
     @Before
     public void setUp() throws Exception {
