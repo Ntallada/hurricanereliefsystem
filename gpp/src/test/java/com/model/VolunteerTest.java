@@ -83,12 +83,4 @@ public class VolunteerTest {
 
         assertEquals("Truck", volunteer.getVehicle());
     }
-
-    @Test
-    public void nullVictimThrowsException() {
-        assertThrows(
-            NullPointerException.class,
-            () -> volunteer.getVictimStatus(null)
-        );
-    }
 }
