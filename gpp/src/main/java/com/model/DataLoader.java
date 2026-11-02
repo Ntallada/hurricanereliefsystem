@@ -2,6 +2,8 @@ package com.model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.UUID;
 import java.util.ArrayList;
 
@@ -182,4 +184,19 @@ public class DataLoader extends DataConstants {
 
         return requests;
         }
+/**
+        private static BufferedReader getReaderFromFile(String fileName, String jsonFileName){
+		try {
+			if(isJUnitTest()){
+				InputStream inputStream = Database.class.getResourceAsStream(jsonFileName);
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+				return new BufferedReader(inputStreamReader);
+			} else {
+				FileReader reader = new FileReader(fileName);
+				return new BufferedReader(reader);
+			}
+		} catch(Exception e){
+			System.out.println("Can't load");
+			return null;
+		} */
 }
