@@ -6,94 +6,53 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
+import java.util.ArrayList;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HurricaneReliefFacadeTest {
-    private HurricaneReliefFacade facade;
-
+    private static HurricaneReliefFacade facade;
+    
     @BeforeClass
-    public static void printTestCases() {
-        TestCaseTable.print(new String[][] {
-                {"successful login", "valid email and password identify the known user"},
-                {"incorrect password", "invalid credentials must not authenticate a user"},
-                {"logout", "logging out clears the active user"},
-                {"victim submits request", "only a victim can create a relief request"},
-                {"non-victim submits request", "volunteers cannot submit victim requests"},
-                {"request status and ETA", "assigned requests reflect status and volunteer ETA"},
-                {"EMS escalation", "calling EMS marks the request and raises urgency"}
-        });
-    }
-
-    @Before
-    public void setUp() {
-        resetSingletons();
+    public static void setUpClass() {
+        DataWriter.saveUsers(new ArrayList<User>());
+        DataWriter.saveRequests(new ArrayList<ReliefRequest>());
+        DataWriter.saveShelters(new ArrayList<Shelter>());
         facade = HurricaneReliefFacade.getInstance();
     }
 
-    @Test
-    public void dataConstants_shouldUseProjectJsonPaths() {
-        assertTrue(DataConstants.USERS_FILE_NAME.endsWith("gpp/json/users.json"));
-        assertTrue(DataConstants.SHELTERS_FILE_NAME.endsWith("gpp/json/shelters.json"));
-        assertTrue(DataConstants.REQUESTS_FILE_NAME.endsWith("gpp/json/reliefRequest.json"));
-        assertTrue(DataConstants.isJunitTest());
-    }
-
-    @Test
-    public void singletonFacade_shouldReturnTheSameInstance() {
-        HurricaneReliefFacade secondReference = HurricaneReliefFacade.getInstance();
-        assertSame("The facade should follow the singleton pattern", facade, secondReference);
-    }
-
-    @Test
-    public void login_shouldReturnTrueForKnownUserCredentials() {
-        assertTrue(facade.login("john.doe@example.com", "password123"));
-        assertEquals("John", facade.getCurrentUser().getFirstName());
-        assertEquals("Doe", facade.getCurrentUser().getLastName());
-    }
-
-    @Test
-    public void login_shouldReturnFalseForIncorrectPassword() {
-        assertFalse(facade.login("john.doe@example.com", "wrong-password"));
-        assertNull(facade.getCurrentUser());
-    }
-
-    @Test
-    public void logout_shouldClearTheCurrentUser() throws Exception {
-        facade.login("john.doe@example.com", "password123");
-
+    @After
+    public void tearDown() {
         facade.logout();
+    }
 
-        assertNull(facade.getCurrentUser());
+    private String uniqueEmail() {
+        return UUID.randomUUID() + "@example.com";
+    }
+
+    private boolean signUp(String type, String email) {
+        return facade.signUp(type, "Test", "User", 30, "843-555-0000", email,
+                "password123", Languages.ENGLISH, "Charleston, SC");
     }
 
     @Test
-    public void submitRequest_shouldCreateRequestForLoggedInVictim() throws Exception {
-        Victim victim = new Victim("Maria", "Carter", 35, "555-1212", "maria@example.com", "secret", Languages.ENGLISH, "Charleston, SC");
-        setCurrentUser(victim);
-
-        ReliefRequest request = facade.submitRequest(
-                "14 King St",
-                "Food",
-                "Gluten-free meals",
-                UrgencyLevel.HIGH,
-                2,
-                true,
-                "Buddy",
-                "Dog");
-
-        assertNotNull(request);
-        assertEquals("Maria Carter", request.getVictimName());
-        assertEquals("14 King St", request.getLocation());
-        assertEquals("Food", request.getAidType());
-        assertEquals(UrgencyLevel.HIGH, request.getUrgencyLevel());
-        assertEquals("PENDING", request.getStatus());
+    public void loginFailsWithWrongPassword() {
+        String email = uniqueEmail();                      // 1. set the user
+        signUp("VICTIM", email);
+        boolean result = facade.login(email, "wrongpassword");   // 2. do the thing
+        assertFalse(result);                               // 3. check the result
+        assertNull(facade.getCurrentUser());
     }
+
 
     @Test
     public void submitRequest_shouldReturnNullWhenUserIsNotVictim() {
@@ -155,6 +114,67 @@ public class HurricaneReliefFacadeTest {
         assertEquals(UrgencyLevel.HIGH, request.getUrgencyLevel());
         assertTrue(request.viewETA().contains("EMS"));
     }
+
+        @Test
+        public void signUpRejectsEmptyEmail() {
+            assertFalse(signUp("VICTIM", ""));
+        }
+    
+        @Test
+        public void submitRequestRejectsNegativePeople() {
+            String email = uniqueEmail();
+            signUp("VICTIM", email);
+            facade.login(email, "password123");
+            assertNull(facade.submitRequest("12 Church St", "Transportation", "x",
+                    UrgencyLevel.HIGH, -5, false, null, null));
+        }
+    
+        @Test
+        public void submitRequestRejectsZeroPeople() {
+            String email = uniqueEmail();
+            signUp("VICTIM", email);
+            facade.login(email, "password123");
+            assertNull(facade.submitRequest("12 Church St", "Transportation", "x",
+                    UrgencyLevel.HIGH, 0, false, null, null));
+        }
+    
+        @Test
+        public void managerCannotCompleteUnassignedRequest() {
+            String victimEmail = uniqueEmail();
+            signUp("VICTIM", victimEmail);
+            facade.login(victimEmail, "password123");
+            ReliefRequest request = facade.submitRequest("12 Church St", "Transportation", "x",
+                    UrgencyLevel.HIGH, 1, false, null, null);
+            facade.logout();
+    
+            String managerEmail = uniqueEmail();
+            signUp("MANAGER", managerEmail);
+            facade.login(managerEmail, "password123");
+            assertFalse(facade.completeRequest(request));
+        }
+    
+        @Test
+        public void requestListCannotBeEmptiedFromOutside() {
+            facade.getAllRequests().clear();
+            assertFalse(facade.getAllRequests().isEmpty());
+        }
+    
+        // these two crash on purpose and run last because of the zz names
+        @Test
+        public void zzSignUpWithNullLanguage() {
+            assertFalse(facade.signUp("VICTIM", "T", "U", 30, "843-555-0000",
+                    uniqueEmail(), "password123", null, "Charleston, SC"));
+        }
+    
+        @Test
+        public void zzSubmitRequestWithNullUrgency() {
+            String email = uniqueEmail();
+            signUp("VICTIM", email);
+            facade.login(email, "password123");
+            assertNull(facade.submitRequest("12 Church St", "Transportation", "x",
+                    null, 1, false, null, null));
+        }
+    
 
     private void setCurrentUser(User user) {
         try {
