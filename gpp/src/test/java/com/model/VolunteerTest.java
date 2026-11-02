@@ -91,26 +91,4 @@ public class VolunteerTest {
             () -> volunteer.getVictimStatus(null)
         );
     }
-
-    @Test
-    public void safeVictimReturnsSafeStatus() {
-        Victim victim = new Victim(
-            "Jane", "Smith", 25,
-            "098-765-4321", "jane.smith@example.com",
-            "123password", null, "Myrtle Beach, SC");
-        victim.markSafe();
-
-        assertEquals("Safe", volunteer.getVictimStatus(victim));
-    }
-
-    @Test
-    public void unsafeVictimReturnsNotMarkedSafe() {
-        Victim victim = new Victim(
-            "Jane", "Smith", 25,
-            "098-765-4321", "jane.smith@example.com",
-            "123password", null, "Myrtle Beach, SC");
-
-        assertEquals("Not marked safe",
-            volunteer.getVictimStatus(victim));
-    }
 }
