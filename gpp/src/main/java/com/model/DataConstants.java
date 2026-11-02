@@ -29,7 +29,7 @@ public abstract class DataConstants {
     // user
     
     /** path to json file that holds user data */
-    protected static final String USERS_FILE_NAME = resolvePath("gpp/json/users.json");
+    protected static final String USERS_FILE_NAME = resolvePath(isJunitTest() ? "gpp/json/users_test.json" : "gpp/json/users.json");
     
     /** key for uuid */
     protected static final String USER_ID = "userId";
@@ -73,7 +73,7 @@ public abstract class DataConstants {
     //shelter
 
     /** path to json file that holds shelter data */
-    protected static final String SHELTERS_FILE_NAME = resolvePath("gpp/json/shelters.json");
+    protected static final String SHELTERS_FILE_NAME = resolvePath(isJunitTest() ? "gpp/json/shelters_test.json" : "gpp/json/shelters.json");
    
     /** key for shelter id */
     protected static final String SHELTER_ID = "id";
@@ -104,7 +104,7 @@ public abstract class DataConstants {
     // request
 
     /** path to json file that holds relief request data */
-    protected static final String REQUESTS_FILE_NAME = resolvePath("gpp/json/reliefRequest.json");
+    protected static final String REQUESTS_FILE_NAME = resolvePath(isJunitTest() ? "gpp/json/reliefRequest_test.json" : "gpp/json/reliefRequest.json");
     
     /** key for request id */
     protected static final String REQUEST_ID = "requestId";

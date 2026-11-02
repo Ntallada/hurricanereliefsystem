@@ -1,11 +1,13 @@
 package com.model;
 
+//Made by Nandasai A.
+//uses maven to run the file and then reports bugs
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -14,14 +16,14 @@ public class DataLoaderTest {
     @BeforeClass
     public static void printTestCases() {
         TestCaseTable.print(new String[][] {
-                {"load users", "valid users JSON is converted into user objects"},
-                {"load shelters", "valid shelters JSON is converted into shelter objects"},
-                {"load requests", "valid request JSON is converted into relief requests"}
+                {"load users", "users JSON is converted into user objects"},
+                {"load shelters", "shelters JSON is converted into shelter objects"},
+                {"load requests", "request JSON is converted into relief request objects"}
         });
     }
 
     @Test
-    public void loadUsers_shouldReadUsersFromJsonDataFile() {
+    public void loadUsers() {
         ArrayList<User> loadedUsers = DataLoader.loadUsers();
 
         assertNotNull(loadedUsers);
@@ -30,7 +32,7 @@ public class DataLoaderTest {
     }
 
     @Test
-    public void getShelters_shouldReadSheltersFromJsonDataFile() {
+    public void getShelters() {
         ArrayList<Shelter> loadedShelters = DataLoader.getShelters();
 
         assertNotNull(loadedShelters);
@@ -39,7 +41,7 @@ public class DataLoaderTest {
     }
 
     @Test
-    public void getRequests_shouldReadReliefRequestsFromJsonDataFile() {
+    public void getRequests() {
         ArrayList<ReliefRequest> loadedRequests = DataLoader.getRequests();
 
         assertNotNull(loadedRequests);

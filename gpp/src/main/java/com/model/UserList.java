@@ -73,6 +73,9 @@ public class UserList {
      * @return true if the user was added successfully
     */
     public boolean addUser(String type, String firstName, String lastName, int age, String phoneNumber, String email, String password, Languages language, String currentLocation) {
+        if (!isValidEmail(email)) {
+            return false;
+        }
         if (getUserByEmail(email) != null) {
             return false;
         }
@@ -87,6 +90,11 @@ public class UserList {
         }
         saveUsers();
         return true;
+    }
+
+    private boolean isValidEmail(String email) {
+        return email != null
+                && email.matches("^[^\\s@]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z]{2,}$");
     }
 
     /**
