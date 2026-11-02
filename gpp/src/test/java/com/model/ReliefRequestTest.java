@@ -36,4 +36,52 @@ public class ReliefRequestTest {
         assertFalse(request.isEmsCalled());
     }
     
+    @Test
+    public void testStringConstructorMapping() {
+        UUID testUUID = UUID.randomUUID();
+        ReliefRequest stringReq = new ReliefRequest(
+            testUUID.toString(), "John Smith", "456 Oak Rd", 
+            "Medical", "Allergies", "HIGH", "APPROVED", false
+        );
+
+        assertEquals(testUUID, stringReq.getRequestId());
+        assertEquals("John Smith", stringReq.getVictimName());
+        assertEquals(UrgencyLevel.HIGH, stringReq.getUrgencyLevel());
+        assertEquals("APPROVED", stringReq.getStatus());
+        assertFalse(stringReq.isPetNeeds());
+    }
+
+    @Test
+    public void testCallEMSAndUrgencyEscalation() {
+        assertFalse(request.isEmsCalled());
+        request.callEMS();
+        assertTrue(request.isEmsCalled());
+        assertEquals(UrgencyLevel.HIGH, request.getUrgencyLevel());
+    }
+
+    @Test
+    public void testViewETAMessages() {
+        // 1. Unassigned case
+        String etaUnassigned = request.viewETA();
+        assertTrue(etaUnassigned.contains("No volunteer has been assigned"));
+
+        // 2. Volunteer assigned case
+        UUID volId = UUID.randomUUID();
+        request.assignVolunteer(volId);
+        String etaVolunteer = request.viewETA();
+        assertTrue(etaVolunteer.contains(volId.toString()));
+
+        // 3. EMS called case (overrides volunteer message)
+        request.callEMS();
+        String etaEms = request.viewETA();
+        assertTrue(etaEms.contains("EMS are on their way"));
+    }
+
+    @Test
+    public void testAssignVolunteerAndUpdateStatus() {
+        UUID volId = UUID.randomUUID();
+        request.assignVolunteer(volId);
+        assertEquals(volId, request.getVolunteerId());
+        assertEquals("ASSIGNED", request.getStatus());
+    }
 }
