@@ -30,18 +30,17 @@ public class HurricaneReliefFacadeTest {
         facade = HurricaneReliefFacade.getInstance();
     }
 
-    @After
-    public void tearDown() {
-        facade.logout();
+    @Test
+    public void singletonFacade_shouldReturnTheSameInstance() {
+        HurricaneReliefFacade secondReference = HurricaneReliefFacade.getInstance();
+        assertSame("The facade should follow the singleton pattern", facade, secondReference);
     }
 
-    private String uniqueEmail() {
-        return UUID.randomUUID() + "@example.com";
-    }
-
-    private boolean signUp(String type, String email) {
-        return facade.signUp(type, "Test", "User", 30, "843-555-0000", email,
-                "password123", Languages.ENGLISH, "Charleston, SC");
+    @Test
+    public void login_shouldReturnTrueForKnownUserCredentials() {
+        assertTrue(facade.login("john.doe@example.com", "password123"));
+        assertEquals("John", facade.getCurrentUser().getFirstName());
+        assertEquals("Doe", facade.getCurrentUser().getLastName());
     }
 
     @Test
