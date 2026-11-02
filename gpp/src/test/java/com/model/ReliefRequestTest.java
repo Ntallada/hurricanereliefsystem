@@ -5,26 +5,7 @@ import org.junit.Test;
 import java.util.UUID;
 import static org.junit.Assert.*;
 
-/*
- * +-----------------------------------+-------------------------------------------------------------+
- * | Test                              | Reasoning                                                   |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testPrimaryConstructorCreation    | Verifies that user-input constructor properly initializes   |
- * |                                   | fields, generates a UUID, and defaults status to PENDING.   |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testStringConstructorMapping      | Ensures legacy string constructor parses UUID and urgency   |
- * |                                   | string values properly from persistent storage files.       |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testCallEMSAndUrgencyEscalation   | Confirms calling EMS flags the request and escalates        |
- * |                                   | urgency level to HIGH automatically.                        |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testViewETAMessages               | Validates correct ETA message strings return depending on   |
- * |                                   | whether EMS, a volunteer, or no one is assigned.            |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testAssignVolunteerAndUpdateStatus| Ensures assigning a volunteer updates the volunteer ID      |
- * |                                   | and changes status to "ASSIGNED".                           |
- * +-----------------------------------+-------------------------------------------------------------+
- */
+
 public class ReliefRequestTest {
 
     private ReliefRequest request;

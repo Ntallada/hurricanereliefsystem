@@ -6,26 +6,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import static org.junit.Assert.*;
 
-/*
- * +-----------------------------------+-------------------------------------------------------------+
- * | Test                              | Reasoning                                                   |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testGetInstanceSingletonPattern   | Verifies that getInstance() returns a non-null singleton    |
- * |                                   | instance pointing to the exact same reference.              |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testGetRequestByIdFound           | Confirms that looking up an active request by its unique    |
- * |                                   | UUID successfully returns the correct object.               |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testGetRequestByIdNotFound        | Validates error/edge case when querying an unrecorded UUID  |
- * |                                   | returns null safely.                                        |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testGetRequestsByUrgencyFilter    | Ensures requests are accurately filtered and retrieved by   |
- * |                                   | their specific UrgencyLevel enum.                           |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testRemoveRequestHandling         | Tests removing an existing request ID returns true, while   |
- * |                                   | removing an invalid ID returns false.                       |
- * +-----------------------------------+-------------------------------------------------------------+
- */
+
 public class ReliefRequestListTest {
 
     private ReliefRequestList requestList;

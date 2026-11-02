@@ -4,23 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/*
- * +-----------------------------------+-------------------------------------------------------------+
- * | Test                              | Reasoning                                                   |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testDefaultConstructorInitialization| Verifies that an empty Resources constructor initializes    |
- * |                                   | lists and water count to empty/zero baseline state.         |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testUpdateSuppliesFailureState    | Confirms updateSupplies() returns false when supply         |
- * |                                   | inventories or water metrics are empty/zero.                |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testUpdateSuppliesSuccessState    | Confirms updateSupplies() returns true once all categories  |
- * |                                   | contain active items and positive water numbers.            |
- * +-----------------------------------+-------------------------------------------------------------+
- * | testResourcesAlertGeneration      | Validates that resourcesAlert() constructs descriptive      |
- * |                                   | warning messages highlighting depleted categories.          |
- * +-----------------------------------+-------------------------------------------------------------+
- */
+
 public class ResourcesTest {
 
     private Resources resources;
