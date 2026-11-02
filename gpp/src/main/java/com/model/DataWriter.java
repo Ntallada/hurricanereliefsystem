@@ -108,6 +108,10 @@ public class DataWriter extends DataConstants {
         JSONArray requestsJSON = new JSONArray();
 
         for (ReliefRequest request : requests) {
+            if (request == null || request.getUser() == null) {
+                continue;
+            }
+
             JSONObject requestJSON = new JSONObject();
 
             requestJSON.put(REQUEST_ID, request.getRequestId().toString());
