@@ -174,7 +174,19 @@ public class HurricaneReliefFacadeTest {
                     null, 1, false, null, null));
         }
     
-
+        @After
+        public void tearDown() {
+            facade.logout();
+        }
+    
+        private String uniqueEmail() {
+            return "test" + UUID.randomUUID().toString().substring(0, 8) + "@example.com";
+        }
+    
+        private boolean signUp(String type, String email) {
+            return facade.signUp(type, "T", "U", 30, "843-555-0000",
+                    email, "password123", Languages.ENGLISH, "Charleston, SC");
+        }
     private void setCurrentUser(User user) {
         try {
             Field field = HurricaneReliefFacade.class.getDeclaredField("currentUser");
