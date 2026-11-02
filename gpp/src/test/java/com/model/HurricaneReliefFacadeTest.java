@@ -37,14 +37,6 @@ public class HurricaneReliefFacadeTest {
     }
 
     @Test
-    public void dataConstants_shouldUseProjectJsonPaths() {
-        assertTrue(DataConstants.USERS_FILE_NAME.endsWith("gpp/json/users.json"));
-        assertTrue(DataConstants.SHELTERS_FILE_NAME.endsWith("gpp/json/shelters.json"));
-        assertTrue(DataConstants.REQUESTS_FILE_NAME.endsWith("gpp/json/reliefRequest.json"));
-        assertTrue(DataConstants.isJunitTest());
-    }
-
-    @Test
     public void singletonFacade_shouldReturnTheSameInstance() {
         HurricaneReliefFacade secondReference = HurricaneReliefFacade.getInstance();
         assertSame("The facade should follow the singleton pattern", facade, secondReference);

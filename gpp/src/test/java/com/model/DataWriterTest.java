@@ -1,5 +1,6 @@
 package com.model;
-
+//Made by Nandasai Allada
+//utilizes maven in order to test files
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -53,7 +54,7 @@ public class DataWriterTest {
     }
 
     @Test
-    public void saveUsers_shouldWriteUserListToJsonFile() throws Exception {
+    public void saveUsers() throws Exception {
         ArrayList<User> usersToSave = new ArrayList<>();
         User ava = new Volunteer("Ava", "Miller", 26, "555-1000", "ava@example.com", "pw123", Languages.ENGLISH, "Charleston, SC");
         User noah = new Victim("Noah", "Brown", 33, "555-2000", "noah@example.com", "pw456", Languages.ENGLISH, "Charleston, SC");
@@ -71,7 +72,7 @@ public class DataWriterTest {
     }
 
     @Test
-    public void saveRequests_shouldWriteRequestListToJsonFile() throws Exception {
+    public void saveRequests() throws Exception {
         Victim ella = new Victim("Ella", "White", 40, "555-3000", "ella@example.com", "pw789", Languages.ENGLISH, "Charleston, SC");
         ReliefRequest foodRequest = ella.createReliefRequest(
                 "Ella White",
@@ -102,9 +103,9 @@ public class DataWriterTest {
     }
 
     @Test
-    public void saveShelters_shouldWriteShelterListToJsonFile() throws Exception {
-        ArrayList<Shelter> sheltersToSave = new ArrayList<>();
-        sheltersToSave.add(new Shelter(
+    public void saveShelter() throws Exception {
+        ArrayList<Shelter> shelters = new ArrayList<>();
+        shelters.add(new Shelter(
                 "Test Shelter",
                 "11 Market St",
                 UUID.randomUUID(),
@@ -116,7 +117,7 @@ public class DataWriterTest {
                 new ArrayList<>(),
                 new ArrayList<>()));
 
-        boolean wasSaved = DataWriter.saveShelters(sheltersToSave);
+        boolean wasSaved = DataWriter.saveShelters(shelters);
 
         assertTrue(wasSaved);
 
