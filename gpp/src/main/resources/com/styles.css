@@ -1,0 +1,41 @@
+/* Main button style */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #176BA6, #12344D);
+    -fx-text-fill: white;
+
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-padding: 12px 25px;
+
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(gaussian, rgba(18, 52, 77, 0.25), 8, 0.2, 0, 3);
+}
+
+/* When the mouse hovers over the button */
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2588C7, #176BA6);
+}
+
+/* When the button is clicked */
+.button:pressed {
+    -fx-background-color: #0B2940;
+    -fx-effect: none;
+}
+
+/* When the button is selected/focused */
+.button:focused {
+    -fx-border-color: #65B7E8;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+}
+
+/* When the button is disabled */
+.button:disabled {
+    -fx-opacity: 0.5;
+}
