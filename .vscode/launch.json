@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.gpprelief/com.gpprelief.App",
+            "projectName": "gpp"
+        },
+        {
+            "type": "java",
             "name": "Driver",
             "request": "launch",
             "mainClass": "com.gpprelief/com.model.Driver",
