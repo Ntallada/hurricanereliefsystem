@@ -12,7 +12,7 @@ public class GpsTesting {
     private static final String FROM = "12 Church St, Charleston, SC";
     private static final String TO = "5001 Coliseum Dr, North Charleston, SC"; 
 
-    @Test
+    @Test //needs to run without the key
     public void drivingDistanceIsReasonable() {
         double miles = Gps.getDrivingDistance(FROM, TO);
         assertTrue("distance was " + miles, miles > 10 && miles < 20);
