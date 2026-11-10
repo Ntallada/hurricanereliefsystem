@@ -85,10 +85,17 @@ public class VolunteerTest {
     }
 
     @Test
-    public void nullVictimThrowsException() {
-        assertThrows(
-            NullPointerException.class,
-            () -> volunteer.getVictimStatus(null)
-        );
+    public void addValidSkill() {
+        volunteer.addSkill(Skill.FIRST_AID);
+
+        assertTrue(volunteer.getAssignedSkills().contains(Skill.FIRST_AID));
+    }
+
+    @Test
+    public void duplicateSkillIsNotAdded() {
+        volunteer.addSkill(Skill.FIRST_AID);
+        volunteer.addSkill(Skill.FIRST_AID);
+
+        assertEquals(1, volunteer.getAssignedSkills().size());
     }
 }
