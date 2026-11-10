@@ -70,7 +70,7 @@ public class UserTest {
             "password123",
             null,
             "Columbia, SC",
-            false
+            true
         );
 
         assertEquals(id, existingUser.getId());
