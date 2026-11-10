@@ -7,7 +7,7 @@ module com.gpprelief {
     //requires com.fasterxml.jackson.databind;
     //requires javafx.web;
 
-
+    opens com.controllers to javafx.fxml;
     opens com.gpprelief to javafx.fxml;
     exports com.gpprelief;
 
