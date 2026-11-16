@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="940.0" minWidth="430.0" prefHeight="940.0" prefWidth="430.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="20.0" layoutY="45.0" prefHeight="850.0" prefWidth="390.0" style="-fx-background-color: #F3F7FD; -fx-background-radius: 28;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5b9be8" height="75.0" layoutY="755.0" stroke="TRANSPARENT" strokeType="INSIDE" width="390.0" />
+            <VBox layoutX="15.0" layoutY="18.0" prefHeight="810.0" prefWidth="360.0" spacing="12.0" style="-fx-background-color: transparent;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="55.0" prefWidth="360.0" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" style="-fx-text-fill: #15335F; -fx-font-size: 18px; -fx-background-color: transparent;" text="☰" />
+                        <Label style="-fx-text-fill: #15335F; -fx-font-size: 17px; -fx-font-weight: bold;" text="GPP Relief">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #15335F; -fx-font-size: 18px;" text="👤" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="360.0" spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #10294F;" text="Create Your Account">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label style="-fx-text-fill: #58749B;" text="Please fill out accordingly or press Volunteer">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="42.0" prefWidth="360.0" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" style="-fx-background-color: #0860C7; -fx-text-fill: white; -fx-background-radius: 25; -fx-font-size: 13px; -fx-font-weight: bold;" text="Get Help" />
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" style="-fx-background-color: #E5ECF6; -fx-text-fill: #29476E; -fx-background-radius: 25; -fx-font-size: 13px;" text="Volunteer" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="280.0" prefWidth="360.0" spacing="8.0">
+                     <children>
+                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
+                           <children>
+                              <Label text="Full Name" textFill="#10294f">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="360.0" spacing="10.0" style="-fx-background-color: #E8EFF8; -fx-background-radius: 20; -fx-border-color: #D5E1F1; -fx-border-radius: 20; -fx-padding: 0 12 0 12;">
+                                 <children>
+                                    <Label text="👤" textFill="#58749b" />
+                                    <TextField prefHeight="35.0" prefWidth="300.0" promptText="Your full name" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 12px;" text="Your full name" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
+                           <children>
+                              <Label text="Email Address" textFill="#10294f">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label text="Label" />
+                                 </graphic>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="360.0" spacing="10.0" style="-fx-background-color: #E8EFF8; -fx-background-radius: 20; -fx-border-color: #D5E1F1; -fx-border-radius: 20; -fx-padding: 0 12 0 12;">
+                                 <children>
+                                    <Label text="✉" textFill="#58749b" />
+                                    <TextField prefHeight="35.0" prefWidth="300.0" promptText="Your full name" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 12px;" text="you@example.com" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
+                           <children>
+                              <Label text="Phone Number" textFill="#10294f">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="360.0" spacing="10.0" style="-fx-background-color: #E8EFF8; -fx-background-radius: 20; -fx-border-color: #D5E1F1; -fx-border-radius: 20; -fx-padding: 0 12 0 12;">
+                                 <children>
+                                    <Label text="📞" textFill="#58749b" />
+                                    <TextField prefHeight="35.0" prefWidth="300.0" promptText="Your full name" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 12px;" text="(803) xxx-xxxx" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
+                           <children>
+                              <Label text="Password" textFill="#10294f">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="360.0" spacing="10.0" style="-fx-background-color: #E8EFF8; -fx-background-radius: 20; -fx-border-color: #D5E1F1; -fx-border-radius: 20; -fx-padding: 0 12 0 12;">
+                                 <children>
+                                    <Label text="🔒" textFill="#58749b" />
+                                    <PasswordField prefHeight="35.0" prefWidth="300.0" promptText="********" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 12px;" />
+                                 </children>
+                              </HBox>
+                              <Label text="Use at least 8 characters" textFill="#58749b">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <CheckBox mnemonicParsing="false" prefHeight="25.0" prefWidth="360.0" text="I agree to the Terms &amp; Privacy Policy" textFill="#29476e">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </CheckBox>
+                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="360.0" style="-fx-background-color: linear-gradient(to bottom, #0875E8, #164CB5);; -fx-text-fill: white;; -fx-background-radius: 25; -fx-font-weight: bold; -fx-font-size: 14px;" text="Create Account">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <HBox alignment="CENTER" prefHeight="10300.0" prefWidth="360.0" spacing="4.0">
+                     <children>
+                        <Label text="Already have an account?" textFill="#58749b">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label text="Log In" textFill="#0860c7">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#164cb5" height="100.0" layoutY="780.0" stroke="TRANSPARENT" strokeType="INSIDE" width="390.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
