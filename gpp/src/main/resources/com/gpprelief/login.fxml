@@ -44,9 +44,9 @@
             <Button fx:id="btn_login" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" text="Log In" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Separator prefWidth="0.0" HBox.hgrow="ALWAYS" />
                   <Label minWidth="-Infinity" styleClass="small-text" text="OR" />
-                  <Separator prefWidth="200.0" />
+                  <Separator prefWidth="0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Hyperlink alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="link" text="New to GPP Relief? Create an account" />
