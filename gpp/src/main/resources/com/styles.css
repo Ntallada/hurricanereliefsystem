@@ -39,3 +39,19 @@
 .button:disabled {
     -fx-opacity: 0.5;
 }
+
+.login-root { -fx-background-color: #F7FAFF; }
+.header { -fx-background-color: linear-gradient(to bottom right, #0B1F44, #075FC4); }
+.brand { -fx-text-fill: #FFFFFF; -fx-font-size: 30px; -fx-font-weight: bold; }
+.title { -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0B1F44; }
+.subtitle { -fx-font-size: 13px; -fx-text-fill: #385A80; }
+.field-label { -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #0B1F44; }
+.small-text { -fx-font-size: 11px; -fx-text-fill: #385A80; }
+.input {
+    -fx-background-color: #EAF0F8;
+    -fx-background-radius: 12;
+    -fx-border-color: #C5D6E9;
+    -fx-border-radius: 12;
+    -fx-padding: 10 12 10 12;
+}
+.link { -fx-text-fill: #075FC4; -fx-font-size: 12px; }
