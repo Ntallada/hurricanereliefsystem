@@ -27,7 +27,7 @@ giving victums various needs.
 
 ## Protoype
 ![uml sequence diagram]
-[Prototype]
+[Prototype](https://www.figma.com/design/o6wqfaOXD60zyHwKz8SdQN/GPP-Prototype?node-id=150-103&t=i1B1gvCi698ZGz86-1)
 
 ## Presentation
 [![Presentation Video]
