@@ -28,7 +28,7 @@ public class LoginController {
 
         boolean ok = HurricaneReliefFacade.getInstance().login(username, password);
         if (ok) {
-            App.setRoot("home");
+            App.setRoot("welcome");
         } else {
             showError("Wrong username or password.");
             txt_password.clear();
@@ -37,7 +37,7 @@ public class LoginController {
 
     @FXML
     private void back() throws IOException {
-        App.setRoot("home");
+        App.setRoot("welcome");
     }
 
     private void showError(String message) {

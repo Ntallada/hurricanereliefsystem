@@ -6,11 +6,14 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" prefHeight="850.0" prefWidth="390.0" spacing="20.0" styleClass="login-root" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController">
+<VBox alignment="TOP_CENTER" prefHeight="850.0" prefWidth="390.0" spacing="20.0" styleClass="login-root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -31,9 +34,22 @@
             <TextField fx:id="txt_username" promptText="you@example.com" styleClass="input" />
             <Label styleClass="field-label" text="Password" />
             <PasswordField fx:id="txt_password" promptText="Password" styleClass="input" />
-            <CheckBox mnemonicParsing="false" styleClass="small-text" text="Remember me" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <CheckBox minWidth="-Infinity" mnemonicParsing="false" styleClass="small-text" text="Remember me" />
+                  <Region prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                  <Hyperlink minWidth="-Infinity" styleClass="link" text="Forgot password?" />
+               </children>
+            </HBox>
             <Button fx:id="btn_login" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" text="Log In" />
-            <Hyperlink styleClass="link" text="New to GPP Relief? Create an account" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Separator prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Label minWidth="-Infinity" styleClass="small-text" text="OR" />
+                  <Separator prefWidth="200.0" />
+               </children>
+            </HBox>
+            <Hyperlink alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="link" text="New to GPP Relief? Create an account" />
          </children>
       </VBox>
    </children>
