@@ -1,0 +1,159 @@
+/* Main Screen & Backgrounds */
+.root {
+    -fx-background-color: #F4F8FC;
+    -fx-font-family: "System";
+}
+
+.scroll-pane, .scroll-pane > .viewport {
+    -fx-background-color: #F4F8FC;
+}
+
+/* Top Header & Typography */
+.app-title {
+    -fx-text-fill: #102A43;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.page-title {
+    -fx-text-fill: #0B1F3A;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+    -fx-text-fill: #486581;
+    -fx-font-size: 14px;
+}
+
+.section-header {
+    -fx-text-fill: #0B1F3A;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.muted-text {
+    -fx-text-fill: #627D98;
+    -fx-font-size: 11px;
+}
+
+/* Search Input & Filter Button */
+.search-input {
+    -fx-background-color: #EBF2FA;
+    -fx-background-radius: 22;
+    -fx-border-color: #D9E2EC;
+    -fx-border-radius: 22;
+    -fx-padding: 10 16 10 16;
+    -fx-text-fill: #102A43;
+    -fx-prompt-text-fill: #627D98;
+    -fx-font-size: 13px;
+}
+
+.filter-btn {
+    -fx-background-color: #E1EFFE;
+    -fx-background-radius: 12;
+    -fx-text-fill: #0F4C81;
+    -fx-font-weight: bold;
+    -fx-padding: 10 14 10 14;
+    -fx-cursor: hand;
+}
+
+/* Map Area & Pins */
+.map-box {
+    -fx-background-color: #E6EEF5;
+    -fx-background-radius: 16;
+    -fx-border-color: #D9E2EC;
+    -fx-border-radius: 16;
+}
+
+.map-pin-circle {
+    -fx-fill: #0B5ED7;
+}
+
+.map-pin-number {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+
+.map-pill {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-padding: 4 10 4 10;
+    -fx-text-fill: #102A43;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+
+.zoom-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 6;
+    -fx-text-fill: #102A43;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/* Shelter Cards */
+.shelter-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16;
+    -fx-border-color: #D9E2EC;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 42, 67, 0.05), 8, 0, 0, 2);
+}
+
+.card-title {
+    -fx-text-fill: #0B1F3A;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.card-subtitle {
+    -fx-text-fill: #486581;
+    -fx-font-size: 12px;
+}
+
+.tag-badge {
+    -fx-background-color: #EBF3FC;
+    -fx-background-radius: 12;
+    -fx-text-fill: #334E68;
+    -fx-font-size: 11px;
+    -fx-padding: 4 10 4 10;
+}
+
+.details-btn {
+    -fx-background-color: #084C9E;
+    -fx-background-radius: 16;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 6 16 6 16;
+    -fx-cursor: hand;
+}
+
+.details-btn:hover {
+    -fx-background-color: #0F4C81;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 6 10 6 10;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #627D98;
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+}
+
+.nav-btn-active {
+    -fx-background-color: #EBF3FC;
+    -fx-background-radius: 14;
+    -fx-text-fill: #0B5ED7;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}

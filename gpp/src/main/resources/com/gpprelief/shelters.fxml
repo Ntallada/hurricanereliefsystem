@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane prefHeight="812.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="812.0" prefWidth="375.0" stylesheets="@shelters.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
 
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="12.0">
@@ -21,11 +21,11 @@
             <Insets left="20.0" right="20.0" top="10.0" />
          </padding>
          <children>
-            <Button fx:id="menuButton" mnemonicParsing="false" text="Menu" />
+            <Button fx:id="menuButton" mnemonicParsing="false" styleClass="nav-btn" text="Menu" />
             <Region HBox.hgrow="ALWAYS" />
-            <Label text="GPP Relief" />
+            <Label styleClass="app-title" text="GPP Relief" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="notificationsButton" mnemonicParsing="false" text="Alerts" />
+            <Button fx:id="notificationsButton" mnemonicParsing="false" styleClass="nav-btn" text="Alerts" />
          </children>
       </HBox>
    </top>
@@ -40,45 +40,45 @@
                <children>
                   <VBox spacing="4.0">
                      <children>
-                        <Label text="Find a shelter" />
-                        <Label text="A safer place, closer to you." />
+                        <Label styleClass="page-title" text="Find a shelter" />
+                        <Label styleClass="subtitle" text="A safer place, closer to you." />
                      </children>
                   </VBox>
 
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
-                        <TextField fx:id="searchField" promptText="Search city or ZIP code" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="filterButton" mnemonicParsing="false" text="Filter" />
+                        <TextField fx:id="searchField" promptText="Search city or ZIP code" styleClass="search-input" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="filterButton" mnemonicParsing="false" styleClass="filter-btn" text="Filter" />
                      </children>
                   </HBox>
 
                   <VBox spacing="6.0">
                      <children>
-                        <Pane fx:id="mapContainer" prefHeight="180.0">
+                        <Pane fx:id="mapContainer" prefHeight="180.0" styleClass="map-box">
                            <children>
-                              <Label layoutX="24.0" layoutY="24.0" text="Oak Park" />
+                              <Label layoutX="24.0" layoutY="24.0" styleClass="muted-text" text="Oak Park" />
                               <StackPane layoutX="115.0" layoutY="72.0">
                                  <children>
-                                    <Circle radius="13.0" />
-                                    <Label text="1" />
+                                    <Circle radius="13.0" styleClass="map-pin-circle" />
+                                    <Label styleClass="map-pin-number" text="1" />
                                  </children>
                               </StackPane>
                               <StackPane layoutX="218.0" layoutY="24.0">
                                  <children>
-                                    <Circle radius="13.0" />
-                                    <Label text="2" />
+                                    <Circle radius="13.0" styleClass="map-pin-circle" />
+                                    <Label styleClass="map-pin-number" text="2" />
                                  </children>
                               </StackPane>
-                              <Label fx:id="selectedMapPinLabel" layoutX="16.0" layoutY="146.0" text="1 Community Center" />
+                              <Label fx:id="selectedMapPinLabel" layoutX="16.0" layoutY="146.0" styleClass="map-pill" text="1 Community Center" />
                               <VBox layoutX="292.0" layoutY="88.0" spacing="4.0">
                                  <children>
-                                    <Button fx:id="zoomInButton" mnemonicParsing="false" text="+" />
-                                    <Button fx:id="zoomOutButton" mnemonicParsing="false" text="-" />
+                                    <Button fx:id="zoomInButton" mnemonicParsing="false" styleClass="zoom-btn" text="+" />
+                                    <Button fx:id="zoomOutButton" mnemonicParsing="false" styleClass="zoom-btn" text="-" />
                                  </children>
                               </VBox>
                            </children>
                         </Pane>
-                        <Label text="Illustrative map - sample locations" />
+                        <Label styleClass="muted-text" text="Illustrative map - sample locations" />
                      </children>
                   </VBox>
 
@@ -86,76 +86,76 @@
                      <children>
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Label text="Nearby shelters" />
+                              <Label styleClass="section-header" text="Nearby shelters" />
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label fx:id="resultsCountLabel" text="2 results" />
+                              <Label fx:id="resultsCountLabel" styleClass="muted-text" text="2 results" />
                            </children>
                         </HBox>
-                        <Label text="Sample listings - availability is not live" />
+                        <Label styleClass="muted-text" text="Sample listings - availability is not live" />
                      </children>
                   </VBox>
 
                   <VBox fx:id="shelterListContainer" spacing="12.0">
                      <children>
-                        <VBox spacing="10.0">
+                        <VBox spacing="10.0" styleClass="shelter-card">
                            <padding>
                               <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                            </padding>
                            <children>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
-                                    <Label text="1" />
+                                    <Label styleClass="tag-badge" text="1" />
                                     <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <Label text="Community Center" />
+                                                <Label styleClass="card-title" text="Community Center" />
                                                 <Region HBox.hgrow="ALWAYS" />
-                                                <Label text="1.2 mi" />
+                                                <Label styleClass="muted-text" text="1.2 mi" />
                                              </children>
                                           </HBox>
-                                          <Label text="Meals - Accessible entrance" />
+                                          <Label styleClass="card-subtitle" text="Meals - Accessible entrance" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
-                                    <Label text="Emergency shelter" />
+                                    <Label styleClass="tag-badge" text="Emergency shelter" />
                                     <Region HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="shelter1DetailsButton" mnemonicParsing="false" text="View details" />
+                                    <Button fx:id="shelter1DetailsButton" mnemonicParsing="false" styleClass="details-btn" text="View details" />
                                  </children>
                               </HBox>
                            </children>
                         </VBox>
 
-                        <VBox spacing="10.0">
+                        <VBox spacing="10.0" styleClass="shelter-card">
                            <padding>
                               <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                            </padding>
                            <children>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
-                                    <Label text="2" />
+                                    <Label styleClass="tag-badge" text="2" />
                                     <VBox spacing="2.0" HBox.hgrow="ALWAYS">
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <Label text="Northside High School" />
+                                                <Label styleClass="card-title" text="Northside High School" />
                                                 <Region HBox.hgrow="ALWAYS" />
-                                                <Label text="2.4 mi" />
+                                                <Label styleClass="muted-text" text="2.4 mi" />
                                              </children>
                                           </HBox>
-                                          <Label text="Family area - Pet-friendly" />
+                                          <Label styleClass="card-subtitle" text="Family area - Pet-friendly" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
-                                    <Label text="Emergency shelter" />
+                                    <Label styleClass="tag-badge" text="Emergency shelter" />
                                     <Region HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="shelter2DetailsButton" mnemonicParsing="false" text="View details" />
+                                    <Button fx:id="shelter2DetailsButton" mnemonicParsing="false" styleClass="details-btn" text="View details" />
                                  </children>
                               </HBox>
                            </children>
@@ -163,7 +163,7 @@
                      </children>
                   </VBox>
 
-                  <Label text="Confirm shelter status before traveling." />
+                  <Label styleClass="muted-text" text="Confirm shelter status before traveling." />
                </children>
             </VBox>
          </content>
@@ -171,12 +171,12 @@
    </center>
 
    <bottom>
-      <HBox alignment="CENTER" prefHeight="60.0" spacing="8.0">
+      <HBox alignment="CENTER" prefHeight="60.0" spacing="8.0" styleClass="bottom-nav">
          <children>
-            <Button fx:id="navHomeButton" maxWidth="Infinity" mnemonicParsing="false" text="Home" HBox.hgrow="ALWAYS" />
-            <Button fx:id="navRequestsButton" maxWidth="Infinity" mnemonicParsing="false" text="Requests" HBox.hgrow="ALWAYS" />
-            <Button fx:id="navSheltersButton" maxWidth="Infinity" mnemonicParsing="false" text="Shelters" HBox.hgrow="ALWAYS" />
-            <Button fx:id="navAccountButton" maxWidth="Infinity" mnemonicParsing="false" text="Account" HBox.hgrow="ALWAYS" />
+            <Button fx:id="navHomeButton" maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-btn" text="Home" HBox.hgrow="ALWAYS" />
+            <Button fx:id="navRequestsButton" maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-btn" text="Requests" HBox.hgrow="ALWAYS" />
+            <Button fx:id="navSheltersButton" maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-btn-active" text="Shelters" HBox.hgrow="ALWAYS" />
+            <Button fx:id="navAccountButton" maxWidth="Infinity" mnemonicParsing="false" styleClass="nav-btn" text="Account" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </bottom>
