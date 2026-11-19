@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="812.0" prefWidth="375.0" style="-fx-background-color: #F4F8FC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gpp.controllers.SheltersController">
+   
+   <!-- TOP HEADER BAR -->
+   <top>
+      <HBox alignment="CENTER" prefHeight="60.0" spacing="12.0" style="-fx-background-color: #F4F8FC;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <children>
+            <Button fx:id="menuButton" mnemonicParsing="false" onAction="#handleMenuClick" style="-fx-background-color: transparent; -fx-font-size: 20px; -fx-text-fill: #102A43; -fx-cursor: hand;" text="☰" />
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" spacing="8.0">
+               <children>
+                  
+                  <StackPane prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #0F4C81; -fx-background-radius: 6; -fx-border-color: #F59E0B; -fx-border-width: 2; -fx-border-radius: 6;">
+                     <children>
+                        <Label style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;" text="+" />
+                     </children>
+                  </StackPane>
+                  <Label style="-fx-text-fill: #102A43; -fx-font-weight: bold; -fx-font-size: 18px;" text="GPP Relief" />
+               </children>
+            </HBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="notificationsButton" mnemonicParsing="false" onAction="#handleNotificationsClick" style="-fx-background-color: transparent; -fx-font-size: 18px; -fx-text-fill: #102A43; -fx-cursor: hand;" text="🔔" />
+         </children>
+      </HBox>
+   </top>
+
+   //Main Content Area
+   <center>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #F4F8FC; -fx-background-color: transparent;" vbarPolicy="AS_NEEDED" BorderPane.alignment="CENTER">
+         <content>
+            <VBox spacing="16.0" style="-fx-background-color: #F4F8FC;">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+               <children>
+                  
+                  < Title & Subtitle >
+                  <VBox spacing="4.0">
+                     <children>
+                        <Label style="-fx-text-fill: #0B1F3A; -fx-font-weight: bold; -fx-font-size: 26px;" text="Find a shelter" />
+                        <Label style="-fx-text-fill: #486581; -fx-font-size: 14px;" text="A safer place, closer to you." />
+                     </children>
+                  </VBox>
+
+                  < Search Bar + Filter Button >
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="44.0" spacing="8.0" style="-fx-background-color: #EBF2FA; -fx-background-radius: 22; -fx-border-color: #D9E2EC; -fx-border-radius: 22;" HBox.hgrow="ALWAYS">
+                           <padding>
+                              <Insets left="14.0" right="14.0" />
+                           </padding>
+                           <children>
+                              <Label style="-fx-text-fill: #627D98; -fx-font-size: 14px;" text="🔍" />
+                              <TextField fx:id="searchField" onKeyReleased="#handleSearch" promptText="Search city or ZIP code" style="-fx-background-color: transparent; -fx-text-fill: #102A43; -fx-prompt-text-fill: #627D98; -fx-font-size: 14px;" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="filterButton" mnemonicParsing="false" onAction="#handleFilterClick" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #E1EFFE; -fx-background-radius: 12; -fx-text-fill: #0F4C81; -fx-font-size: 16px; -fx-cursor: hand;" text="⚙" />
+                     </children>
+                  </HBox>
+
+                  < Interactive Map Card >
+                  <VBox style="-fx-background-color: #FFFFFF; -fx-background-radius: 16; -fx-border-color: #D9E2EC; -fx-border-radius: 16;">
+                     <children>
+                        <Pane fx:id="mapContainer" prefHeight="185.0" style="-fx-background-color: #E6EEF5; -fx-background-radius: 16 16 0 0;">
+                           <children>
+                              < Simulated Map Roads & Parks >
+                              <Pane layoutX="18.0" layoutY="16.0" prefHeight="48.0" prefWidth="76.0" style="-fx-background-color: #D7E8D8; -fx-background-radius: 8;" />
+                              <Label layoutX="26.0" layoutY="32.0" style="-fx-text-fill: #52796F; -fx-font-size: 10px;" text="Oak Park" />
+                              
+                              
+                              <StackPane layoutX="115.0" layoutY="72.0">
+                                 <children>
+                                    <Circle fill="#0B5ED7" radius="13.0" />
+                                    <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 11px;" text="1" />
+                                 </children>
+                              </StackPane>
+
+                             
+                              <StackPane layoutX="218.0" layoutY="24.0">
+                                 <children>
+                                    <Circle fill="#0B5ED7" radius="13.0" />
+                                    <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 11px;" text="2" />
+                                 </children>
+                              </StackPane>
+
+                             
+                              <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="146.0" spacing="6.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 4, 0, 0, 2);">
+                                 <padding>
+                                    <Insets bottom="4.0" left="10.0" right="12.0" top="4.0" />
+                                 </padding>
+                                 <children>
+                                    <Label fx:id="selectedMapPinLabel" style="-fx-text-fill: #102A43; -fx-font-weight: bold; -fx-font-size: 11px;" text="1  Community Center" />
+                                 </children>
+                              </HBox>
+
+                              < Zoom Controls >
+                              <VBox layoutX="292.0" layoutY="90.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 2);">
+                                 <children>
+                                    <Button fx:id="zoomInButton" mnemonicParsing="false" onAction="#handleZoomIn" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-fill: #102A43;" text="+" />
+                                    <Button fx:id="zoomOutButton" mnemonicParsing="false" onAction="#handleZoomOut" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-fill: #102A43;" text="−" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </Pane>
+                        <HBox alignment="CENTER_LEFT">
+                           <padding>
+                              <Insets bottom="6.0" left="12.0" right="12.0" top="6.0" />
+                           </padding>
+                           <children>
+                              <Label style="-fx-text-fill: #627D98; -fx-font-size: 10px;" text="Illustrative map · sample locations" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  < Section Header >
+                  <VBox spacing="2.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label style="-fx-text-fill: #0B1F3A; -fx-font-weight: bold; -fx-font-size: 17px;" text="Nearby shelters" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label fx:id="resultsCountLabel" style="-fx-text-fill: #627D98; -fx-font-size: 12px;" text="2 results" />
+                           </children>
+                        </HBox>
+                        <Label style="-fx-text-fill: #627D98; -fx-font-size: 11px;" text="Sample listings · availability is not live" />
+                     </children>
+                  </VBox>
+
+                  
+                  <VBox fx:id="shelterListContainer" spacing="12.0">
+                     <children>
+                        
+                        < Card 1: Community Center >
+                        <VBox spacing="12.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 16; -fx-border-color: #D9E2EC; -fx-border-radius: 16;">
+                           <padding>
+                              <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="TOP_LEFT" spacing="12.0">
+                                 <children>
+                                    <StackPane prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #0B5ED7; -fx-background-radius: 14;">
+                                       <children>
+                                          <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="1" />
+                                       </children>
+                                    </StackPane>
+                                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label style="-fx-text-fill: #0B1F3A; -fx-font-weight: bold; -fx-font-size: 15px;" text="Community Center" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-text-fill: #627D98; -fx-font-size: 12px;" text="1.2 mi" />
+                                             </children>
+                                          </HBox>
+                                          <Label style="-fx-text-fill: #486581; -fx-font-size: 12px;" text="Meals · Accessible entrance" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label style="-fx-background-color: #EBF3FC; -fx-text-fill: #334E68; -fx-background-radius: 12; -fx-font-size: 11px;" text="Emergency shelter">
+                                       <padding>
+                                          <Insets bottom="4.0" left="10.0" right="10.0" top="4.0" />
+                                       </padding>
+                                    </Label>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#handleViewShelter1" style="-fx-background-color: #084C9E; -fx-text-fill: white; -fx-background-radius: 16; -fx-font-weight: bold; -fx-font-size: 12px; -fx-cursor: hand;" text="View details  →">
+                                       <padding>
+                                          <Insets bottom="6.0" left="16.0" right="16.0" top="6.0" />
+                                       </padding>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                        < Card 2: Northside High School >
+                        <VBox spacing="12.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 16; -fx-border-color: #D9E2EC; -fx-border-radius: 16;">
+                           <padding>
+                              <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="TOP_LEFT" spacing="12.0">
+                                 <children>
+                                    <StackPane prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #0B5ED7; -fx-background-radius: 14;">
+                                       <children>
+                                          <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px;" text="2" />
+                                       </children>
+                                    </StackPane>
+                                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label style="-fx-text-fill: #0B1F3A; -fx-font-weight: bold; -fx-font-size: 15px;" text="Northside High School" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-text-fill: #627D98; -fx-font-size: 12px;" text="2.4 mi" />
+                                             </children>
+                                          </HBox>
+                                          <Label style="-fx-text-fill: #486581; -fx-font-size: 12px;" text="Family area · Pet-friendly" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label style="-fx-background-color: #EBF3FC; -fx-text-fill: #334E68; -fx-background-radius: 12; -fx-font-size: 11px;" text="Emergency shelter">
+                                       <padding>
+                                          <Insets bottom="4.0" left="10.0" right="10.0" top="4.0" />
+                                       </padding>
+                                    </Label>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#handleViewShelter2" style="-fx-background-color: #084C9E; -fx-text-fill: white; -fx-background-radius: 16; -fx-font-weight: bold; -fx-font-size: 12px; -fx-cursor: hand;" text="View details  →">
+                                       <padding>
+                                          <Insets bottom="6.0" left="16.0" right="16.0" top="6.0" />
+                                       </padding>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                     </children>
+                  </VBox>
+
+                  < Footer >
+                  <Label style="-fx-text-fill: #627D98; -fx-font-size: 11px;" text="Confirm shelter status before traveling." />
+
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+
+   < Bottom Nav >
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="64.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="navHomeButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToHome" style="-fx-background-color: transparent; -fx-text-fill: #627D98; -fx-font-size: 11px; -fx-cursor: hand;" text="⌂&#10;Home" textAlignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+            <Button fx:id="navRequestsButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToRequests" style="-fx-background-color: transparent; -fx-text-fill: #627D98; -fx-font-size: 11px; -fx-cursor: hand;" text="📄&#10;Requests" textAlignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+            <Button fx:id="navSheltersButton" contentDisplay="TOP" mnemonicParsing="false" style="-fx-background-color: #EBF3FC; -fx-background-radius: 14; -fx-text-fill: #0B5ED7; -fx-font-weight: bold; -fx-font-size: 11px;" text="🏠&#10;Shelters" textAlignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+               <HBox.margin>
+                  <Insets bottom="6.0" left="8.0" right="8.0" top="6.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="navAccountButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToAccount" style="-fx-background-color: transparent; -fx-text-fill: #627D98; -fx-font-size: 11px; -fx-cursor: hand;" text="👤&#10;Account" textAlignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
